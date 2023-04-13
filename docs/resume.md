@@ -8,7 +8,7 @@ permalink: /resume
 <head>
 <style>
 mark { 
-  background-color: gray;
+  background-color: gainsboro;
   color: black;
 }
 </style>
