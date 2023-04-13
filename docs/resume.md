@@ -37,9 +37,9 @@ Experience
 ---
 ---
 
-|                             |                   |                          |
-| November 2019-Present       | Salesforce        | San Antonio, TX (remote) |
-|                             |                   |                          |
+| Salesforce               |
+| November 2019-Present    |
+| San Antonio, TX (remote) |
 
 |                             |                   |                          |
 | December 2017-November 2019 | TrueAbility       | San Antonio, TX          |
@@ -62,15 +62,15 @@ Certifications
 ---
 ---
 
-|Cert                                                         | License          |
-|-------------------------------------------------------------|------------------|
-|AWS Certified Solutions Architect                            | AWS-ASA-29789    |
-|Red Hat Certified Engineer (RHCE), 2016                      | 130-119-274      |
-|Red Hat Certified System Administrator (RHCSA), 2013         | 130-119-274      |
-|Linux Professional Institute Certification 1 ( LPIC-1), 2012 | LPI000250530     |
-|Novell Certified Linux Administrator (CLA), 2012             | 10176504         |
-|Novell Data Center Technical Specialist, 2012                | 10176504         |
-|CompTIA Linux+, 2012                                         | COMP001007825623 |
-|CompTIA Security+, 2010                                      | COMP001007825623 |
-|CompTIA Network+, 2010                                       | COMP001007825623 |
-|CompTIA A+, 2008                                             | COMP001007825623 |
+|Cert                                                          |  License          |
+|--------------------------------------------------------------|-------------------|
+|AWS Certified Solutions Architect                             |  AWS-ASA-29789    |
+|Red Hat Certified Engineer (RHCE), 2016                       |  130-119-274      |
+|Red Hat Certified System Administrator (RHCSA), 2013          |  130-119-274      |
+|Linux Professional Institute Certification 1 ( LPIC-1), 2012  |  LPI000250530     |
+|Novell Certified Linux Administrator (CLA), 2012              |  10176504         |
+|Novell Data Center Technical Specialist, 2012                 |  10176504         |
+|CompTIA Linux+, 2012                                          |  COMP001007825623 |
+|CompTIA Security+, 2010                                       |  COMP001007825623 |
+|CompTIA Network+, 2010                                        |  COMP001007825623 |
+|CompTIA A+, 2008                                              |  COMP001007825623 |
