@@ -46,9 +46,8 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 ---
 ---
 
-Salesforce &nbsp;**\|**&nbsp; November 2019-Present
+**Lead Systems Engineer &nbsp;\|&nbsp; Salesforce &nbsp;\|&nbsp; November 2019-Present**
 
-**Lead Systems Engineer**
 * Mentored junior team members.
 * Led a small team on our ‘Bring Your Own Key’ (BYOK) initiative; this product allowed customers to fully own the keys their databases were encrypted with and represented $6 million in additional revenue for Pardot.
 * Helped to identify and deploy cost saving measures in our public cloud infrastructure, representing a savings of $3 million dollars annually.
@@ -56,16 +55,14 @@ Salesforce &nbsp;**\|**&nbsp; November 2019-Present
 * Built a pipeline for bespoke tooling for the SRE team, allowing tools to be created and shared widely while circumventing common pitfalls around such tooling, e.g. tribial knowledge.
 * Built a CLI tool to rapidly manage asynchronous jobs, greatly decreasing response time while increasing visibility.
 
-TrueAbility &nbsp;**\|**&nbsp; December 2017-November 2019
+**Systems Engineer &nbsp;\|&nbsp; TrueAbility &nbsp;\|&nbsp; December 2017-November 2019**
 
-**Systems Engineer**
 * Helped many top companies build, deploy, and grade their performance based assessments.
 * Acted as a consultant on exam creation and deployment.
 * Contributed to the underlying codebase as needed.
 
-Rackspace Hosting &nbsp;**\|**&nbsp; March 2017-December 2017
+**DevOps Engineer &nbsp;\|&nbsp; Rackspace Hosting &nbsp;\|&nbsp; March 2017-December 2017**
 
-**DevOps Engineer**
 * Architect and deploy scalable cloud solutions for customers in an AWS ecosystem via CloudFormation.
 * Educate customers on distributed computing principles and CI/CD solutions.
 * Design for customers’ regulatory requirements (e.g. PCI, HIPPA, etc).
@@ -79,7 +76,7 @@ Rackspace Hosting &nbsp;**\|**&nbsp; March 2017-December 2017
 ---
 ---
 
-Northwest Vista College &nbsp;**\|**&nbsp; January 2010-May 2012
+**Northwest Vista College &nbsp;\|&nbsp; January 2010-May 2012**
 * Associate of Applied Science in Computer Forensics with a 4.0 GPA
 * Marketable Skills Achievement Award: Linux RHCT
 * Marketable Skills Achievement Award: Information Security & Assurance
