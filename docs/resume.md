@@ -3,8 +3,6 @@ title: Wes Henderson
 date: 2023-04-12
 layout: none
 permalink: /resume
-margin-top: 1cm
-margin-bottom: 2cm
 ---
 
 Wes Henderson
