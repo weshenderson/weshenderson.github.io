@@ -15,7 +15,7 @@ Wes Henderson
 
 ---
 
-I am a community oriented Linux nerd with more than a decade of IT experience and a penchant for automation and mentoring. I believe that continuous improvement, both in process and tech, is paramount for any organization.<br><br>The key to maintaining continuous improvement is to build and maintain a strong team through constant, organic training. This promotes knowledge sharing and helps the team adapt to changing workplace priorities.
+I am a community oriented Linux nerd with more than a decade of IT experience and a penchant for automation and mentoring. I believe that continuous improvement, both in process and tech, is paramount for any organization.<br>The key to maintaining continuous improvement is to build and maintain a strong team through constant, organic training. This promotes knowledge sharing and helps the team adapt to changing workplace priorities.
 
 
 
@@ -31,3 +31,15 @@ Education
 Certifications
 ---
 
+|Cert                                                         | License          |
+|-------------------------------------------------------------|------------------|
+|AWS Certified Solutions Architect                            | AWS-ASA-29789    |
+|Red Hat Certified Engineer (RHCE), 2016                      | 130-119-274      |
+|Red Hat Certified System Administrator (RHCSA), 2013         | 130-119-274      |
+|Linux Professional Institute Certification 1 ( LPIC-1), 2012 | LPI000250530     |
+|Novell Certified Linux Administrator (CLA), 2012             | 10176504         |
+|Novell Data Center Technical Specialist, 2012                | 10176504         |
+|CompTIA Linux+, 2012                                         | COMP001007825623 |
+|CompTIA Security+, 2010                                      | COMP001007825623 |
+|CompTIA Network+, 2010                                       | COMP001007825623 |
+|CompTIA A+, 2008                                             | COMP001007825623 |
