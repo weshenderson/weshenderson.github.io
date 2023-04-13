@@ -28,6 +28,10 @@ Experience
 Education
 ---
 
+* Associate of Applied Science in Computer Forensics with a 4.0 GPA
+* Marketable Skills Achievement Award: Linux RHCT
+* Marketable Skills Achievement Award: Information Security & Assurance
+
 Certifications
 ---
 
