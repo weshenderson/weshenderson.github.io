@@ -5,6 +5,15 @@ layout: none
 permalink: /resume
 ---
 
+<head>
+<style>
+mark { 
+  background-color: yellow;
+  color: black;
+}
+</style>
+</head>
+
 <mark>Wes Henderson</mark>
 ===
 
