@@ -9,11 +9,9 @@ Wes Henderson
 ===
 
 ---
-[weshenderson.info](https://weshenderson.info)
-
-[whendersonii@gmail.com](mailto:whendersonii@gmail.com)
-
-210-589-0628
+* [weshenderson.info](https://weshenderson.info)
+* [whendersonii@gmail.com](mailto:whendersonii@gmail.com)
+* 210-589-0628
 
 ---
 
