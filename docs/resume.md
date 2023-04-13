@@ -3,6 +3,10 @@ title: Wes Henderson
 date: 2023-04-12
 layout: none
 permalink: /resume
+margin-left: 2cm
+margin-right: 2cm
+margin-top: 1cm
+margin-bottom: 2cm
 ---
 
 Wes Henderson
@@ -21,6 +25,16 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 
 Skills
 ---
+* Ability to quickly acclimate to new software.
+* Intimate understanding of AWS and Rackspace clouds.
+* Advanced scripting skills with Bash and Powershell.
+* Intermediate programming skills with Python.
+* Automation experience with multiple SDKs (boto3 and pyrax), Ansible, and Fabric.
+* Familiar with modern software design principles such as SoA and Microservices.
+* Keenly aware of operations and ever mindful of opportunities for process improvement.
+* Training and collaboration.
+* Technical writing.
+* Expert Google’ite.
 
 Experience
 ---
