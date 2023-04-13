@@ -37,12 +37,17 @@ Experience
 ---
 ---
 
+|                             |                   |                          |
 | November 2019-Present       | Salesforce        | San Antonio, TX (remote) |
+|                             |                   |                          |
 
+|                             |                   |                          |
 | December 2017-November 2019 | TrueAbility       | San Antonio, TX          |
+|                             |                   |                          |
 
+|                             |                   |                          |
 | March 2017-December 2017    | Rackspace Hosting | San Antonio, TX          |
-
+|                             |                   |                          |
 
 
 Education
