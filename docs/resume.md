@@ -46,11 +46,11 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 ---
 ---
 
-Salesforce  |  November 2019-Present
+Salesforce &nbsp;**\|**&nbsp; November 2019-Present
 
-TrueAbility  |  December 2017-November 2019
+TrueAbility &nbsp;**\|**&nbsp; December 2017-November 2019
 
-Rackspace Hosting  |  March 2017-December 2017
+Rackspace Hosting &nbsp;**\|**&nbsp; March 2017-December 2017
 
 <mark>Education</mark>
 ---
