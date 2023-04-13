@@ -6,12 +6,12 @@ permalink: /resume
 ---
 
 <head>
-<style>
-mark { 
-  background-color: gainsboro;
-  color: black;
-}
-</style>
+  <style>
+    mark {
+      background-color: gainsboro;
+      color: black;
+    }
+  </style>
 </head>
 
 <mark>Wes Henderson</mark>
@@ -27,7 +27,7 @@ mark {
 I am a community oriented Linux nerd with more than a decade of IT experience and a penchant for automation and mentoring. I believe that continuous improvement, both in process and tech, is paramount for any organization.<br>The key to maintaining continuous improvement is to build and maintain a strong team through constant, organic training. This promotes knowledge sharing and helps the team adapt to changing workplace priorities.
 
 
-Skills
+<mark>Skills</mark>
 ---
 ---
 
@@ -42,24 +42,17 @@ Skills
 * Technical writing.
 * Expert Google’ite.
 
-Experience
+<mark>Experience</mark>
 ---
 ---
 
-| Salesforce               |
-| November 2019-Present    |
-| San Antonio, TX (remote) |
+Salesforce  |  November 2019-Present
 
-|                             |                   |                          |
-| December 2017-November 2019 | TrueAbility       | San Antonio, TX          |
-|                             |                   |                          |
+TrueAbility  |  December 2017-November 2019
 
-|                             |                   |                          |
-| March 2017-December 2017    | Rackspace Hosting | San Antonio, TX          |
-|                             |                   |                          |
+Rackspace Hosting  |  March 2017-December 2017
 
-
-Education
+<mark>Education</mark>
 ---
 ---
 
@@ -67,7 +60,7 @@ Education
 * Marketable Skills Achievement Award: Linux RHCT
 * Marketable Skills Achievement Award: Information Security & Assurance
 
-Certifications
+<mark>Certifications</mark>
 ---
 ---
 
