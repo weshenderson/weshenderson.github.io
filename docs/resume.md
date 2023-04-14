@@ -60,7 +60,7 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 * Built a bespoke tooling pipeline for the SRE team, allowing tools to be created and shared widely while circumventing common pitfalls around such tooling, e.g. tribal knowledge resulting in decreased visibility and adoption.
 * Built a CLI tool to rapidly manage asynchronous jobs, greatly decreasing response time while increasing visibility.
 
-**Systems Engineer &nbsp;\|&nbsp; TrueAbility &nbsp;\|&nbsp; December 2017-November 2019**
+**Deployment Engineer &nbsp;\|&nbsp; TrueAbility &nbsp;\|&nbsp; December 2017-November 2019**
 
 * Mentored junior team members and built pathways from support to engineering.
 * Helped many top companies build, deploy, and grade their performance based assessments.
