@@ -27,15 +27,16 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 ---
 ---
 
-* Ability to quickly acclimate to new software.
-* Intimate understanding of AWS and Rackspace clouds.
-* Advanced scripting skills with Bash and Powershell.
-* Intermediate programming skills with Python.
-* Automation experience with multiple SDKs (boto3 and pyrax), Ansible, and Fabric.
-* Familiar with modern software design principles such as SoA and Microservices.
 * Keenly aware of operations and ever mindful of opportunities for process improvement.
-* Training and collaboration.
-* Technical writing.
+* Passionate about mentoring and collaboration.
+* Skilled technical writer with a love for documentation.
+* Ability to quickly acclimate to new software.
+* Advanced scripting skills with Bash and Powershell.
+* Intermediate programming skills, primarily with Python.
+* Proficient with config management and infrastructure as code: Ansible, Chef, Puppet, Salt, Terraform, and CloudFormation
+* Automation experience with Python, boto3 (AWS SDK), and Fabric.
+* Intimate understanding of public cloud infrastructure.
+* Familiar with modern software design principles such as SoA and Microservices.
 * Expert Google’ite.
 
 <mark>Experience</mark>
