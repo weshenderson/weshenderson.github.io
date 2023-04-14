@@ -45,29 +45,30 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 
 **Lead Systems Engineer &nbsp;\|&nbsp; Salesforce &nbsp;\|&nbsp; November 2019-Present**
 
-* Mentored junior team members.
-* Led a small team on our ‘Bring Your Own Key’ (BYOK) initiative; this product allowed customers to fully own the keys their databases were encrypted with and represented $6 million in additional revenue for Pardot.
+* Led a small team on our ‘Bring Your Own Key’ (BYOK) initiative; this product allowed customers to fully own the keys their databases were encrypted with and represented $6 million in recurring revenue for Pardot.
 * Helped to identify and deploy cost saving measures in our public cloud infrastructure, representing a savings of $3 million dollars annually.
 * Led multiple teams across multiple business units in order to meet deployment deadlines.
-* Built a pipeline for bespoke tooling for the SRE team, allowing tools to be created and shared widely while circumventing common pitfalls around such tooling, e.g. tribial knowledge.
+* Built a bespoke tooling pipeline for the SRE team, allowing tools to be created and shared widely while circumventing common pitfalls around such tooling, e.g. tribal knowledge resulting in decreased visibility and adoption.
 * Built a CLI tool to rapidly manage asynchronous jobs, greatly decreasing response time while increasing visibility.
 
 **Systems Engineer &nbsp;\|&nbsp; TrueAbility &nbsp;\|&nbsp; December 2017-November 2019**
 
+* Mentored junior team members and built pathways from support to engineering.
 * Helped many top companies build, deploy, and grade their performance based assessments.
 * Acted as a consultant on exam creation and deployment.
-* Contributed to the underlying codebase as needed.
+* Created bespoke environments/grading via Bash and Powershell, primarily.
+* Contributed to the underlying codebase where applicable.
+* Maintained the AWS and GCP infrastructure for internal tooling and exams respectively.
 
 **DevOps Engineer &nbsp;\|&nbsp; Rackspace Hosting &nbsp;\|&nbsp; March 2017-December 2017**
 
 * Architect and deploy scalable cloud solutions for customers in an AWS ecosystem via CloudFormation.
-* Educate customers on distributed computing principles and CI/CD solutions.
 * Design for customers’ regulatory requirements (e.g. PCI, HIPPA, etc).
+* Educate customers on distributed computing principles and CI/CD solutions.
 * Collaborate with team members via GitHub.
 * Wrote a Python framework to automate the build process.
-* Wrote custom tooling in Bash and Python.
-* Active contributor to the internal Rackspace wiki.
-* Fanatical support in everything I do.
+* Created custom tooling in Bash and Python.
+* Active contributor to both the internal Rackspace wiki and public blog.
 
 <mark>Education</mark>
 ---
