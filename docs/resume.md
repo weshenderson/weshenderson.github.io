@@ -8,12 +8,14 @@ permalink: /resume
 <head>
     <link rel=icon type="image/ico" href="assets/images/resume.ico">
     <link rel="stylesheet" href="/assets/css/resume.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HMXV18Z9V"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-38939455-1');
+        gtag('config', 'G-1HMXV18Z9V');
     </script>
 </head>
 
