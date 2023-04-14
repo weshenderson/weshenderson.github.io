@@ -8,6 +8,13 @@ permalink: /resume
 <head>
     <link rel=icon type="image/ico" href="assets/images/resume.ico">
     <link rel="stylesheet" href="/assets/css/resume.css">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-38939455-1');
+    </script>
 </head>
 
 <mark>Wes Henderson</mark>
