@@ -95,3 +95,7 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 |CompTIA Security+, 2010                                       |  COMP001007825623 |
 |CompTIA Network+, 2010                                        |  COMP001007825623 |
 |CompTIA A+, 2008                                              |  COMP001007825623 |
+
+<div class="footer">
+    <p>© 2023 Wes Henderson. This is a markdown resume powered by Jekyll. <a href="https://github.com/weshenderson/weshenderson.github.io/blob/main/docs/resume.md">Source.</a></p>
+</div>
