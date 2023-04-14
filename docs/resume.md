@@ -6,12 +6,8 @@ permalink: /resume
 ---
 
 <head>
-  <style>
-    mark {
-      background-color: gainsboro;
-      color: black;
-    }
-  </style>
+    <link rel=icon type="image/ico" href="assets/images/resume.ico">
+    <link rel="stylesheet" href="/assets/css/resume.css">
 </head>
 
 <mark>Wes Henderson</mark>
