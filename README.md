@@ -14,3 +14,11 @@ docker run -p 4000:4000 -v $(pwd):/site bretfisher/jekyll-serve
 The local site can be viewed at [http://localhost:4000/](http://localhost:4000/).
 
 **Note:** Changes to `_config.yml` require a reload of the server.
+
+## Hooks and Easter Eggs
+
+The pre-commit hook generates a "konami resume template" if `resume.md` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on `/resume`:
+
+```
+up, up, down, down, left, right, left, right, b, a
+```
