@@ -1,0 +1,19 @@
+body {
+    background-color: black;
+    color: chartreuse;
+}
+
+mark {
+    background-color: dimgrey;
+    color: chartreuse;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: dimgrey;
+  color: Chartreuse;
+  text-align: center;
+}

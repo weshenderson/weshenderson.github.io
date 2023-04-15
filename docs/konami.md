@@ -1,8 +1,8 @@
 ---
 title: Wes Henderson
 date: 2023-04-12
-layout: resume
-permalink: /resume
+layout: konami
+permalink: /konami_resume
 ---
 
 <mark>Wes Henderson</mark>
