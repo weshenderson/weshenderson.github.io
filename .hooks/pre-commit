@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+RESUME='docs/resume.md'
+KONAMI='docs/konami.md'
+BASE_PATH="$(git rev-parse --show-toplevel)"
+
+if git status --porcelain | grep -q "${RESUME}"; then
+    pushd "${BASE_PATH}" &>/dev/null
+        cp ${RESUME} ${KONAMI}
+	sed -i 's/layout: resume/layout: konami/g' ${KONAMI}
+	sed -i 's@permalink: /resume@permalink: /konami_resume@g' ${KONAMI}
+	git add ${KONAMI}
+    popd &>/dev/null
+fi
