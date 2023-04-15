@@ -8,7 +8,6 @@ permalink: /resume
 <mark>Wes Henderson</mark>
 ===
 
-
 ---
 * [weshenderson.info](https://weshenderson.info)
 * [whendersonii@gmail.com](mailto:whendersonii@gmail.com)
