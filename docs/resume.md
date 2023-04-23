@@ -70,6 +70,7 @@ I am a community oriented Linux nerd with more than a decade of IT experience an
 ---
 
 **Northwest Vista College &nbsp;\|&nbsp; January 2010-May 2012**
+
 * Associate of Applied Science in Computer Forensics with a 4.0 GPA
 * Marketable Skills Achievement Award: Linux RHCT
 * Marketable Skills Achievement Award: Information Security & Assurance
