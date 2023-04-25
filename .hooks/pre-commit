@@ -4,6 +4,8 @@ set -eo pipefail
 
 RESUME='docs/resume.md'
 KONAMI='docs/konami.md'
+PANDOC='docs/pandoc_metadata.yml'
+PDF='docs/resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 
 if git status --porcelain | grep -q "${RESUME}"; then
@@ -12,5 +14,12 @@ if git status --porcelain | grep -q "${RESUME}"; then
 	sed -i 's/layout: resume/layout: konami/g' ${KONAMI}
 	sed -i 's@permalink: /resume@permalink: /konami_resume@g' ${KONAMI}
 	git add ${KONAMI}
+
+    sed '1 { /^---/ { :a N; /\n===/! ba; d} }' ${RESUME} >> ${PANDOC}
+    pandoc \
+        --output ${PDF} \
+        ${RESUME}
+    git checkout ${PANDOC}
+    git add ${PDF}
     popd &>/dev/null
 fi
