@@ -2,9 +2,12 @@
 The personal webpage of Wes Henderson.
 
 ## Layout
-This site is primarily powered by static resources, e.g. HTML, CSS, etc in a link tree format. I am also experimenting with Jekyll as the templating engine; this can be seen via `/resume`.
+The core of this site is powered by static resources, e.g. HTML, CSS, etc in a link tree format. See the [Resume](#Resume) section for the fun stuff.
 
-## Local Testing
+## Resume
+The `/resume` path uses Jekyll as the templating engine. Additionally, pre-commit hooks export a (PDF copy)[https://weshenderson.info/docs/resume.pdf) via [Pandoc](https://pandoc.org) as well as an alternate version dubbed `konami_resume`. This allows me to effectively separate the content from the format and maintain 3 version via 1 markdown file.
+
+### Local Testing
 For local development I am using a container [image](https://hub.docker.com/r/bretfisher/jekyll-serve) created by [Bret Fisher](https://github.com/BretFisher). From the root of the repo simply run:
 
 ```
@@ -15,7 +18,7 @@ The local site can be viewed at [http://localhost:4000/](http://localhost:4000/)
 
 **Note:** Changes to `_config.yml` require a reload of the server.
 
-## Hooks and Easter Eggs
+### Hooks and Easter Eggs
 
 The pre-commit hook generates a "konami resume template" if `resume.md` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on `/resume`:
 
