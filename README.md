@@ -2,10 +2,10 @@
 The personal webpage of Wes Henderson.
 
 ## Layout
-The core of this site is powered by static resources, e.g. HTML, CSS, etc in a link tree format. See the [Resume](#Resume) section for the fun stuff.
+The core of this site is powered by static resources, e.g. HTML, CSS, etc in a link tree format and is hosted with GitHub Pages. See the [Resume](#Resume) section for the fun stuff.
 
 ## Resume
-The `/resume` path uses Jekyll as the templating engine. Additionally, pre-commit hooks export a (PDF copy)[https://weshenderson.info/docs/resume.pdf) via [Pandoc](https://pandoc.org) as well as an alternate version dubbed `konami_resume`. This allows me to effectively separate the content from the format and maintain 3 version via 1 markdown file.
+The `/resume` path uses Jekyll as the templating engine. Additionally, pre-commit hooks export a [PDF copy](https://weshenderson.info/docs/resume.pdf) via [Pandoc](https://pandoc.org) as well as an alternate version dubbed `konami_resume`. This allows me to effectively separate the content from the format and maintain 3 version via 1 markdown file.
 
 ### Local Testing
 For local development I am using a container [image](https://hub.docker.com/r/bretfisher/jekyll-serve) created by [Bret Fisher](https://github.com/BretFisher). From the root of the repo simply run:
