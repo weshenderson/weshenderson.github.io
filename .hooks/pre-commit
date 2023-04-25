@@ -18,7 +18,7 @@ if git status --porcelain | grep -q "${RESUME}"; then
     sed '1 { /^---/ { :a N; /\n===/! ba; d} }' ${RESUME} >> ${PANDOC}
     pandoc \
         --output ${PDF} \
-        ${RESUME}
+        ${PANDOC}
     git checkout ${PANDOC}
     git add ${PDF}
     popd &>/dev/null
