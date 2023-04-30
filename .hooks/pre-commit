@@ -30,7 +30,6 @@ fi
 for file in ${SITE_CHECK[@]}; do
     if git status --porcelain | grep -q ${file}; then
         pushd "${BASE_PATH}" &>/dev/null
-            echo 'Generatoring new site.'
             ./site_generator.py
             git add index.html
         popd &>/dev/null
