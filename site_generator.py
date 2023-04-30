@@ -25,7 +25,6 @@ for link in content["Body"]:
 site_content['college'] = "529 Donation Links: "
 count = 1
 
-# Testing len()
 for child in content["Footer"][529]:
     if count != len(content["Footer"][529]):
         site_content['college'] += '<a target="_blank" href="' + content["Footer"][529][child] + '">' + child + '</a>' + content["Footer"]["FS"]
