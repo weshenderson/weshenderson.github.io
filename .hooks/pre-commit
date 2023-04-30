@@ -7,6 +7,9 @@ KONAMI='docs/konami.md'
 PANDOC='docs/pandoc_metadata.yml'
 PDF='docs/resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
+SITE_CHECK=(content.yaml
+            site_generator.py
+            index.tmpl)
 
 if git status --porcelain | grep -q "${RESUME}"; then
     pushd "${BASE_PATH}" &>/dev/null
@@ -23,3 +26,14 @@ if git status --porcelain | grep -q "${RESUME}"; then
     git add ${PDF}
     popd &>/dev/null
 fi
+
+for file in ${SITE_CHECK[@]}; do
+    if git status --porcelain | grep -q ${file}; then
+        pushd "${BASE_PATH}" &>/dev/null
+            echo 'Generatoring new site.'
+            ./site_generator.py
+            git add index.html
+        popd &>/dev/null
+        break
+    fi
+done

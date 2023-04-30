@@ -1,0 +1,18 @@
+---
+Header:
+  Title: "Father, Traveler, Problem Solver, & Linux Nerd"
+Body:
+  Blog: "https://necrux.com"
+  GitHub: "https://github.com/necrux"
+  LinkedIn: "https://www.linkedin.com/in/wes-henderson"
+  GPG Key: "docs/wes-henderson-public-key.txt"
+  Keybase: "https://keybase.io/necrux"
+  Twitter: "https://twitter.com/necromancertux"
+  Resume: "/resume"
+Footer:
+  529:
+    Kairi: "https://go.fidelity.com/jnz1ko"
+    Kalel: "https://go.fidelity.com/tsrje3"
+    Cairo: "https://go.fidelity.com/6pgu38"
+  FS: " | "
+  Copyright: "© 2023 Wes Henderson"
