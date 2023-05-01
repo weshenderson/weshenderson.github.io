@@ -17,6 +17,10 @@ site_content['author']      = content['Meta']['Author']
 site_content['description'] = content['Meta']['Description']
 site_content['tags']        = ','.join([tag for tag in content['Meta']['Tags']])
 
+## Generate the site image.
+site_content['image'] = content['Image']['Path']
+site_content['alt']   = content['Image']['AltText']
+
 # Generate the header.
 for title in content['Header']:
     site_content['header'] = content['Header'][title]

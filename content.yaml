@@ -12,6 +12,9 @@ Meta:
     - "Texas"
 Header:
   Title: "Father, Traveler, Problem Solver, & Linux Nerd"
+Image:
+  Path: "https://www.weshenderson.info/assets/images/necrux-scaled.webp"
+  AltText: "Necrux the Octocat!"
 Body:
   Blog: "https://necrux.com"
   GitHub: "https://github.com/necrux"
