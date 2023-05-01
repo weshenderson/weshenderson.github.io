@@ -9,7 +9,8 @@ PDF='docs/resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 SITE_CHECK=(content.yaml
             site_generator.py
-            index.tmpl)
+            index.tmpl
+            assets)
 
 if git status --porcelain | grep -q "${RESUME}"; then
     pushd "${BASE_PATH}" &>/dev/null
