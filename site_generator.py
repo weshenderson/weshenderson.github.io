@@ -12,6 +12,11 @@ site_content = {}
 source       = "index.tmpl"
 destination  = "index.html"
 
+## Generate the meta content.
+site_content['author']      = content['Meta']['Author']
+site_content['description'] = content['Meta']['Description']
+site_content['tags']        = ",".join([tag for tag in content['Meta']['Tags']])
+
 # Generate the header.
 for title in content["Header"]:
     site_content['header'] = content["Header"][title]
