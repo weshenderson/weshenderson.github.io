@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
- Author: Wes H.
+ Author: Wes Henderson
  Quickly generate a new index.html file based off of content.yaml.
  Any changes to this file, content.yaml, index.tmpl, or associated
  CSS files will trigger this script at the time of commit.
@@ -177,6 +177,11 @@ def main():
             destination = templates[template]['destination']
 
             build_assets(source, destination, site_content, generate)
+
+        dir_path  = os.path.dirname(os.path.realpath(__file__))
+        site_path = 'file://' + dir_path + '/' + templates['html']['destination']
+        print(f'New site built: {site_path}')
+
     return
 
 if __name__ == "__main__":
