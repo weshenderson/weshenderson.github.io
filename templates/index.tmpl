@@ -6,7 +6,7 @@
     <link rel=icon type="image/ico" href="$icon">
     <link rel=stylesheet href="assets/css/main.css" type="text/css" media=screen>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="$author">
     <meta name="description" content="$description">
     <meta name="keywords" content="$tags">
@@ -25,11 +25,13 @@
     <div class="header">
       $header
     </div>
-    <div class="logo">
-      <img src="$image" alt="$alt">
-    </div>
-    <div class="linktree">
-      $body
+    <div class="flex-container">
+      <div class="flex-child">
+        <img src="$image" alt="$alt">
+      </div>
+      <div class="flex-child">
+        $body
+      </div>
     </div>
     <div class="footer">
       $college
