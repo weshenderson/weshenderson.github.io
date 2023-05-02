@@ -12,6 +12,8 @@ body {
   border: none;
   font-family: inherit;
   font-size: 1em;
+  max-width: 100%;
+  object-fit: scale-down;
   position: absolute;
   text-align: center;
 }
