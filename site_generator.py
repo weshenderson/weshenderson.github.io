@@ -13,38 +13,19 @@
 
 import os
 import sys
+import argparse
 import yaml
+from shutil import copyfile
 from datetime import date
 from string import Template
 
-def build_assets(source, destination, site_content):
-    """Generate HTML/CSS assets from their templates."""
-
-    if os.path.exists(destination):
-        os.remove(destination)
-    with open(source, 'r') as f:
-        src    = Template(f.read())
-        result = src.substitute(site_content)
-        with open(destination, 'a+') as d:
-            d.write(result)
-    return
-
-def main():
+def build_content():
     """Convert content.yaml into a dictionary."""
 
     with open('content.yaml') as f:
         content = yaml.safe_load(f)
 
     site_content = {}
-    templates    = {'html':
-                     {'source': 'templates/index.tmpl',
-                      'destination': 'index.html',
-                     },
-                    'css':
-                     {'source': 'templates/css.tmpl',
-                      'destination': 'assets/css/main.css',
-                     },
-                   }
     today        = date.today()
     year         = today.year
 
@@ -108,12 +89,95 @@ def main():
     else:
         site_content['google']    = '<!-- Hello You. -->'
 
+    return site_content
 
-    for template in templates:
-        source      = templates[template]['source']
-        destination = templates[template]['destination']
+def build_assets(source, destination, site_content, generate):
+    """Generate HTML/CSS assets from their templates."""
 
-        build_assets(source, destination, site_content)
+    if generate:
+        if os.path.exists(destination):
+            os.remove(destination)
+    with open(source, 'r') as f:
+        src    = Template(f.read())
+        result = src.substitute(site_content)
+    if generate:
+        with open(destination, 'a+') as d:
+            d.write(result)
+    else:
+        print(result)
+    return
+
+def main():
+    """Entrypoint for site_generator."""
+
+    # Create the parser
+    description = "Automatically generate a link tree style webpage based off of content.yaml!"
+    epilog      = "If this file is not being automatically executed, copy .hooks/pre-commit to .git/hooks/pre-commit."
+    job_options = argparse.ArgumentParser(description=description, epilog=epilog)
+
+    # Add the arguments
+    job_options.add_argument('-s',
+                             '--stdout',
+                             default = False,
+                             action  = 'store_true',
+                             help    = 'Print the index.html to stdout.')
+    job_options.add_argument('-b',
+                             '--backup',
+                             default = False,
+                             action  = 'store_true',
+                             help    = 'Create a backup copy of the templated files.')
+    job_options.add_argument('-g',
+                             '--generate',
+                             default = False,
+                             action  = 'store_true',
+                             help    = 'Generate the new assets.')
+    job_options.add_argument('-c',
+                             '--check',
+                             default = False,
+                             action  = 'store_true',
+                             help    = 'Validate the content.yaml file. Not yet implemented.')
+
+    args     = job_options.parse_args()
+    stdout   = args.stdout
+    backup   = args.backup
+    generate = args.generate
+    check    = args.check
+
+    site_content = build_content()
+    templates    = {'html':
+                     {'source': 'templates/index.tmpl',
+                      'destination': 'index.html',
+                     },
+                    'css':
+                     {'source': 'templates/css.tmpl',
+                      'destination': 'assets/css/main.css',
+                     },
+                   }
+
+    #if check:
+    #    print('Validating content.yaml')
+    if backup:
+        print('Backing up the files.')
+        for template in templates:
+            templates[template]['backup'] = f"{templates[template]['destination']}.bak"
+            copyfile(templates[template]['destination'], templates[template]['backup'])
+    if stdout:
+        print('Printing the generated files to stdout only.\n')
+        for template in templates:
+            source      = templates[template]['source']
+            destination = templates[template]['destination']
+            print("File: {}\n".format(destination))
+
+            build_assets(source, destination, site_content, generate)
+    elif generate:
+        print('Generating the new assets.')
+
+        for template in templates:
+            source      = templates[template]['source']
+            destination = templates[template]['destination']
+
+            build_assets(source, destination, site_content, generate)
+    return
 
 if __name__ == "__main__":
     main()
