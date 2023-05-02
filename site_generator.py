@@ -15,7 +15,9 @@ destination  = 'index.html'
 ## Generate the meta content.
 site_content['author']      = content['Meta']['Author']
 site_content['description'] = content['Meta']['Description']
+site_content['icon']        = content['Meta']['Icon']
 site_content['tags']        = ','.join([tag for tag in content['Meta']['Tags']])
+site_content['twitter']     = content['Meta']['Twitter']
 
 ## Generate the site image.
 site_content['image'] = content['Image']['Path']
