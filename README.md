@@ -2,7 +2,7 @@
 The personal webpage of Wes Henderson.
 
 ## Layout
-The core of this site is powered by static resources, e.g. HTML, CSS, etc in a link tree format and is hosted with GitHub Pages and is generated from `index.tmpl`. Whenever related file are updated and commited, `site_generator.py` gets executed as a pre-commit hook and generates `index.html`. See the [Resume](#Resume) section for the fun stuff!
+The core of this site is powered by static resources, e.g. HTML, CSS, etc in a link tree format and is hosted with GitHub Pages and is generated from `index.tmpl` and `content.yaml`. Whenever related file are updated and commited, `site_generator.py` gets executed as a pre-commit hook and generates `index.html`. See the [Resume](#Resume) section for the fun stuff!
 
 ## Resume
 The `/resume` path uses Jekyll as the templating engine. Additionally, pre-commit hooks export a [PDF copy](https://weshenderson.info/docs/resume.pdf) via [Pandoc](https://pandoc.org) as well as an alternate version dubbed `konami_resume`. This allows me to effectively separate the content from the format and maintain 3 version via 1 markdown file.
