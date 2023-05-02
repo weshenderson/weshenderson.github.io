@@ -84,7 +84,7 @@ def main():
     if content['Footer']['Copyright']:
         site_content['college'] += f"<p>© {year} {site_content['author']}</p>"
 
-    # Grab the CSS.
+    # Generate the CSS.
     site_content['background'] = content['Page']['Color']['Background']
     site_content['font_color'] = content['Page']['Color']['Font']
     site_content['link']       = content['Page']['Color']['Clicked-Link']
