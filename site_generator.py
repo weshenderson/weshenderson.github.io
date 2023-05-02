@@ -69,6 +69,10 @@ def build_content():
     site_content['font_color'] = content['Page']['Color']['Font']
     site_content['link']       = content['Page']['Color']['Clicked-Link']
     site_content['font']       = content['Page']['Font']
+    if content['Page']['Borders']:
+        site_content['borders'] = '2px solid yellow'
+    else:
+        site_content['borders'] = 'none'
 
     # Build Google Analytics.
     if content['Google']['Analytics']:
@@ -87,7 +91,7 @@ def build_content():
         site_content['google'] = Template(site_content['google'])
         site_content['google'] = site_content['google'].substitute(site_content)
     else:
-        site_content['google']    = '<!-- Hello You. -->'
+        site_content['google'] = ''
 
     return site_content
 

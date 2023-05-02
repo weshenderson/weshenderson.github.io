@@ -21,6 +21,7 @@ Page:
     Font: '#ff00fb'
     Clicked-Link: 'turquoise'
   Font: 'Sans-serif'
+  Borders: False
 Header:
   Title: "Father, Traveler, Problem Solver, & Linux Nerd"
 Image:

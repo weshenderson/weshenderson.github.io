@@ -22,7 +22,7 @@ img {
   flex: 1;
   font-size: 2em;
   text-align: center;
-  border: 2px solid yellow;
+  border: none;
 }
 
 .flex-child:first-child {
@@ -41,6 +41,7 @@ a:visited {
 }
 
 .header {
+  background-color: inherit;
   border: none;
   font-family: inherit;
   font-size: 1em;
