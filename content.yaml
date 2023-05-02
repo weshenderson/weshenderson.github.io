@@ -12,6 +12,12 @@ Meta:
     - "Linux Nerd"
     - "San Antonio"
     - "Texas"
+Page:
+  Color:
+    Background: 'black'
+    Font: '#ff00fb'
+    Clicked-Link: 'turquoise'
+  Font: 'Sans-serif'
 Header:
   Title: "Father, Traveler, Problem Solver, & Linux Nerd"
 Image:
@@ -31,4 +37,4 @@ Footer:
     Kalel: "https://go.fidelity.com/tsrje3"
     Cairo: "https://go.fidelity.com/6pgu38"
   FS: " | "
-  Copyright: "© 2023 Wes Henderson"
+  Copyright: True
