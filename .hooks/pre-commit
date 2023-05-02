@@ -33,6 +33,7 @@ for file in ${SITE_CHECK[@]}; do
         pushd "${BASE_PATH}" &>/dev/null
             ./site_generator.py
             git add index.html
+            git add assets/css/main.css
         popd &>/dev/null
         break
     fi

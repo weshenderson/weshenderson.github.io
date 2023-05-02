@@ -1,0 +1,65 @@
+body {
+  background-color: black;
+  color: #ff00fb;
+  font-family: Sans-serif;
+  margin-bottom: 0%;
+  margin-left: 15%;
+  margin-right: 5%;
+  margin-top: 10%;
+}
+
+.logo {
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  position: absolute;
+  text-align: center;
+}
+
+.logo img {
+  height: auto;
+  margin-left: inherit;
+  width: 85%;
+}
+
+.linktree {
+  border: none;
+  display: inline-table;
+  font-family: inherit;
+  font-size: 2em;
+  margin-left: 60%;
+  text-align: center;
+}
+
+a {	
+  color: inherit;
+  font-family: inherit;
+}
+
+a:visited {
+  color: turquoise;
+  font-family: inherit;
+}
+
+.header {
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.footer {
+  background-color: inherit;
+  border: none;
+  bottom: 0;
+  font-family: inherit;
+  font-size: 1em;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
