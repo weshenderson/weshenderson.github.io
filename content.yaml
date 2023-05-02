@@ -12,6 +12,9 @@ Meta:
     - "Linux Nerd"
     - "San Antonio"
     - "Texas"
+Google:
+  Analytics: True
+  ID: "G-1HMXV18Z9V"
 Page:
   Color:
     Background: 'black'

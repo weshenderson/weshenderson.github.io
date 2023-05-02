@@ -6,8 +6,7 @@
  CSS files will trigger this script at the time of commit.
 
  TODO:
-  * Break out the functions and add documentation.
-  * Reduce/Remove HTML from this file.
+  * Reduce HTML in this file.
   * Look into alternative templating solutions.
   * Make '529' a more universial heading.
 """
@@ -90,9 +89,30 @@ def main():
     site_content['link']       = content['Page']['Color']['Clicked-Link']
     site_content['font']       = content['Page']['Font']
 
+    # Build Google Analytics.
+    if content['Google']['Analytics']:
+        site_content['google_id'] = content['Google']['ID']
+        site_content['google']    = """
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=$google_id"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '$google_id');
+    </script>"""
+
+        site_content['google'] = Template(site_content['google'])
+        site_content['google'] = site_content['google'].substitute(site_content)
+    else:
+        site_content['google']    = '<!-- Hello You. -->'
+
+
     for template in templates:
         source      = templates[template]['source']
         destination = templates[template]['destination']
+
         build_assets(source, destination, site_content)
 
 if __name__ == "__main__":
