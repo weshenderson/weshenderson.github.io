@@ -19,6 +19,20 @@ from shutil import copyfile
 from datetime import date
 from string import Template
 
+logo = """
+ ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ 
+▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+▐░█▀▀▀▀▀▀▀█░▌▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌
+▐░▌       ▐░▌▐░▌          ▐░▌          ▐░▌       ▐░▌
+▐░█▄▄▄▄▄▄▄█░▌▐░▌          ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌
+▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+▐░█▀▀▀▀▀▀▀█░▌▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌
+▐░▌       ▐░▌▐░▌          ▐░▌          ▐░▌       ▐░▌
+▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌       ▐░▌
+▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌
+ ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀ 
+"""
+
 def build_content():
     """Convert content.yaml into a dictionary."""
 
@@ -111,8 +125,10 @@ def build_assets(source, destination, site_content, generate):
         print(result)
     return
 
-def main():
+def main(logo):
     """Entrypoint for site_generator."""
+
+    print(logo)
 
     # Create the parser
     description = "Automatically generate a link tree style webpage based off of content.yaml!"
@@ -189,4 +205,4 @@ def main():
     return
 
 if __name__ == "__main__":
-    main()
+    main(logo)
