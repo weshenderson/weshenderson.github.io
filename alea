@@ -49,7 +49,7 @@ def build_content():
     site_content['tags']        = ','.join([tag for tag in content['Meta']['Tags']])
     site_content['twitter']     = content['Meta']['Twitter']
 
-    ## Grab the site image.
+    ## Grab the site hero image.
     site_content['image'] = content['Image']['Path']
     site_content['alt']   = content['Image']['AltText']
 
@@ -63,38 +63,23 @@ def build_content():
     for link in content['Body']:
         site_content['body'] += '<a target="_blank" href="' + content['Body'][link] + '">' + link + '</a><br>'
 
-    # Grab the footer.
-    #site_content['college'] = '529 Donation Links: '
+    # Grab the footer(s).
     count = 1
     site_content['footer'] = ''
-    if not 'FS' in content['Footer']:
-        for title in content['Footer']:
-            if title != 'Copyright':
-                site_content['footer'] += '<p>' + content['Footer'][title] + '</p>'
-    else:
-        site_content['footer'] += content['Footer'][title]
-        for title in content['Footer']:
-            if title != 'Copyright' and title != 'FS' and title != 'Title' and count != len(content['Footer']) - 3:
-                site_content['footer'] += '<a target="_blank" href="' + content['Footer'][title] + '">' + title + '</a>' + content['Footer']['FS']
+    for title in content['Footer']:
+        if title != 'Copyright' and title != 'CombinedTitle':
+            site_content['footer'] += '<p>' + content['Footer'][title] + '</p>'
+    if 'CombinedTitle' in content['Footer']:
+        delimiter = content['Footer']['CombinedTitle']['FS']
+        site_content['footer'] += '<p>' + content['Footer']['CombinedTitle']['Title']
+        for link in content['Footer']['CombinedTitle']['Links']:
+            if count < len(content['Footer']['CombinedTitle']['Links']):
+                site_content['footer'] += '<a target="_blank" href="' + content['Footer']['CombinedTitle']['Links'][link] + '">' + link + '</a>' + delimiter
                 count += 1
-            elif title != 'Copyright' and title != 'FS' and title != 'Title' and count == len(content['Footer']) - 3:
-                site_content['footer'] += '<a target="_blank" href="' + content['Footer'][title] + '">' + title + '</a>'
-
+            else:
+                site_content['footer'] += '<a target="_blank" href="' + content['Footer']['CombinedTitle']['Links'][link] + '">' + link + '</a></p>'
     if content['Footer']['Copyright']:
         site_content['footer'] += f"<p>© {year} {site_content['author']}</p>"
-
-
-    #count = 1
-
-    #for child in content['Footer'][529]:
-    #    if count != len(content['Footer'][529]):
-    #        site_content['college'] += '<a target="_blank" href="' + content['Footer'][529][child] + '">' + child + '</a>' + content['Footer']['FS']
-    #    else:
-    #        site_content['college'] += '<a target="_blank" href="' + content['Footer'][529][child] + '">' + child + '</a>'
-    #    count += 1
-
-    #if content['Footer']['Copyright']:
-    #    site_content['college'] += f"<p>© {year} {site_content['author']}</p>"
 
     # Grab the CSS.
     site_content['background'] = content['Page']['Color']['Background']
@@ -168,7 +153,7 @@ def check_schema():
             "Borders": bool
         },
         "Header": {
-            "Title": str,
+            "Title": str
         },
         "Image": {
             "Path": str,
@@ -179,6 +164,9 @@ def check_schema():
         },
         "Footer": {
             schema.Optional("Title"): schema.Or(str, None),
+            schema.Optional("CombinedTitle"): {
+                schema.Optional(object): object
+            },
             "Copyright": schema.Or(bool, error="Unsupported option. Copyright must be either True or False.")
         }
     }, ignore_extra_keys=True)
