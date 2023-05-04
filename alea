@@ -15,6 +15,7 @@ import os
 import sys
 import argparse
 import yaml
+import schema
 from shutil import copyfile
 from datetime import date
 from string import Template
@@ -125,6 +126,64 @@ def build_assets(source, destination, site_content, generate):
         print(result)
     return
 
+def check_schema():
+    config_schema = schema.Schema({
+        "Meta": {
+            "Author": str,
+            "Description": str,
+            "Icon": str,
+            "Twitter": str,
+            "Tags": list
+        },
+        "Google": {
+            "Analytics": bool,
+            schema.Optional("ID"): schema.Or(str, None)
+        },
+        "Page": {
+            "Color": {
+                "Background": str,
+                "Font": str,
+                "Clicked-Link": str
+            },
+            "Font": str,
+            "Borders": bool
+        },
+        "Header": {
+            "Title": str,
+        },
+        "Image": {
+            "Path": str,
+            "AltText": str
+        },
+        "Body": {
+           schema.Optional(object): object
+        },
+        "Footer": {
+            "Title": str,
+            "Copyright": schema.Or(bool, error="Unsupported option. Copyright must be either True or False.")
+        }
+    }, ignore_extra_keys=True)
+    print("Validating schema.")
+
+    with open('content.yaml') as f:
+        content = yaml.safe_load(f)
+
+    try:
+        config_schema.validate(content)
+        print("Configuration is valid.")
+    except schema.SchemaError as se:
+        if se.errors:
+            for error in se.errors:
+                if error:
+                    print(error)
+            exit(1)
+        elif se.autos:
+            for error in se.autos:
+                if error:
+                    print(error)
+            exit(1)
+    return
+
 def main(logo):
     """Entrypoint for site_generator."""
 
@@ -155,13 +214,17 @@ def main(logo):
                              '--check',
                              default = False,
                              action  = 'store_true',
-                             help    = 'Validate the content.yaml file. Not yet implemented.')
+                             help    = 'Validate the content.yaml file only.')
 
     args     = job_options.parse_args()
     stdout   = args.stdout
     backup   = args.backup
     generate = args.generate
     check    = args.check
+
+    check_schema()
+    if check:
+        exit(0)
 
     site_content = build_content()
     templates    = {'html':
@@ -174,8 +237,6 @@ def main(logo):
                      },
                    }
 
-    #if check:
-    #    print('Validating content.yaml')
     if backup:
         print('Backing up the files.')
         for template in templates:
