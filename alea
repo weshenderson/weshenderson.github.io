@@ -6,7 +6,6 @@
  CSS files will trigger this script at the time of commit.
 
  TODO:
-  * Reduce HTML in this file.
   * Look into alternative templating solutions.
   * Make '529' a more universial heading.
 """
@@ -159,7 +158,7 @@ def check_schema():
            schema.Optional(object): object
         },
         "Footer": {
-            "Title": str,
+            schema.Optional("Title"): schema.Or(str, None),
             "Copyright": schema.Or(bool, error="Unsupported option. Copyright must be either True or False.")
         }
     }, ignore_extra_keys=True)
