@@ -2,7 +2,7 @@
 title: Wes Henderson
 date: 2023-04-12
 layout: konami
-permalink: /konami_resume
+permalink: /markdown_resume
 ---
 
 <mark>Wes Henderson</mark>
