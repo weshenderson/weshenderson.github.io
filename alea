@@ -133,7 +133,7 @@ def check_schema():
 
     config_schema = schema.Schema({
         "Meta": {
-            "Author": str,
+            "Author": str, error="Author must exist and must be a sting.",
             "Description": str,
             "Icon": str,
             "Twitter": str,
@@ -179,16 +179,13 @@ def check_schema():
         config_schema.validate(content)
         print("Configuration is valid.")
     except schema.SchemaError as se:
-        if se.errors:
-            for error in se.errors:
-                if error:
-                    print(error)
-            exit(1)
-        elif se.autos:
-            for error in se.autos:
-                if error:
-                    print(error)
-            exit(1)
+        for error in se.errors:
+            if error:
+                print(error)
+        for error in se.autos:
+            if error:
+                print(error)
+        exit(1)
     return
 
 def main(logo):
