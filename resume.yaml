@@ -34,7 +34,7 @@ Skills:
   10: "Familiar with modern software design principles such as SoA and Microservices."
   11: "Expert Google’ite."
 Experience:
-  a:
+  1:
     Company: "Salesforce"
     Title: "Lead Systems Engineer"
     Dates: "November 2019-Present"
@@ -44,7 +44,7 @@ Experience:
       3: "Led multiple teams across multiple business units in order to meet deployment deadlines."
       4: "Built a bespoke tooling pipeline for the SRE team, allowing tools to be created and shared widely while circumventing common pitfalls around such tooling, e.g. tribal knowledge resulting in decreased visibility and adoption."
       5: "Built a CLI tool to rapidly manage asynchronous jobs, greatly decreasing response time while increasing visibility."
-  b:
+  2:
     Company: "TrueAbility"
     Title: "Deployment Engineer"
     Dates: "December 2017-November 2019"
@@ -55,7 +55,7 @@ Experience:
       4: "Created bespoke environments/grading via Bash and Powershell, primarily."
       5: "Contributed to the underlying codebase where applicable."
       6: "Maintained the AWS and GCP infrastructure for internal tooling and exams respectively."
-  c:
+  3:
     Company: "Rackspace Hosting"
     Title: "DevOps Engineer"
     Dates: "May 2013-December 2017"
