@@ -133,7 +133,7 @@ def check_schema():
 
     config_schema = schema.Schema({
         "Meta": {
-            "Author": str, error="Author must exist and must be a sting.",
+            "Author": str,
             "Description": str,
             "Icon": str,
             "Twitter": str,
