@@ -369,6 +369,10 @@ def main():
                           {'source': 'templates/srt-resume.tmpl',
                            'destination': 'resume.html',
                           },
+                         'konami':
+                          {'source': 'templates/srt-konami-resume.tmpl',
+                           'destination': 'konami-resume.html'
+                          },
                         }
 
     if backup:
