@@ -8,7 +8,8 @@ PANDOC='docs/pandoc_metadata.yml'
 PDF='docs/resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 SITE_CHECK=(content.yaml
-            site_generator.py
+            resume.yaml
+            alea
             templates
             assets)
 
@@ -32,6 +33,7 @@ for file in ${SITE_CHECK[@]}; do
     if git status --porcelain | grep -q ${file}; then
         pushd "${BASE_PATH}" &>/dev/null
             ./alea --index
+            ./alea --resume
             git add index.html
             git add assets/css/main.css
         popd &>/dev/null
