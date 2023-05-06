@@ -7,6 +7,12 @@
 
  TODO:
   * Look into alternative templating solutions.
+  * Support CLI options for the resume.
+    -s
+    -b
+    -c
+  * Create Schema for resume.yaml
+  * Create function for Google Analytics
 """
 
 import os
