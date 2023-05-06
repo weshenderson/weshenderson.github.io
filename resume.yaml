@@ -115,5 +115,5 @@ Education:
     Degree: "Associate of Applied Science in Computer Forensics"
     GPA: "4.0"
     Achievements:
-      1: "Marketable Skills Achievement Award: Linux RHCT"
-      2: "Marketable Skills Achievement Award: Information Security & Assurance"
+      - "Marketable Skills Achievement Award: Linux RHCT"
+      - "Marketable Skills Achievement Award: Information Security & Assurance"

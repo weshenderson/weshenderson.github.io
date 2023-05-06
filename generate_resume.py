@@ -53,7 +53,7 @@ def build_resume_object():
     # Experience
     resume_content['experience'] = ''
     for xp in content['Experience']:
-        resume_content['experience'] += '<div class="job"><h2>' + content['Experience'][xp]['Company'] + '</h2><h3>' + content['Experience'][xp]['Title'] + '</h3><h4>' + content['Experience'][xp]['Dates'] + '</h4>' + '<p>• ' + '</p><p>• '.join([tag for tag in content['Experience'][xp]['Summary']])  + '</p></div>'
+        resume_content['experience'] += '<div class="job"><h2>' + content['Experience'][xp]['Company'] + '</h2><h3>' + content['Experience'][xp]['Title'] + '</h3><h4>' + content['Experience'][xp]['Dates'] + '</h4>' + '<p>• ' + '</p><p>• '.join([s for s in content['Experience'][xp]['Summary']])  + '</p></div>'
 
     # Certitifications
     CERT_COUNT = len(content['Certifications'])
@@ -89,7 +89,15 @@ def build_resume_object():
     resume_content['certifications'] += '</ul>'
 
     # Education
-    print(resume_content)
+    resume_content['education'] = ''
+    for school in content['Education']:
+        resume_content['education'] += '<h2>' + content['Education'][school]['School'] + ' - ' + content['Education'][school]['Location'] + '</h2><h3>' + content['Education'][school]['Degree']
+        if content['Education'][school]['GPA']:
+            resume_content['education'] += ' &mdash; <strong>' + content['Education'][school]['GPA'] + ' GPA</strong></h3>'
+        else:
+            resume_content['education'] += '</h3>'
+        if content['Education'][school]['Achievements']:
+            resume_content['education'] += '<p>• ' + '</p><p>• '.join([a for a in content['Education'][school]['Achievements']]) + '</p>'
 
     return resume_content
 
