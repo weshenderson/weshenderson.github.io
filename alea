@@ -35,7 +35,7 @@ logo = """
 def build_content_object():
     """Convert content.yaml into a dictionary."""
 
-    with open('content.yaml') as f:
+    with open('configs/content.yaml') as f:
         content = yaml.safe_load(f)
 
     site_content = {}
@@ -115,7 +115,7 @@ def build_content_object():
 def build_resume_object():
     """Convert resume.yaml into a dictionary."""
 
-    with open('resume.yaml') as f:
+    with open('configs/resume.yaml') as f:
         content = yaml.safe_load(f)
 
     resume_content = {}
@@ -289,7 +289,7 @@ def check_schema():
     }, ignore_extra_keys=True)
     print("Validating schema.")
 
-    with open('content.yaml') as f:
+    with open('configs/content.yaml') as f:
         content = yaml.safe_load(f)
 
     try:
