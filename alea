@@ -13,6 +13,7 @@
     -c
   * Create Schema for resume.yaml
   * Create function for Google Analytics
+  * More verbose output around what is being validated and built.
 """
 
 import os
