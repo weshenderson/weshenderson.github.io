@@ -31,7 +31,7 @@ fi
 for file in ${SITE_CHECK[@]}; do
     if git status --porcelain | grep -q ${file}; then
         pushd "${BASE_PATH}" &>/dev/null
-            ./alea --generate
+            ./alea --index
             git add index.html
             git add assets/css/main.css
         popd &>/dev/null

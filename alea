@@ -32,7 +32,7 @@ logo = """
  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀ 
 """
 
-def build_content():
+def build_content_object():
     """Convert content.yaml into a dictionary."""
 
     with open('content.yaml') as f:
@@ -112,16 +112,133 @@ def build_content():
 
     return site_content
 
-def build_assets(source, destination, site_content, generate):
+def build_resume_object():
+    """Convert resume.yaml into a dictionary."""
+
+    with open('resume.yaml') as f:
+        content = yaml.safe_load(f)
+
+    resume_content = {}
+    ## Grab the meta content.
+    resume_content['author']      = content['Meta']['Author']
+    resume_content['description'] = content['Meta']['Description']
+    resume_content['icon']        = content['Meta']['Icon']
+    resume_content['thumbnail']   = content['Meta']['Thumbnail']
+    resume_content['tags']        = ','.join([tag for tag in content['Meta']['Tags']])
+    resume_content['twitter']     = content['Meta']['Twitter']
+
+    # Build the Google Analytics object.
+    if content['Google']['Analytics']:
+        resume_content['google_id'] = content['Google']['ID']
+        resume_content['google']    = """
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=$google_id"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '$google_id');
+    </script>"""
+
+        resume_content['google'] = Template(resume_content['google'])
+        resume_content['google'] = resume_content['google'].substitute(resume_content)
+
+    ### Build the resume objects.
+    # Overview Info
+    resume_content['title'] = content['Contact']['Title']
+    resume_content['phone'] = content['Contact']['Phone']
+    resume_content['email'] = content['Contact']['Email']
+
+    # Professional Summary
+    resume_content['summary'] = content['Summary']
+
+    # Skills
+    resume_content['skills'] = ''
+    for skill in content['Skills']:
+        resume_content['skills'] += '<p>• ' + content['Skills'][skill] + '</p>'
+
+    # Experience
+    resume_content['experience'] = ''
+    for xp in content['Experience']:
+        resume_content['experience'] += '<div class="job"><h2>' + content['Experience'][xp]['Company'] + '</h2><h3>' + content['Experience'][xp]['Title'] + '</h3><h4>' + content['Experience'][xp]['Dates'] + '</h4>' + '<p>• ' + '</p><p>• '.join([s for s in content['Experience'][xp]['Summary']])  + '</p></div>'
+
+    # Certitifications
+    CERT_COUNT = len(content['Certifications'])
+
+    count = 1
+    resume_content['certifications'] = '<ul class="talent">'
+    for cert in content['Certifications']:
+        if count < CERT_COUNT:
+            resume_content['certifications'] += '<li>' + content['Certifications'][cert]['Title'] + '</li>'
+        else:
+            resume_content['certifications'] += '<li class="last">' + content['Certifications'][cert]['Title'] + '</li>'
+        count += 1
+    resume_content['certifications'] += '</ul>'
+
+    count = 1
+    resume_content['certifications'] += '<ul class="talent">'
+    for cert in content['Certifications']:
+        if count < CERT_COUNT:
+            resume_content['certifications'] += '<li>' + content['Certifications'][cert]['Year'] + '</li>'
+        else:
+            resume_content['certifications'] += '<li class="last">' + content['Certifications'][cert]['Year'] + '</li>'
+        count += 1
+    resume_content['certifications'] += '</ul>'
+
+    count = 1
+    resume_content['certifications'] += '<ul class="talent">'
+    for cert in content['Certifications']:
+        if count < CERT_COUNT:
+            resume_content['certifications'] += '<li>' + content['Certifications'][cert]['License'] + '</li>'
+        else:
+            resume_content['certifications'] += '<li class="last">' + content['Certifications'][cert]['License'] + '</li>'
+        count += 1
+    resume_content['certifications'] += '</ul>'
+
+    # Education
+    resume_content['education'] = ''
+    for school in content['Education']:
+        resume_content['education'] += '<h2>' + content['Education'][school]['School'] + ' - ' + content['Education'][school]['Location'] + '</h2><h3>' + content['Education'][school]['Degree']
+        if content['Education'][school]['GPA']:
+            resume_content['education'] += ' &mdash; <strong>' + content['Education'][school]['GPA'] + ' GPA</strong></h3>'
+        else:
+            resume_content['education'] += '</h3>'
+        if content['Education'][school]['Achievements']:
+            resume_content['education'] += '<p>• ' + '</p><p>• '.join([a for a in content['Education'][school]['Achievements']]) + '</p>'
+
+    return resume_content
+
+def build_analytics_object(config_file):
+    """Build Google Analytics and append to the dictionary. Not yet implemented."""
+    return
+
+def build_assets(source, destination, site_content, index):
     """Generate HTML/CSS assets from their templates."""
 
-    if generate:
+    if index:
         if os.path.exists(destination):
             os.remove(destination)
     with open(source, 'r') as f:
         src    = Template(f.read())
         result = src.substitute(site_content)
-    if generate:
+    if index:
+        with open(destination, 'a+') as d:
+            d.write(result)
+    else:
+        print(result)
+    return
+
+def build_resume(source, destination, resume_content, index):
+    """Generate HTML/CSS assets from their templates."""
+
+    if index:
+        if os.path.exists(destination):
+            os.remove(destination)
+    with open(source, 'r') as f:
+        src    = Template(f.read())
+        result = src.substitute(resume_content)
+    if index:
         with open(destination, 'a+') as d:
             d.write(result)
     else:
@@ -188,7 +305,7 @@ def check_schema():
         exit(1)
     return
 
-def main(logo):
+def main():
     """Entrypoint for site_generator."""
 
     print(logo)
@@ -209,28 +326,28 @@ def main(logo):
                              default = False,
                              action  = 'store_true',
                              help    = 'Create a backup copy of the templated files.')
-    job_options.add_argument('-g',
-                             '--generate',
+    job_options.add_argument('-i',
+                             '--index',
                              default = False,
                              action  = 'store_true',
-                             help    = 'Generate the new assets.')
+                             help    = 'Generate the new index.html assets.')
     job_options.add_argument('-c',
                              '--check',
                              default = False,
                              action  = 'store_true',
                              help    = 'Validate the content.yaml file only.')
 
-    args     = job_options.parse_args()
-    stdout   = args.stdout
-    backup   = args.backup
-    generate = args.generate
-    check    = args.check
+    args   = job_options.parse_args()
+    stdout = args.stdout
+    backup = args.backup
+    index  = args.index
+    check  = args.check
 
     check_schema()
     if check:
         exit(0)
 
-    site_content = build_content()
+    site_content = build_content_object()
     templates    = {'html':
                      {'source': 'templates/index.tmpl',
                       'destination': 'index.html',
@@ -253,15 +370,15 @@ def main(logo):
             destination = templates[template]['destination']
             print("File: {}\n".format(destination))
 
-            build_assets(source, destination, site_content, generate)
-    elif generate:
+            build_assets(source, destination, site_content, index)
+    elif index:
         print('Generating the new assets.')
 
         for template in templates:
             source      = templates[template]['source']
             destination = templates[template]['destination']
 
-            build_assets(source, destination, site_content, generate)
+            build_assets(source, destination, site_content, index)
 
         dir_path  = os.path.dirname(os.path.realpath(__file__))
         site_path = 'file://' + dir_path + '/' + templates['html']['destination']
@@ -269,5 +386,13 @@ def main(logo):
 
     return
 
+#resume_content = build_resume_object()
+#
+#source      = 'templates/srt-resume.tmpl'
+#destination = 'srt-resume-yaml.html'
+#generate    = True
+#
+#build_resume(source, destination, resume_content, generate)
+
 if __name__ == "__main__":
-    main(logo)
+    main()
