@@ -143,6 +143,8 @@ def build_resume_object():
 
         resume_content['google'] = Template(resume_content['google'])
         resume_content['google'] = resume_content['google'].substitute(resume_content)
+    else:
+        resume_content['google'] = ''
 
     ### Build the resume objects.
     # Overview Info
