@@ -12,7 +12,6 @@
     -b
     -c
   * Create Schema for resume.yaml
-  * Create function for Google Analytics
   * More verbose output around what is being validated and built.
   * Add checks in case the source files don't exist.
 """
@@ -95,23 +94,7 @@ def build_content_object():
         site_content['borders'] = 'none'
 
     # Build Google Analytics.
-    if content['Google']['Analytics']:
-        site_content['google_id'] = content['Google']['ID']
-        site_content['google'] = """
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=$google_id"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', '$google_id');
-    </script>"""
-
-        site_content['google'] = Template(site_content['google'])
-        site_content['google'] = site_content['google'].substitute(site_content)
-    else:
-        site_content['google'] = ''
+    site_content = build_analytics_object(content, site_content)
 
     return site_content
 
@@ -128,23 +111,7 @@ def build_resume_object():
                       'tags': ','.join([tag for tag in content['Meta']['Tags']]), 'twitter': content['Meta']['Twitter']}
 
     # Build the Google Analytics object.
-    if content['Google']['Analytics']:
-        resume_content['google_id'] = content['Google']['ID']
-        resume_content['google'] = """
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=$google_id"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', '$google_id');
-    </script>"""
-
-        resume_content['google'] = Template(resume_content['google'])
-        resume_content['google'] = resume_content['google'].substitute(resume_content)
-    else:
-        resume_content['google'] = ''
+    resume_content = build_analytics_object(content, resume_content)
 
     # Build the resume objects.
     # Overview Info
@@ -220,9 +187,26 @@ def build_resume_object():
     return resume_content
 
 
-def build_analytics_object(config_file):
+def build_analytics_object(config_file, content_object):
     """Build Google Analytics and append to the dictionary. Not yet implemented."""
-    return
+    if config_file['Google']['Analytics']:
+        content_object['google_id'] = config_file['Google']['ID']
+        content_object['google'] = """
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=$google_id"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '$google_id');
+    </script>"""
+
+        content_object['google'] = Template(content_object['google'])
+        content_object['google'] = content_object['google'].substitute(content_object)
+    else:
+        content_object['google'] = ''
+    return content_object
 
 
 def build_assets(source, destination, site_content, index):
