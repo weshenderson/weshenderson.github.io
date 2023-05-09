@@ -2,10 +2,12 @@
 
 set -eo pipefail
 
-RESUME='docs/resume.md'
-KONAMI='docs/konami.md'
+#RESUME='docs/resume.md'
+RESUME='docs/resume.html'
+KONAMI='konami-resume.html'
 PANDOC='docs/pandoc_metadata.yml'
-PDF='docs/resume.pdf'
+#PDF='docs/resume.pdf'
+PDF='resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 SITE_CHECK=(content.yaml
             resume.yaml
@@ -13,21 +15,21 @@ SITE_CHECK=(content.yaml
             templates
             assets)
 
-if git status --porcelain | grep -q "${RESUME}"; then
-    pushd "${BASE_PATH}" &>/dev/null
-        cp ${RESUME} ${KONAMI}
-	sed -i 's/layout: resume/layout: konami/g' ${KONAMI}
-	sed -i 's@permalink: /markdown_resume@permalink: /konami_resume@g' ${KONAMI}
-	git add ${KONAMI}
-
-    sed '1 { /^---/ { :a N; /\n===/! ba; d} }' ${RESUME} >> ${PANDOC}
-    pandoc \
-        --output ${PDF} \
-        ${PANDOC}
-    git checkout ${PANDOC}
-    git add ${PDF}
-    popd &>/dev/null
-fi
+#if git status --porcelain | grep -q "${RESUME}"; then
+#    pushd "${BASE_PATH}" &>/dev/null
+#        cp ${RESUME} ${KONAMI}
+#	sed -i 's/layout: resume/layout: konami/g' ${KONAMI}
+#	sed -i 's@permalink: /markdown_resume@permalink: /konami_resume@g' ${KONAMI}
+#	git add ${KONAMI}
+#
+#    sed '1 { /^---/ { :a N; /\n===/! ba; d} }' ${RESUME} >> ${PANDOC}
+#    pandoc \
+#        --output ${PDF} \
+#        ${PANDOC}
+#    git checkout ${PANDOC}
+#    git add ${PDF}
+#    popd &>/dev/null
+#fi
 
 for file in ${SITE_CHECK[@]}; do
     if git status --porcelain | grep -q ${file}; then
@@ -35,7 +37,24 @@ for file in ${SITE_CHECK[@]}; do
             ./alea.py --index --resume
             git add index.html
             git add assets/css/main.css
+            git add resume.html
         popd &>/dev/null
         break
     fi
 done
+
+if git status --porcelain | grep -q "${RESUME}"; then
+    pushd "${BASE_PATH}" &>/dev/null
+        sed -i 's@<h3><a id="pdf" href="docs/Resume.pdf">Download PDF</a></h3>@@g' ${RESUME}
+        /usr/bin/google-chrome \
+            --headless \
+            --disable-gpu \
+            --no-pdf-header-footer \
+            --no-margins \
+            --run-all-compositor-stages-before-draw \
+            --print-to-pdf=${PDF} \
+            file://${BASE_PATH}/${RESUME}
+        git checkout ${RESUME}
+        git add ${PDF}
+    popd
+fi
