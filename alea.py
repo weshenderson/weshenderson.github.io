@@ -320,13 +320,13 @@ def resume_schema():
                 "Dates": str,
                 "Summary": list,
             },
-            2: {
+            schema.Optional(2): {
                 "Company": str,
                 "Title": str,
                 "Dates": str,
                 "Summary": list,
             },
-            3: {
+            schema.Optional(3): {
                 "Company": str,
                 "Title": str,
                 "Dates": str,
