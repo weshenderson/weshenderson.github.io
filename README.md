@@ -9,7 +9,7 @@ This repo relies heavily on the pre-commit hooks to auto-generate new resources 
 
 ### Hooks and Easter Eggs
 
-The pre-commit hook generates a "konami resume template" if `resume.yaml` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on `/resume.html`:
+The pre-commit hook generates a "konami resume template" if `resume.yaml` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resume):
 
 ```
 up, up, down, down, left, right, left, right, b, a
