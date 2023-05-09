@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """
  Author: Wes Henderson
- Quickly generate a new index.html file based off of content.yaml.
- Any changes to this file, content.yaml, index.tmpl, or associated
- CSS files will trigger this script at the time of commit.
+ Quickly generate a new index.html and/or resume.html based off of
+ the configs/content.yaml and configs/resume.yaml files respectively.
+ Any changes to this file, content.yaml, resume.yaml, or their templates
+ will trigger this script at the time of commit (assuming the pre-commit
+ hook is in place).
 
  TODO:
   * Look into alternative templating solutions.
-  * Support CLI options for the resume.
-    -c
-  * Create Schema for resume.yaml
-  * Add checks in case the source files don't exist.
 """
 
 import argparse
@@ -207,10 +205,15 @@ def build_analytics_object(config_file, content_object):
 
 
 def backup_files(templates):
+    """Backup associated files in the current working directory."""
     for template in templates:
         print(f'Backing up file: {templates[template]["destination"]}')
         templates[template]['backup'] = f"{templates[template]['destination']}.bak"
-        copyfile(templates[template]['destination'], templates[template]['backup'])
+        try:
+            copyfile(templates[template]['destination'], templates[template]['backup'])
+        except OSError:
+            print(f'Unable to openfile: {templates[template]["destination"]}')
+            exit(5)
     return
 
 
@@ -238,8 +241,8 @@ def update_content(content_templates, site_content, stdout):
     return
 
 
-def check_schema():
-    """Validate the content.yaml schema."""
+def index_schema():
+    """Definition for the content.yaml schema."""
 
     config_schema = schema.Schema({
         "Meta": {
@@ -280,14 +283,88 @@ def check_schema():
             "Copyright": schema.Or(bool, error="Unsupported option. Copyright must be either True or False.")
         }
     }, ignore_extra_keys=True)
-    print("Validating schema: content.yaml")
 
-    with open('configs/content.yaml') as f:
+    validate_schema(config_schema, file='content.yaml')
+    return
+
+
+def resume_schema():
+    """Definition for the resume.yaml schema."""
+
+    config_schema = schema.Schema({
+        "Meta": {
+            "Author": str,
+            "Description": str,
+            "Icon": str,
+            "Thumbnail": str,
+            "Twitter": str,
+            "Tags": list
+        },
+        "Google": {
+            "Analytics": bool,
+            schema.Optional("ID"): schema.Or(str, None)
+        },
+        "Contact": {
+            "Title": str,
+            "Phone": str,
+            "Email": str
+        },
+        "Summary": str,
+        "Skills": {
+            1: str
+        },
+        "Experience": {
+            1: {
+                "Company": str,
+                "Title": str,
+                "Dates": str,
+                "Summary": list,
+            },
+            2: {
+                "Company": str,
+                "Title": str,
+                "Dates": str,
+                "Summary": list,
+            },
+            3: {
+                "Company": str,
+                "Title": str,
+                "Dates": str,
+                "Summary": list,
+            },
+        },
+        "Certifications": {
+            1: {
+                "Title": str,
+                "Year": str,
+                "License": str,
+            },
+        },
+        "Education": {
+            1: {
+                "School": str,
+                "Location": str,
+                "Degree": str,
+                schema.Optional("GPA"): str,
+                schema.Optional("Achievements"): list,
+            }
+        },
+    }, ignore_extra_keys=True)
+
+    validate_schema(config_schema, file='resume.yaml')
+    return
+
+
+def validate_schema(config_schema, file):
+    """Validate the supplied schema."""
+    print(f"Validating schema: {file}")
+
+    with open(f'configs/{file}') as f:
         content = yaml.safe_load(f)
 
     try:
         config_schema.validate(content)
-        print("Configuration is valid: Content.yaml")
+        print(f"Configuration is valid: {file}")
     except schema.SchemaError as se:
         for error in se.errors:
             if error:
@@ -300,7 +377,7 @@ def check_schema():
 
 
 def main():
-    """Entrypoint for site_generator."""
+    """Entrypoint for Alea."""
 
     print(logo)
 
@@ -319,7 +396,7 @@ def main():
                              '--backup',
                              default=False,
                              action='store_true',
-                             help='Create a backup copy of the templated files.')
+                             help='Create a backup copy of the templated files (must include -r or -i)')
     job_options.add_argument('-i',
                              '--index',
                              default=False,
@@ -334,7 +411,7 @@ def main():
                              '--check',
                              default=False,
                              action='store_true',
-                             help='Validate the content.yaml file only. -- Not yet implemented for resume.')
+                             help='Validate the yaml schema (must include -r or -i).')
 
     args = job_options.parse_args()
     stdout = args.stdout
@@ -343,16 +420,6 @@ def main():
     resume = args.resume
     check = args.check
 
-    if check and index:
-        check_schema()
-    if check and resume:
-        print('Not yet implemented for resume.')
-        exit(0)
-    if check:
-        print('Must specify either -i or -r to check.')
-        exit(1)
-
-    site_content = build_index_object()
     index_templates = dict(html={'source': 'templates/index.tmpl',
                                  'destination': 'index.html',
                                  }, css={'source': 'templates/css.tmpl',
@@ -364,14 +431,28 @@ def main():
                                              'destination': 'konami-resume.html'
                                              })
 
+    if check and index:
+        index_schema()
+        exit(0)
+    if check and resume:
+        resume_schema()
+        exit(0)
+    if check:
+        print('Must specify either -i or -r to check.')
+        exit(1)
     if backup and index:
         backup_files(index_templates)
     if backup and resume:
         backup_files(resume_templates)
+    if (backup and not index) and (backup and not resume):
+        print('Must specify either -i or -r to backup.')
+        exit(1)
     if index:
-        check_schema()
+        index_schema()
+        site_content = build_index_object()
         update_content(index_templates, site_content, stdout)
     if resume:
+        resume_schema()
         resume_content = build_resume_object()
         update_content(resume_templates, resume_content, stdout)
     return
