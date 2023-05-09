@@ -223,17 +223,20 @@ def update_content(content_templates, site_content, stdout):
     for template in content_templates:
         source = content_templates[template]['source']
         destination = content_templates[template]['destination']
-        with open(source, 'r') as f:
-            src = Template(f.read())
-            result = src.substitute(site_content)
-        if stdout:
-            print(f'File: {source}\n')
-            print(result)
-        else:
-            if path.exists(destination):
-                remove(destination)
-            with open(destination, 'a+') as d:
-                d.write(result)
+        try:
+            with open(source, 'r') as f:
+                src = Template(f.read())
+                result = src.substitute(site_content)
+            if stdout:
+                print(f'File: {source}\n')
+                print(result)
+            else:
+                if path.exists(destination):
+                    remove(destination)
+                with open(destination, 'a+') as d:
+                    d.write(result)
+        except OSError:
+            print(f"Unable to access file: {source}")
     if not stdout:
         dir_path = path.dirname(path.realpath(__file__))
         site_path = 'file://' + dir_path + '/' + content_templates['html']['destination']
