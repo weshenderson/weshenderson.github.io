@@ -8,11 +8,8 @@
  TODO:
   * Look into alternative templating solutions.
   * Support CLI options for the resume.
-    -s
-    -b
     -c
   * Create Schema for resume.yaml
-  * More verbose output around what is being validated and built.
   * Add checks in case the source files don't exist.
 """
 
@@ -209,37 +206,35 @@ def build_analytics_object(config_file, content_object):
     return content_object
 
 
-def build_index(source, destination, site_content, index):
-    """Generate HTML/CSS assets from their templates."""
-
-    if index:
-        if path.exists(destination):
-            remove(destination)
-    with open(source, 'r') as f:
-        src = Template(f.read())
-        result = src.substitute(site_content)
-    if index:
-        with open(destination, 'a+') as d:
-            d.write(result)
-    else:
-        print(result)
+def backup_files(templates):
+    for template in templates:
+        print(f'Backing up file: {templates[template]["destination"]}')
+        templates[template]['backup'] = f"{templates[template]['destination']}.bak"
+        copyfile(templates[template]['destination'], templates[template]['backup'])
     return
 
 
-def build_resume(source, destination, resume_content, resume):
+def update_content(content_templates, site_content, stdout):
     """Generate HTML/CSS assets from their templates."""
 
-    if resume:
-        if path.exists(destination):
-            remove(destination)
-    with open(source, 'r') as f:
-        src = Template(f.read())
-        result = src.substitute(resume_content)
-    if resume:
-        with open(destination, 'a+') as d:
-            d.write(result)
-    else:
-        print(result)
+    for template in content_templates:
+        source = content_templates[template]['source']
+        destination = content_templates[template]['destination']
+        with open(source, 'r') as f:
+            src = Template(f.read())
+            result = src.substitute(site_content)
+        if stdout:
+            print(f'File: {source}\n')
+            print(result)
+        else:
+            if path.exists(destination):
+                remove(destination)
+            with open(destination, 'a+') as d:
+                d.write(result)
+    if not stdout:
+        dir_path = path.dirname(path.realpath(__file__))
+        site_path = 'file://' + dir_path + '/' + content_templates['html']['destination']
+        print(f'New site built: {site_path}')
     return
 
 
@@ -285,14 +280,14 @@ def check_schema():
             "Copyright": schema.Or(bool, error="Unsupported option. Copyright must be either True or False.")
         }
     }, ignore_extra_keys=True)
-    print("Validating schema.")
+    print("Validating schema: content.yaml")
 
     with open('configs/content.yaml') as f:
         content = yaml.safe_load(f)
 
     try:
         config_schema.validate(content)
-        print("Configuration is valid.")
+        print("Configuration is valid: Content.yaml")
     except schema.SchemaError as se:
         for error in se.errors:
             if error:
@@ -319,12 +314,12 @@ def main():
                              '--stdout',
                              default=False,
                              action='store_true',
-                             help='Print the index.html to stdout. -- Not yet implemented for resume.')
+                             help='Print the content to stdout.')
     job_options.add_argument('-b',
                              '--backup',
                              default=False,
                              action='store_true',
-                             help='Create a backup copy of the templated files. -- Not yet implemented for resume.')
+                             help='Create a backup copy of the templated files.')
     job_options.add_argument('-i',
                              '--index',
                              default=False,
@@ -348,57 +343,37 @@ def main():
     resume = args.resume
     check = args.check
 
-    check_schema()
-    if check:
+    if check and index:
+        check_schema()
+    if check and resume:
+        print('Not yet implemented for resume.')
         exit(0)
+    if check:
+        print('Must specify either -i or -r to check.')
+        exit(1)
 
     site_content = build_index_object()
-    content_templates = dict(html={'source': 'templates/index.tmpl',
-                                   'destination': 'index.html',
-                                   }, css={'source': 'templates/css.tmpl',
-                                           'destination': 'assets/css/main.css',
-                                           })
+    index_templates = dict(html={'source': 'templates/index.tmpl',
+                                 'destination': 'index.html',
+                                 }, css={'source': 'templates/css.tmpl',
+                                         'destination': 'assets/css/main.css',
+                                         })
     resume_templates = dict(html={'source': 'templates/srt-resume.tmpl',
                                   'destination': 'resume.html',
                                   }, konami={'source': 'templates/srt-konami-resume.tmpl',
                                              'destination': 'konami-resume.html'
                                              })
 
-    if backup:
-        print('Backing up the files.')
-        for template in content_templates:
-            content_templates[template]['backup'] = f"{content_templates[template]['destination']}.bak"
-            copyfile(content_templates[template]['destination'], content_templates[template]['backup'])
-    if stdout:
-        print('Printing the generated files to stdout only.\n')
-        for template in content_templates:
-            source = content_templates[template]['source']
-            destination = content_templates[template]['destination']
-            print("File: {}\n".format(destination))
-
-            build_index(source, destination, site_content, index)
-    elif index:
-        print('Generating the new assets.')
-
-        for template in content_templates:
-            source = content_templates[template]['source']
-            destination = content_templates[template]['destination']
-
-            build_index(source, destination, site_content, index)
-
-        dir_path = path.dirname(path.realpath(__file__))
-        site_path = 'file://' + dir_path + '/' + content_templates['html']['destination']
-        print(f'New site built: {site_path}')
-
+    if backup and index:
+        backup_files(index_templates)
+    if backup and resume:
+        backup_files(resume_templates)
+    if index:
+        check_schema()
+        update_content(index_templates, site_content, stdout)
     if resume:
         resume_content = build_resume_object()
-
-        for template in resume_templates:
-            source = resume_templates[template]['source']
-            destination = resume_templates[template]['destination']
-
-            build_resume(source, destination, resume_content, resume)
-
+        update_content(resume_templates, resume_content, stdout)
     return
 
 
