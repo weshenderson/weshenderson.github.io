@@ -12,33 +12,40 @@ SITE_CHECK=(content.yaml
             templates
             assets)
 
-for file in ${SITE_CHECK[@]}; do
-    if git status --porcelain | grep -q ${file}; then
-        pushd "${BASE_PATH}" &>/dev/null
-            ./alea.py --index --resume
-            git add index.html
-            git add assets/css/main.css
-            git add ${RESUME}
-            git add ${KONAMI}
-        popd &>/dev/null
-        break
-    fi
-done
+function alea {
+    for file in ${SITE_CHECK[@]}; do
+        if git status --porcelain | grep -q ${file}; then
+            pushd "${BASE_PATH}" &>/dev/null
+                ./alea.py --index --resume
+                git add index.html
+                git add assets/css/main.css
+                git add ${RESUME}
+                git add ${KONAMI}
+            popd &>/dev/null
+            break
+        fi
+    done
+}
 
-if git status --porcelain | grep -q "${RESUME}"; then
-    pushd "${BASE_PATH}" &>/dev/null
-        TMP='resume_pdf.html'
-        cp ${RESUME} ${TMP}
-        sed -i 's@<h3><a id="pdf" href="docs/Resume.pdf">Download PDF</a></h3>@@g' ${TMP}
-        /usr/bin/google-chrome \
-            --headless \
-            --disable-gpu \
-            --no-pdf-header-footer \
-            --no-margins \
-            --run-all-compositor-stages-before-draw \
-            --print-to-pdf=${PDF} \
-            file://${BASE_PATH}/${TMP}
-        rm -f ${TMP}
-        git add ${PDF}
-    popd &>/dev/null
-fi
+function create-pdf-resume {
+    if git status --porcelain | grep -q "${RESUME}"; then
+        pushd "${BASE_PATH}" &>/dev/null
+            local TMP='resume_pdf.html'
+            cp ${RESUME} ${TMP}
+            sed -i 's@<h3><a id="pdf" href="docs/Resume.pdf">Download PDF</a></h3>@@g' ${TMP}
+            /usr/bin/google-chrome \
+                --headless \
+                --disable-gpu \
+                --no-pdf-header-footer \
+                --no-margins \
+                --run-all-compositor-stages-before-draw \
+                --print-to-pdf=${PDF} \
+                file://${BASE_PATH}/${TMP}
+            rm -f ${TMP}
+            git add ${PDF}
+        popd &>/dev/null
+    fi
+}
+
+alea
+create-pdf-resume
