@@ -27,7 +27,7 @@ done
 
 if git status --porcelain | grep -q "${RESUME}"; then
     pushd "${BASE_PATH}" &>/dev/null
-        TMP=$(mktemp /tmp/resume.XXXXXX)
+        TMP='resume_pdf.html'
         cp ${RESUME} ${TMP}
         sed -i 's@<h3><a id="pdf" href="docs/Resume.pdf">Download PDF</a></h3>@@g' ${TMP}
         /usr/bin/google-chrome \
@@ -37,7 +37,7 @@ if git status --porcelain | grep -q "${RESUME}"; then
             --no-margins \
             --run-all-compositor-stages-before-draw \
             --print-to-pdf=${PDF} \
-            file://${TMP}
+            file://${BASE_PATH}/${TMP}
         rm -f ${TMP}
         git add ${PDF}
     popd &>/dev/null
