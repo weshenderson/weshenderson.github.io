@@ -39,7 +39,7 @@ logo = """
 """
 
 
-def build_content_object():
+def build_index_object():
     """Convert content.yaml into a dictionary."""
 
     with open('configs/content.yaml') as f:
@@ -209,7 +209,7 @@ def build_analytics_object(config_file, content_object):
     return content_object
 
 
-def build_assets(source, destination, site_content, index):
+def build_index(source, destination, site_content, index):
     """Generate HTML/CSS assets from their templates."""
 
     if index:
@@ -352,7 +352,7 @@ def main():
     if check:
         exit(0)
 
-    site_content = build_content_object()
+    site_content = build_index_object()
     content_templates = dict(html={'source': 'templates/index.tmpl',
                                    'destination': 'index.html',
                                    }, css={'source': 'templates/css.tmpl',
@@ -376,7 +376,7 @@ def main():
             destination = content_templates[template]['destination']
             print("File: {}\n".format(destination))
 
-            build_assets(source, destination, site_content, index)
+            build_index(source, destination, site_content, index)
     elif index:
         print('Generating the new assets.')
 
@@ -384,7 +384,7 @@ def main():
             source = content_templates[template]['source']
             destination = content_templates[template]['destination']
 
-            build_assets(source, destination, site_content, index)
+            build_index(source, destination, site_content, index)
 
         dir_path = path.dirname(path.realpath(__file__))
         site_path = 'file://' + dir_path + '/' + content_templates['html']['destination']
