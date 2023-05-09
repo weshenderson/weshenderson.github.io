@@ -2,25 +2,14 @@
 The personal webpage of Wes Henderson.
 
 ## Layout
-The core of this site is powered by static resources, e.g. HTML, CSS, etc in a link tree format and is hosted with GitHub Pages and is generated from `index.tmpl` and `content.yaml`. Whenever related file are updated and commited, `site_generator.py` gets executed as a pre-commit hook and generates `index.html`. See the [Resume](#Resume) section for the fun stuff!
+This site is powered by [Alea](https://github.com/necrux/alea) and hosted with GitHub Pages. Alea is the templating engine that creates `index.html` and `resume.html` based off of their respective yaml config files. Otherwise it is very straight-forward HTML and CSS in a link tree style format.
 
-## Resume
-The `/resume` path uses Jekyll as the templating engine. Additionally, pre-commit hooks export a [PDF copy](https://weshenderson.info/docs/resume.pdf) via [Pandoc](https://pandoc.org) as well as an alternate version dubbed `konami_resume`. This allows me to effectively separate the content from the format and maintain 3 version via 1 markdown file.
-
-### Local Testing
-For local development I am using a container [image](https://hub.docker.com/r/bretfisher/jekyll-serve) created by [Bret Fisher](https://github.com/BretFisher). From the root of the repo simply run:
-
-```
-docker run -p 4000:4000 -v $(pwd):/site bretfisher/jekyll-serve
-```
-
-The local site can be viewed at [http://localhost:4000/](http://localhost:4000/).
-
-**Note:** Changes to `_config.yml` require a reload of the server.
+## Hooks
+This repo relies heavily on the pre-commit hooks to auto-generate new resources whenever the corressponding yaml files are updated. This is especially important for my resume as I would otherwise have to maintain 3 versions: the HTML version, the PDF version, and the super secret version (see [below](#hooks-and-easter-eggs)). This allows me to effectively separate the content from the format and maintain 3 version via 1 yaml file.
 
 ### Hooks and Easter Eggs
 
-The pre-commit hook generates a "konami resume template" if `resume.md` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on `/resume`:
+The pre-commit hook generates a "konami resume template" if `resume.yaml` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on `/resume.html`:
 
 ```
 up, up, down, down, left, right, left, right, b, a
