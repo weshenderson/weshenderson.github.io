@@ -3,15 +3,15 @@
 set -eo pipefail
 
 #RESUME='docs/resume.md'
-RESUME='docs/resume.html'
+RESUME='resume.html'
 KONAMI='konami-resume.html'
-PANDOC='docs/pandoc_metadata.yml'
+#PANDOC='docs/pandoc_metadata.yml'
 #PDF='docs/resume.pdf'
 PDF='resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 SITE_CHECK=(content.yaml
             resume.yaml
-            alea
+            alea.py
             templates
             assets)
 
@@ -37,7 +37,8 @@ for file in ${SITE_CHECK[@]}; do
             ./alea.py --index --resume
             git add index.html
             git add assets/css/main.css
-            git add resume.html
+            git add ${RESUME}
+            git add ${KONAMI}
         popd &>/dev/null
         break
     fi
@@ -45,7 +46,9 @@ done
 
 if git status --porcelain | grep -q "${RESUME}"; then
     pushd "${BASE_PATH}" &>/dev/null
-        sed -i 's@<h3><a id="pdf" href="docs/Resume.pdf">Download PDF</a></h3>@@g' ${RESUME}
+        TMP=$(mktemp /tmp/resume.XXXXXX)
+        cp ${RESUME} ${TMP}
+        sed -i 's@<h3><a id="pdf" href="docs/Resume.pdf">Download PDF</a></h3>@@g' ${TMP}
         /usr/bin/google-chrome \
             --headless \
             --disable-gpu \
@@ -53,8 +56,8 @@ if git status --porcelain | grep -q "${RESUME}"; then
             --no-margins \
             --run-all-compositor-stages-before-draw \
             --print-to-pdf=${PDF} \
-            file://${BASE_PATH}/${RESUME}
-        git checkout ${RESUME}
+            file://${TMP}
+        rm -f ${TMP}
         git add ${PDF}
-    popd
+    popd &>/dev/null
 fi
