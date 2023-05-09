@@ -4,7 +4,7 @@ set -eo pipefail
 
 RESUME='resume.html'
 KONAMI='konami-resume.html'
-PDF='resume.pdf'
+PDF='docs/Resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 SITE_CHECK=(content.yaml
             resume.yaml
