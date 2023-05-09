@@ -2,11 +2,8 @@
 
 set -eo pipefail
 
-#RESUME='docs/resume.md'
 RESUME='resume.html'
 KONAMI='konami-resume.html'
-#PANDOC='docs/pandoc_metadata.yml'
-#PDF='docs/resume.pdf'
 PDF='resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 SITE_CHECK=(content.yaml
@@ -14,22 +11,6 @@ SITE_CHECK=(content.yaml
             alea.py
             templates
             assets)
-
-#if git status --porcelain | grep -q "${RESUME}"; then
-#    pushd "${BASE_PATH}" &>/dev/null
-#        cp ${RESUME} ${KONAMI}
-#	sed -i 's/layout: resume/layout: konami/g' ${KONAMI}
-#	sed -i 's@permalink: /markdown_resume@permalink: /konami_resume@g' ${KONAMI}
-#	git add ${KONAMI}
-#
-#    sed '1 { /^---/ { :a N; /\n===/! ba; d} }' ${RESUME} >> ${PANDOC}
-#    pandoc \
-#        --output ${PDF} \
-#        ${PANDOC}
-#    git checkout ${PANDOC}
-#    git add ${PDF}
-#    popd &>/dev/null
-#fi
 
 for file in ${SITE_CHECK[@]}; do
     if git status --porcelain | grep -q ${file}; then
