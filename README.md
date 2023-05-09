@@ -19,6 +19,7 @@ The PDF version of my resume is generated via Google Chrome dev tools:
             --no-margins \
             --run-all-compositor-stages-before-draw \
             --print-to-pdf=${PDF} \
+            file://${BASE_PATH}/${TMP}
 ```
 
 Previously this work was done via Pandoc, however this results in a prettier end product without having to also create LateX templates as Chrome renders the underlying CSS.
