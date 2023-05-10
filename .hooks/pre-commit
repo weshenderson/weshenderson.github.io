@@ -3,12 +3,11 @@
 set -eo pipefail
 
 RESUME='resume.html'
-KONAMI='konami-resume.html'
-PDF='docs/Wes, Resume.pdf'
+PDF='docs/Resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 SITE_CHECK=(content.yaml
             resume.yaml
-            alea.py
+            alea
             templates
             assets)
 
@@ -20,7 +19,9 @@ function alea {
                 git add index.html
                 git add assets/css/main.css
                 git add ${RESUME}
-                git add ${KONAMI}
+                if [ -f ${KONAMI} ]; then
+                    git add ${KONAMI}
+                fi
             popd &>/dev/null
             break
         fi
