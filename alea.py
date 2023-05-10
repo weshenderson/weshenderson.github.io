@@ -434,22 +434,31 @@ def main():
                                              'destination': 'konami-resume.html'
                                              })
 
-    if check and index:
+    if check and index and resume:
         index_schema()
-        exit(0)
-    if check and resume:
         resume_schema()
         exit(0)
-    if check:
-        print('Must specify either -i or -r in order to validate the correct schema.')
+    elif check and index:
+        index_schema()
+        exit(0)
+    elif check and resume:
+        resume_schema()
+        exit(0)
+    elif check:
+        print('Must specify either -i and/or -r in order to validate the correct schema.')
         exit(1)
-    if backup and index:
+
+    if backup and index and resume:
         backup_files(index_templates)
-    if backup and resume:
         backup_files(resume_templates)
-    if (backup and not index) and (backup and not resume):
-        print('Must specify either -i or -r to backup the proper files.')
+    elif backup and index:
+        backup_files(index_templates)
+    elif backup and resume:
+        backup_files(resume_templates)
+    elif backup:
+        print('Must specify either -i and/or -r to backup the proper files.')
         exit(1)
+
     if index:
         index_schema()
         site_content = build_index_object()
