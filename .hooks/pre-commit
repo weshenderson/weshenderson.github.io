@@ -5,6 +5,7 @@ set -eo pipefail
 INDEX='index.html'
 INDEX_CSS='assets/css/main.css'
 RESUME='resume.html'
+KONAMI='konami-resume.html'
 PDF='docs/Resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 FILE_CHECK=(configs/
