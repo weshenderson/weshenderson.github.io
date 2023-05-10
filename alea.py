@@ -183,7 +183,7 @@ def build_resume_object():
 
 
 def build_analytics_object(config_file, content_object):
-    """Build Google Analytics and append to the dictionary. Not yet implemented."""
+    """Build Google Analytics and append to the dictionary."""
     if config_file['Google']['Analytics']:
         content_object['google_id'] = config_file['Google']['ID']
         content_object['google'] = """
