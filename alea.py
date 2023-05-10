@@ -385,7 +385,7 @@ def main():
     print(logo)
 
     # Create the parser
-    description = "Automatically generate a link tree style webpage based off of content.yaml!"
+    description = "Automatically generate a link tree style webpage and/or a resume based off of YAML!"
     epilog = "If this file is not being automatically executed, copy .hooks/pre-commit to .git/hooks/pre-commit."
     job_options = argparse.ArgumentParser(description=description, epilog=epilog)
 
@@ -394,7 +394,7 @@ def main():
                              '--stdout',
                              default=False,
                              action='store_true',
-                             help='Print the content to stdout.')
+                             help='Print the content to stdout rather than creating files.')
     job_options.add_argument('-b',
                              '--backup',
                              default=False,
@@ -404,12 +404,12 @@ def main():
                              '--index',
                              default=False,
                              action='store_true',
-                             help='Generate the new index.html assets.')
+                             help='Generate the new index.html and assets.')
     job_options.add_argument('-r',
                              '--resume',
                              default=False,
                              action='store_true',
-                             help='Generate the new resume.html assets.')
+                             help='Generate the new resume.html and assets.')
     job_options.add_argument('-c',
                              '--check',
                              default=False,
@@ -441,14 +441,14 @@ def main():
         resume_schema()
         exit(0)
     if check:
-        print('Must specify either -i or -r to check.')
+        print('Must specify either -i or -r in order to validate the correct schema.')
         exit(1)
     if backup and index:
         backup_files(index_templates)
     if backup and resume:
         backup_files(resume_templates)
     if (backup and not index) and (backup and not resume):
-        print('Must specify either -i or -r to backup.')
+        print('Must specify either -i or -r to backup the proper files.')
         exit(1)
     if index:
         index_schema()
