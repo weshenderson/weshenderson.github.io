@@ -170,7 +170,7 @@ def build_resume_object():
         resume_content['education'] += '<h2>' + content['Education'][school]['School'] + ' - ' + \
                                        content['Education'][school]['Location'] + '</h2><h3>' + \
                                        content['Education'][school]['Degree']
-        if content['Education'][school]['GPA']:
+        if 'GPA' in content['Education'][school]:
             resume_content['education'] += ' &mdash; <strong>' + content['Education'][school][
                 'GPA'] + ' GPA</strong></h3>'
         else:
