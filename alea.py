@@ -358,7 +358,7 @@ def resume_schema():
     return
 
 
-def validate_schema(config_schema, file):
+def validate_schema(correct_schema, file):
     """Validate the supplied schema."""
     print(f"Validating schema: {file}")
 
@@ -366,7 +366,7 @@ def validate_schema(config_schema, file):
         content = yaml.safe_load(f)
 
     try:
-        config_schema.validate(content)
+        correct_schema.validate(content)
         print(f"Configuration is valid: {file}")
     except schema.SchemaError as se:
         for error in se.errors:
