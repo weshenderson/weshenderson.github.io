@@ -175,7 +175,7 @@ def build_resume_object():
                 'GPA'] + ' GPA</strong></h3>'
         else:
             resume_content['education'] += '</h3>'
-        if content['Education'][school]['Achievements']:
+        if 'Achievements' in content['Education'][school]:
             resume_content['education'] += '<p>• ' + '</p><p>• '.join(
                 [a for a in content['Education'][school]['Achievements']]) + '</p>'
 
