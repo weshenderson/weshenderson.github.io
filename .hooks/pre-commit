@@ -2,22 +2,23 @@
 
 set -eo pipefail
 
+INDEX='index.html'
+INDEX_CSS='assets/css/main.css'
 RESUME='resume.html'
 PDF='docs/Resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
-SITE_CHECK=(content.yaml
-            resume.yaml
+FILE_CHECK=(configs/
             alea
-            templates
+            templates/
             assets)
 
 function alea {
-    for file in ${SITE_CHECK[@]}; do
+    for file in ${FILE_CHECK[@]}; do
         if git status --porcelain | grep -q ${file}; then
             pushd "${BASE_PATH}" &>/dev/null
                 ./alea.py --index --resume
-                git add index.html
-                git add assets/css/main.css
+                git add ${INDEX}
+                git add ${INDEX_CSS}
                 git add ${RESUME}
                 if [ -f ${KONAMI} ]; then
                     git add ${KONAMI}
