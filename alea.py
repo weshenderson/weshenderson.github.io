@@ -113,6 +113,11 @@ def build_resume_object():
     resume_content['title'] = content['Contact']['Title']
     resume_content['phone'] = content['Contact']['Phone']
     resume_content['email'] = content['Contact']['Email']
+    if 'Subject' in content['Contact']:
+        resume_content['subject'] = '?subject='
+        resume_content['subject'] += content['Contact']['Subject']
+    else:
+        resume_content['subject'] = ''
 
     # Professional Summary
     resume_content['summary'] = content['Summary']
@@ -310,7 +315,8 @@ def resume_schema():
         "Contact": {
             "Title": str,
             "Phone": str,
-            "Email": str
+            "Email": str,
+            schema.Optional("Subject"): str
         },
         "Summary": str,
         "Skills": {
