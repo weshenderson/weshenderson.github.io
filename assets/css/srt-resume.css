@@ -61,7 +61,8 @@ a#pdf:hover { background: #222; }
 .skills-list ul { margin: 0; }
 .skills-list li { margin: 3px 0; padding: 3px 0; }
 .skills-list li span { font-size: 152%; display: block; margin-bottom: -2px; padding: 0 }
-.talent { width: 32%; float: left }
+.talent { width: 32%; float: left; text-align: left }
+.talent-center { width: 32%; float: left; text-align: center }
 .talent h2 { margin-bottom: 6px; }
 
 #srt-ttab { margin-bottom: 100px; text-align: center;  }

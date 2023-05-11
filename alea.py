@@ -149,7 +149,7 @@ def build_resume_object():
     resume_content['certifications'] += '</ul>'
 
     count = 1
-    resume_content['certifications'] += '<ul class="talent">'
+    resume_content['certifications'] += '<ul class="talent-center">'
     for cert in content['Certifications']:
         if count < cert_count:
             resume_content['certifications'] += '<li>' + content['Certifications'][cert]['Year'] + '</li>'
