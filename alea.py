@@ -12,14 +12,15 @@
 """
 
 import argparse
-import yaml
-import schema
+import sys
+from datetime import date
 from os import path, remove
 from shutil import copyfile
-from datetime import date
 from string import Template
+import schema
+import yaml
 
-logo = """
+LOGO = """
  ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ 
 ▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
 ▐░█▀▀▀▀▀▀▀█░▌▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌
@@ -37,16 +38,19 @@ logo = """
 def build_index_object():
     """Convert content.yaml into a dictionary."""
 
-    with open('configs/content.yaml') as f:
-        content = yaml.safe_load(f)
+    with open('configs/content.yaml', encoding='UTF-8') as file:
+        content = yaml.safe_load(file)
 
     today = date.today()
     year = today.year
 
     # Grab the meta content & hero image.
-    site_content = {'author': content['Meta']['Author'], 'description': content['Meta']['Description'],
-                    'icon': content['Meta']['Icon'], 'tags': ','.join([tag for tag in content['Meta']['Tags']]),
-                    'twitter': content['Meta']['Twitter'], 'image': content['Image']['Path'],
+    site_content = {'author': content['Meta']['Author'],
+                    'description': content['Meta']['Description'],
+                    'icon': content['Meta']['Icon'],
+                    'tags': ','.join([tag for tag in content['Meta']['Tags']]),
+                    'twitter': content['Meta']['Twitter'],
+                    'image': content['Image']['Path'],
                     'alt': content['Image']['AltText'], 'header': ''}
 
     # Grab the header(s).
@@ -56,7 +60,8 @@ def build_index_object():
     # Grab the body.
     site_content['body'] = ''
     for link in content['Body']:
-        site_content['body'] += '<a target="_blank" href="' + content['Body'][link] + '">' + link + '</a><br>'
+        site_content['body'] += '<a target="_blank" href="' + \
+                                content['Body'][link] + '">' + link + '</a><br>'
 
     # Grab the footer(s).
     count = 1
@@ -69,11 +74,13 @@ def build_index_object():
         site_content['footer'] += '<p>' + content['Footer']['CombinedTitle']['Title']
         for link in content['Footer']['CombinedTitle']['Links']:
             if count < len(content['Footer']['CombinedTitle']['Links']):
-                site_content['footer'] += '<a target="_blank" href="' + content['Footer']['CombinedTitle']['Links'][
+                site_content['footer'] += '<a target="_blank" href="' + \
+                                          content['Footer']['CombinedTitle']['Links'][
                     link] + '">' + link + '</a>' + delimiter
                 count += 1
             else:
-                site_content['footer'] += '<a target="_blank" href="' + content['Footer']['CombinedTitle']['Links'][
+                site_content['footer'] += '<a target="_blank" href="' + \
+                                          content['Footer']['CombinedTitle']['Links'][
                     link] + '">' + link + '</a></p>'
     if content['Footer']['Copyright']:
         site_content['footer'] += f"<p>© {year} {site_content['author']}</p>"
@@ -97,13 +104,16 @@ def build_index_object():
 def build_resume_object():
     """Convert resume.yaml into a dictionary."""
 
-    with open('configs/resume.yaml') as f:
-        content = yaml.safe_load(f)
+    with open('configs/resume.yaml', encoding='UTF-8') as file:
+        content = yaml.safe_load(file)
 
     # Grab the meta content.
-    resume_content = {'author': content['Meta']['Author'], 'description': content['Meta']['Description'],
-                      'icon': content['Meta']['Icon'], 'thumbnail': content['Meta']['Thumbnail'],
-                      'tags': ','.join([tag for tag in content['Meta']['Tags']]), 'twitter': content['Meta']['Twitter']}
+    resume_content = {'author': content['Meta']['Author'],
+                      'description': content['Meta']['Description'],
+                      'icon': content['Meta']['Icon'],
+                      'thumbnail': content['Meta']['Thumbnail'],
+                      'tags': ','.join([tag for tag in content['Meta']['Tags']]),
+                      'twitter': content['Meta']['Twitter']}
 
     # Build the Google Analytics object.
     resume_content = build_analytics_object(content, resume_content)
@@ -142,11 +152,14 @@ def build_resume_object():
 
     # Experience
     resume_content['experience'] = ''
-    for xp in content['Experience']:
-        resume_content['experience'] += '<div class="job"><h2>' + content['Experience'][xp]['Company'] + '</h2><h3>' + \
-                                        content['Experience'][xp]['Title'] + '</h3><h4>' + content['Experience'][xp][
-                                            'Dates'] + '</h4>' + '<p>• ' + '</p><p>• '.join(
-            [s for s in content['Experience'][xp]['Summary']]) + '</p></div>'
+    for exp in content['Experience']:
+        resume_content['experience'] += '<div class="job"><h2>' + \
+                                        content['Experience'][exp]['Company'] + '</h2><h3>' + \
+                                        content['Experience'][exp]['Title'] + '</h3><h4>' + \
+                                        content['Experience'][exp]['Dates'] + '</h4>' + '<p>• ' + \
+                                        '</p><p>• '.join(
+                                            [s for s in content['Experience'][exp]['Summary']]) \
+                                        + '</p></div>'
 
     # Certifications
     cert_count = len(content['Certifications'])
@@ -155,9 +168,11 @@ def build_resume_object():
     resume_content['certifications'] = '<ul class="talent">'
     for cert in content['Certifications']:
         if count < cert_count:
-            resume_content['certifications'] += '<li>' + content['Certifications'][cert]['Title'] + '</li>'
+            resume_content['certifications'] += '<li>' + \
+                                                content['Certifications'][cert]['Title'] + '</li>'
         else:
-            resume_content['certifications'] += '<li class="last">' + content['Certifications'][cert]['Title'] + '</li>'
+            resume_content['certifications'] += '<li class="last">' + \
+                                                content['Certifications'][cert]['Title'] + '</li>'
         count += 1
     resume_content['certifications'] += '</ul>'
 
@@ -165,9 +180,11 @@ def build_resume_object():
     resume_content['certifications'] += '<ul class="talent-center">'
     for cert in content['Certifications']:
         if count < cert_count:
-            resume_content['certifications'] += '<li>' + content['Certifications'][cert]['Year'] + '</li>'
+            resume_content['certifications'] += '<li>' + \
+                                                content['Certifications'][cert]['Year'] + '</li>'
         else:
-            resume_content['certifications'] += '<li class="last">' + content['Certifications'][cert]['Year'] + '</li>'
+            resume_content['certifications'] += '<li class="last">' + \
+                                                content['Certifications'][cert]['Year'] + '</li>'
         count += 1
     resume_content['certifications'] += '</ul>'
 
@@ -175,10 +192,11 @@ def build_resume_object():
     resume_content['certifications'] += '<ul class="talent">'
     for cert in content['Certifications']:
         if count < cert_count:
-            resume_content['certifications'] += '<li>' + content['Certifications'][cert]['License'] + '</li>'
+            resume_content['certifications'] += '<li>' + \
+                                                content['Certifications'][cert]['License'] + '</li>'
         else:
-            resume_content['certifications'] += '<li class="last">' + content['Certifications'][cert][
-                'License'] + '</li>'
+            resume_content['certifications'] += '<li class="last">' + \
+                                                content['Certifications'][cert]['License'] + '</li>'
         count += 1
     resume_content['certifications'] += '</ul>'
 
@@ -231,8 +249,7 @@ def backup_files(templates):
             copyfile(templates[template]['destination'], templates[template]['backup'])
         except OSError:
             print(f'Unable to openfile: {templates[template]["destination"]}')
-            exit(5)
-    return
+            sys.exit(5)
 
 
 def update_content(content_templates, site_content, stdout):
@@ -242,8 +259,8 @@ def update_content(content_templates, site_content, stdout):
         source = content_templates[template]['source']
         destination = content_templates[template]['destination']
         try:
-            with open(source, 'r') as f:
-                src = Template(f.read())
+            with open(source, 'r', encoding='UTF-8') as file:
+                src = Template(file.read())
                 result = src.substitute(site_content)
             if stdout:
                 print(f'File: {source}\n')
@@ -251,15 +268,14 @@ def update_content(content_templates, site_content, stdout):
             else:
                 if path.exists(destination):
                     remove(destination)
-                with open(destination, 'a+') as d:
-                    d.write(result)
+                with open(destination, 'a+', encoding='UTF-8') as dest:
+                    dest.write(result)
         except OSError:
             print(f"Unable to access file: {source}")
     if not stdout:
         dir_path = path.dirname(path.realpath(__file__))
         site_path = 'file://' + dir_path + '/' + content_templates['html']['destination']
         print(f'New site built: {site_path}')
-    return
 
 
 def index_schema():
@@ -301,12 +317,11 @@ def index_schema():
             schema.Optional("CombinedTitle"): {
                 schema.Optional(object): object
             },
-            "Copyright": schema.Or(bool, error="Unsupported option. Copyright must be either True or False.")
+            "Copyright": schema.Or(bool, error="Unsupported option; must be either True or False.")
         }
     }, ignore_extra_keys=True)
 
     validate_schema(config_schema, file='content.yaml')
-    return
 
 
 def resume_schema():
@@ -375,38 +390,36 @@ def resume_schema():
     }, ignore_extra_keys=True)
 
     validate_schema(config_schema, file='resume.yaml')
-    return
 
 
 def validate_schema(correct_schema, file):
     """Validate the supplied schema."""
     print(f"Validating schema: {file}")
 
-    with open(f'configs/{file}') as f:
-        content = yaml.safe_load(f)
+    with open(f'configs/{file}', encoding='UTF-8') as yaml_file:
+        content = yaml.safe_load(yaml_file)
 
     try:
         correct_schema.validate(content)
         print(f"Configuration is valid: {file}")
-    except schema.SchemaError as se:
-        for error in se.errors:
+    except schema.SchemaError as schema_error:
+        for error in schema_error.errors:
             if error:
                 print(error)
-        for error in se.autos:
+        for error in schema_error.autos:
             if error:
                 print(error)
-        exit(1)
-    return
+        sys.exit(1)
 
 
 def main():
     """Entrypoint for Alea."""
 
-    print(logo)
+    print(LOGO)
 
     # Create the parser
-    description = "Automatically generate a link tree style webpage and/or a resume based off of YAML!"
-    epilog = "If this file is not being automatically executed, copy .hooks/pre-commit to .git/hooks/pre-commit."
+    description = "Generate a link tree style webpage and/or a resume based off of YAML!"
+    epilog = "Copy .hooks/pre-commit to .git/hooks/pre-commit to automatically run on commit."
     job_options = argparse.ArgumentParser(description=description, epilog=epilog)
 
     # Add the arguments
@@ -419,7 +432,7 @@ def main():
                              '--backup',
                              default=False,
                              action='store_true',
-                             help='Create a backup copy of the templated files (must include -r or -i)')
+                             help='Create a backup copy of the templated files (-r or -i).')
     job_options.add_argument('-i',
                              '--index',
                              default=False,
@@ -443,30 +456,30 @@ def main():
     resume = args.resume
     check = args.check
 
-    index_templates = dict(html={'source': 'templates/index.tmpl',
-                                 'destination': 'index.html',
-                                 }, css={'source': 'templates/css.tmpl',
-                                         'destination': 'assets/css/main.css',
-                                         })
-    resume_templates = dict(html={'source': 'templates/srt-resume.tmpl',
-                                  'destination': 'resume.html',
-                                  }, konami={'source': 'templates/srt-konami-resume.tmpl',
-                                             'destination': 'konami-resume.html'
-                                             })
+    index_templates = {'html': {'source': 'templates/index.tmpl',
+                                'destination': 'index.html',
+                                }, 'css': {'source': 'templates/css.tmpl',
+                                           'destination': 'assets/css/main.css',
+                                           }}
+    resume_templates = {'html': {'source': 'templates/srt-resume.tmpl',
+                                 'destination': 'resume.html',
+                                 }, 'konami': {'source': 'templates/srt-konami-resume.tmpl',
+                                               'destination': 'konami-resume.html'
+                                               }}
 
     if check and index and resume:
         index_schema()
         resume_schema()
-        exit(0)
+        sys.exit(0)
     elif check and index:
         index_schema()
-        exit(0)
+        sys.exit(0)
     elif check and resume:
         resume_schema()
-        exit(0)
+        sys.exit(0)
     elif check:
         print('Must specify either -i and/or -r in order to validate the correct schema.')
-        exit(1)
+        sys.exit(1)
 
     if backup and index and resume:
         backup_files(index_templates)
@@ -477,7 +490,7 @@ def main():
         backup_files(resume_templates)
     elif backup:
         print('Must specify either -i and/or -r to backup the proper files.')
-        exit(1)
+        sys.exit(1)
 
     if index:
         index_schema()
@@ -487,7 +500,6 @@ def main():
         resume_schema()
         resume_content = build_resume_object()
         update_content(resume_templates, resume_content, stdout)
-    return
 
 
 if __name__ == "__main__":
