@@ -48,7 +48,7 @@ def build_index_object():
     site_content = {'author': content['Meta']['Author'],
                     'description': content['Meta']['Description'],
                     'icon': content['Meta']['Icon'],
-                    'tags': ','.join([tag for tag in content['Meta']['Tags']]),
+                    'tags': ','.join(list(content['Meta']['Tags'])),
                     'twitter': content['Meta']['Twitter'],
                     'image': content['Image']['Path'],
                     'alt': content['Image']['AltText'], 'header': ''}
@@ -67,7 +67,7 @@ def build_index_object():
     count = 1
     site_content['footer'] = ''
     for title in content['Footer']:
-        if title != 'Copyright' and title != 'CombinedTitle':
+        if title not in ('Copyright', 'CombinedTitle'):
             site_content['footer'] += '<p>' + content['Footer'][title] + '</p>'
     if 'CombinedTitle' in content['Footer']:
         delimiter = content['Footer']['CombinedTitle']['FS']
@@ -112,7 +112,7 @@ def build_resume_object():
                       'description': content['Meta']['Description'],
                       'icon': content['Meta']['Icon'],
                       'thumbnail': content['Meta']['Thumbnail'],
-                      'tags': ','.join([tag for tag in content['Meta']['Tags']]),
+                      'tags': ','.join(list(content['Meta']['Tags'])),
                       'twitter': content['Meta']['Twitter']}
 
     # Build the Google Analytics object.
@@ -157,8 +157,8 @@ def build_resume_object():
                                         content['Experience'][exp]['Company'] + '</h2><h3>' + \
                                         content['Experience'][exp]['Title'] + '</h3><h4>' + \
                                         content['Experience'][exp]['Dates'] + '</h4>' + '<p>• ' + \
-                                        '</p><p>• '.join(
-                                            [s for s in content['Experience'][exp]['Summary']]) \
+                                        '</p><p>• '\
+                                            .join(list(content['Experience'][exp]['Summary'])) \
                                         + '</p></div>'
 
     # Certifications
@@ -212,8 +212,8 @@ def build_resume_object():
         else:
             resume_content['education'] += '</h3>'
         if 'Achievements' in content['Education'][school]:
-            resume_content['education'] += '<p>• ' + '</p><p>• '.join(
-                [a for a in content['Education'][school]['Achievements']]) + '</p>'
+            resume_content['education'] += '<p>• ' + '</p><p>• '.\
+                join(list(content['Education'][school]['Achievements'])) + '</p>'
 
     return resume_content
 
