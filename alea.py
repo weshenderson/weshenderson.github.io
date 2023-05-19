@@ -123,9 +123,22 @@ def build_resume_object():
     resume_content['summary'] = content['Summary']
 
     # Skills
+    rows = 0
     resume_content['skills'] = ''
-    for skill in content['Skills']:
-        resume_content['skills'] += '<p>• ' + content['Skills'][skill] + '</p>'
+    for column in content['Skills']:
+        if len(content['Skills'][column]) > rows:
+            rows = len(content['Skills'][column])
+
+    for column in content['Skills']:
+        count = 0
+        resume_content['skills'] += '<ul class="talent">'
+        for skill in content['Skills'][column]:
+            count += 1
+            if count == rows:
+                resume_content['skills'] += '<li class="last">' + skill + "</li>"
+            else:
+                resume_content['skills'] += "<li>" + skill + "</li>"
+        resume_content['skills'] += "</ul>"
 
     # Experience
     resume_content['experience'] = ''
@@ -320,7 +333,8 @@ def resume_schema():
         },
         "Summary": str,
         "Skills": {
-            1: str
+            1: list,
+            2: list
         },
         "Experience": {
             1: {

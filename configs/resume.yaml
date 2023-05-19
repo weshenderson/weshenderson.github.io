@@ -21,19 +21,23 @@ Contact:
   Phone: "(210) 589-0628"
   Email: "whendersonii@gmail.com"
   Subject: "You're hired! ;)"
-Summary: "I am a community oriented Linux nerd with more than a decade of IT experience and a penchant for automation and mentoring. I believe that continuous improvement, both in process and tech, is paramount for any organization. The key to maintaining continuous improvement is to build and maintain a strong team through constant, organic training. This promotes knowledge sharing and helps the team adapt to changing workplace priorities."
-Skills: 
-  1: "Keenly aware of operations and ever mindful of opportunities for process improvement."
-  2: "Passionate about mentoring and collaboration."
-  3: "Skilled technical writer with a love for documentation."
-  4: "Ability to quickly acclimate to new software."
-  5: "Advanced scripting skills with Bash and Powershell."
-  6: "Intermediate programming skills, primarily with Python."
-  7: "Proficient with config management and infrastructure as code: Ansible, Chef, Puppet, Salt, Terraform, and CloudFormation"
-  8: "Automation experience with Python, boto3 (AWS SDK), and Fabric."
-  9: "Intimate understanding of public cloud infrastructure."
-  10: "Familiar with modern software design principles such as SoA and Microservices."
-  11: "Expert Google’ite."
+Summary: "I am a community oriented Linux nerd with more than a decade of IT experience and a penchant for automation, documentation, and mentoring. I am keenly aware of operations and ever mindful of opportunities for process improvement; I believe that continuous improvement is paramount for any organization. The key to maintaining continuous improvement is to build and maintain a strong team through constant, organic training."
+Skills:
+  1:
+    - Linux
+    - AWS
+    - GCP
+    - Mentoring
+  2:
+    - Bash
+    - Python
+    - PowerShell
+    - Research
+  3:
+    - GitHub
+    - Terraform / CloudFormation
+    - Ansible / Chef / Puppet
+    - Documentation
 Experience:
   1:
     Company: "Salesforce"
