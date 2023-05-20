@@ -76,12 +76,12 @@ def build_index_object():
             if count < len(content['Footer']['CombinedTitle']['Links']):
                 site_content['footer'] += '<a target="_blank" href="' + \
                                           content['Footer']['CombinedTitle']['Links'][
-                    link] + '">' + link + '</a>' + delimiter
+                                              link] + '">' + link + '</a>' + delimiter
                 count += 1
             else:
                 site_content['footer'] += '<a target="_blank" href="' + \
                                           content['Footer']['CombinedTitle']['Links'][
-                    link] + '">' + link + '</a></p>'
+                                              link] + '">' + link + '</a></p>'
     if content['Footer']['Copyright']:
         site_content['footer'] += f"<p>© {year} {site_content['author']}</p>"
 
@@ -103,41 +103,35 @@ def build_index_object():
 
 def build_resume_object():
     """Convert resume.yaml into a dictionary."""
-
     with open('configs/resume.yaml', encoding='UTF-8') as file:
         content = yaml.safe_load(file)
 
-    # Grab the meta content.
+    # Grab the meta, Overview, & Summary info.
     resume_content = {'author': content['Meta']['Author'],
                       'description': content['Meta']['Description'],
                       'icon': content['Meta']['Icon'],
                       'thumbnail': content['Meta']['Thumbnail'],
                       'tags': ','.join(list(content['Meta']['Tags'])),
-                      'twitter': content['Meta']['Twitter']}
+                      'twitter': content['Meta']['Twitter'],
+                      'title': content['Contact']['Title'],
+                      'phone': content['Contact']['Phone'],
+                      'email': content['Contact']['Email'],
+                      'subject': '',
+                      'summary': content['Summary'],
+                      'skills': '',
+                      'experience': '',
+                      'education': '', }
 
     # Build the Google Analytics object.
     resume_content = build_analytics_object(content, resume_content)
 
-    # Build the resume objects.
     # Overview Info
-    resume_content['title'] = content['Contact']['Title']
-    resume_content['phone'] = content['Contact']['Phone']
-    resume_content['email'] = content['Contact']['Email']
     if 'Subject' in content['Contact']:
-        resume_content['subject'] = '?subject='
-        resume_content['subject'] += content['Contact']['Subject']
-    else:
-        resume_content['subject'] = ''
-
-    # Professional Summary
-    resume_content['summary'] = content['Summary']
+        resume_content['subject'] = '?subject=' + content['Contact']['Subject']
 
     # Skills
-    rows = 0
-    resume_content['skills'] = ''
-    for column in content['Skills']:
-        if len(content['Skills'][column]) > rows:
-            rows = len(content['Skills'][column])
+    rows = [len(content['Skills'][column]) for column in content['Skills']]
+    rows = max(rows)
 
     for column in content['Skills']:
         count = 0
@@ -151,13 +145,12 @@ def build_resume_object():
         resume_content['skills'] += "</ul>"
 
     # Experience
-    resume_content['experience'] = ''
     for exp in content['Experience']:
         resume_content['experience'] += '<div class="job"><h2>' + \
                                         content['Experience'][exp]['Company'] + '</h2><h3>' + \
                                         content['Experience'][exp]['Title'] + '</h3><h4>' + \
                                         content['Experience'][exp]['Dates'] + '</h4>' + '<p>• ' + \
-                                        '</p><p>• '\
+                                        '</p><p>• ' \
                                             .join(list(content['Experience'][exp]['Summary'])) \
                                         + '</p></div>'
 
@@ -201,7 +194,6 @@ def build_resume_object():
     resume_content['certifications'] += '</ul>'
 
     # Education
-    resume_content['education'] = ''
     for school in content['Education']:
         resume_content['education'] += '<h2>' + content['Education'][school]['School'] + ' - ' + \
                                        content['Education'][school]['Location'] + '</h2><h3>' + \
@@ -212,7 +204,7 @@ def build_resume_object():
         else:
             resume_content['education'] += '</h3>'
         if 'Achievements' in content['Education'][school]:
-            resume_content['education'] += '<p>• ' + '</p><p>• '.\
+            resume_content['education'] += '<p>• ' + '</p><p>• '. \
                 join(list(content['Education'][school]['Achievements'])) + '</p>'
 
     return resume_content
