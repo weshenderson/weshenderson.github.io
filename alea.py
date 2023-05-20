@@ -116,7 +116,7 @@ def build_resume_object():
                       'title': content['Contact']['Title'],
                       'phone': content['Contact']['Phone'],
                       'email': content['Contact']['Email'],
-                      'subject': '',
+                      'subject': content['Contact'].get('Subject') or '',
                       'summary': content['Summary'],
                       'skills': '',
                       'experience': '',
@@ -124,10 +124,6 @@ def build_resume_object():
 
     # Build the Google Analytics object.
     resume_content = build_analytics_object(content, resume_content)
-
-    # Overview Info
-    if 'Subject' in content['Contact']:
-        resume_content['subject'] = '?subject=' + content['Contact']['Subject']
 
     # Skills
     rows = [len(content['Skills'][column]) for column in content['Skills']]
