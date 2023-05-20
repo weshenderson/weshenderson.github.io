@@ -96,7 +96,7 @@ def build_index_object():
         site_content['borders'] = 'none'
 
     # Build Google Analytics.
-    site_content = build_analytics_object(content, site_content)
+    build_analytics_object(content, site_content)
 
     return site_content
 
@@ -123,7 +123,7 @@ def build_resume_object():
                       'education': '', }
 
     # Build the Google Analytics object.
-    resume_content = build_analytics_object(content, resume_content)
+    build_analytics_object(content, resume_content)
 
     # Skills
     rows = [len(content['Skills'][column]) for column in content['Skills']]
@@ -151,43 +151,7 @@ def build_resume_object():
                                         + '</p></div>'
 
     # Certifications
-    cert_count = len(content['Certifications'])
-
-    count = 1
-    resume_content['certifications'] = '<ul class="talent">'
-    for cert in content['Certifications']:
-        if count < cert_count:
-            resume_content['certifications'] += '<li>' + \
-                                                content['Certifications'][cert]['Title'] + '</li>'
-        else:
-            resume_content['certifications'] += '<li class="last">' + \
-                                                content['Certifications'][cert]['Title'] + '</li>'
-        count += 1
-    resume_content['certifications'] += '</ul>'
-
-    count = 1
-    resume_content['certifications'] += '<ul class="talent-center">'
-    for cert in content['Certifications']:
-        if count < cert_count:
-            resume_content['certifications'] += '<li>' + \
-                                                content['Certifications'][cert]['Year'] + '</li>'
-        else:
-            resume_content['certifications'] += '<li class="last">' + \
-                                                content['Certifications'][cert]['Year'] + '</li>'
-        count += 1
-    resume_content['certifications'] += '</ul>'
-
-    count = 1
-    resume_content['certifications'] += '<ul class="talent">'
-    for cert in content['Certifications']:
-        if count < cert_count:
-            resume_content['certifications'] += '<li>' + \
-                                                content['Certifications'][cert]['License'] + '</li>'
-        else:
-            resume_content['certifications'] += '<li class="last">' + \
-                                                content['Certifications'][cert]['License'] + '</li>'
-        count += 1
-    resume_content['certifications'] += '</ul>'
+    get_certifications(content, resume_content)
 
     # Education
     for school in content['Education']:
@@ -204,6 +168,60 @@ def build_resume_object():
                 join(list(content['Education'][school]['Achievements'])) + '</p>'
 
     return resume_content
+
+
+def get_certifications(config_file, resume_content):
+    """Build the certifications object."""
+
+    if not config_file.get('Certifications'):
+        resume_content['certifications'] = ''
+        return
+
+    cert_count = len(config_file['Certifications'])
+    count = 1
+
+    resume_content['certifications'] = '<div class="yui-gf"><div class="yui-u first">' \
+                                       '<h2>Certifications</h2></div>' \
+                                       '<div class="yui-u"><ul class="talent">'
+    for cert in config_file['Certifications']:
+        if count < cert_count:
+            resume_content['certifications'] += '<li>' + \
+                                                config_file['Certifications'][cert]['Title'] + \
+                                                '</li>'
+        else:
+            resume_content['certifications'] += '<li class="last">' + \
+                                                config_file['Certifications'][cert]['Title'] + \
+                                                '</li>'
+        count += 1
+    resume_content['certifications'] += '</ul>'
+
+    count = 1
+    resume_content['certifications'] += '<ul class="talent-center">'
+    for cert in config_file['Certifications']:
+        if count < cert_count:
+            resume_content['certifications'] += '<li>' + \
+                                                config_file['Certifications'][cert]['Year'] + \
+                                                '</li>'
+        else:
+            resume_content['certifications'] += '<li class="last">' + \
+                                                config_file['Certifications'][cert]['Year'] + \
+                                                '</li>'
+        count += 1
+    resume_content['certifications'] += '</ul>'
+
+    count = 1
+    resume_content['certifications'] += '<ul class="talent">'
+    for cert in config_file['Certifications']:
+        if count < cert_count:
+            resume_content['certifications'] += '<li>' + \
+                                                config_file['Certifications'][cert]['License'] + \
+                                                '</li>'
+        else:
+            resume_content['certifications'] += '<li class="last">' + \
+                                                config_file['Certifications'][cert]['License'] + \
+                                                '</li>'
+        count += 1
+    resume_content['certifications'] += '</ul></div></div><!--// .yui-gf-->'
 
 
 def build_analytics_object(config_file, content_object):
@@ -225,7 +243,6 @@ def build_analytics_object(config_file, content_object):
         content_object['google'] = content_object['google'].substitute(content_object)
     else:
         content_object['google'] = ''
-    return content_object
 
 
 def backup_files(templates):
@@ -359,7 +376,7 @@ def resume_schema():
                 "Summary": list,
             },
         },
-        "Certifications": {
+        schema.Optional("Certifications"): {
             1: {
                 "Title": str,
                 "Year": str,
