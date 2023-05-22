@@ -44,28 +44,34 @@ def build_index_object():
     today = date.today()
     year = today.year
 
-    # Grab the meta content & hero image.
+    # Initialize site_content.
     site_content = {'author': content['Meta']['Author'],
                     'description': content['Meta']['Description'],
                     'icon': content['Meta']['Icon'],
                     'tags': ','.join(list(content['Meta']['Tags'])),
                     'twitter': content['Meta']['Twitter'],
                     'image': content['Image']['Path'],
-                    'alt': content['Image']['AltText'], 'header': ''}
+                    'alt': content['Image']['AltText'],
+                    'header': '',
+                    'body': '',
+                    'footer': '',
+                    'background': content['Page']['Color']['Background'],
+                    'font_color': content['Page']['Color']['Font'],
+                    'link': content['Page']['Color']['Clicked-Link'],
+                    'font': content['Page']['Font'],
+                    'borders': 'none'}
 
     # Grab the header(s).
     for title in content['Header']:
         site_content['header'] += '<p>' + content['Header'][title] + '</p>'
 
-    # Grab the body.
-    site_content['body'] = ''
+    # Grab the link(s).
     for link in content['Body']:
         site_content['body'] += '<a target="_blank" href="' + \
                                 content['Body'][link] + '">' + link + '</a><br>'
 
     # Grab the footer(s).
     count = 1
-    site_content['footer'] = ''
     for title in content['Footer']:
         if title not in ('Copyright', 'CombinedTitle'):
             site_content['footer'] += '<p>' + content['Footer'][title] + '</p>'
@@ -85,15 +91,9 @@ def build_index_object():
     if content['Footer']['Copyright']:
         site_content['footer'] += f"<p>© {year} {site_content['author']}</p>"
 
-    # Grab the CSS.
-    site_content['background'] = content['Page']['Color']['Background']
-    site_content['font_color'] = content['Page']['Color']['Font']
-    site_content['link'] = content['Page']['Color']['Clicked-Link']
-    site_content['font'] = content['Page']['Font']
+    # Set/unset the div borders (good for troubleshooting).
     if content['Page']['Borders']:
         site_content['borders'] = '2px solid yellow'
-    else:
-        site_content['borders'] = 'none'
 
     # Build Google Analytics.
     build_analytics_object(content, site_content)
