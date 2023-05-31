@@ -13,17 +13,20 @@
   * Expand education schema.
   * Expand certifications schema.
   * Expand skills schema.
+  * Expand work schema.
   * Add priority ordering to skills.
+  * Reduce local variables in 'build_resume_object'.
   * Spec recommendations:
     - 'location' for school
     - 'license' for certificate
     - meta details for site and googleAnalytics
+    - add currentEmployee key for work history
 """
 
 import argparse
 import json
 import sys
-from datetime import date
+from datetime import datetime, date
 from os import path, remove
 from shutil import copyfile
 from string import Template
@@ -161,13 +164,29 @@ def build_resume_object():
         resume_content['skills'] += "</ul>"
 
     # Experience
-    for exp in content['Experience']:
+    for experience in content['work']:
+        start_year = int(experience["startDate"].split("-")[0])
+        start_month = int(experience["startDate"].split("-")[1])
+        start_day = int(experience["startDate"].split("-")[2])
+        start = datetime(start_year, start_month, start_day)
+        start_month = start.strftime("%B")
+        end_year = int(experience["endDate"].split("-")[0])
+        end_month = int(experience["endDate"].split("-")[1])
+        end_day = int(experience["endDate"].split("-")[2])
+        end = datetime(end_year, end_month, end_day)
+        end_month = end.strftime("%B")
+        start = f"{start_month} {start_year}"
+        end = f"{end_month} {end_year}"
+
+        if experience.get("currentEmployee"):
+            end = "Present"
+
         resume_content['experience'] += '<div class="job"><h2>' + \
-                                        content['Experience'][exp]['Company'] + '</h2><h3>' + \
-                                        content['Experience'][exp]['Title'] + '</h3><h4>' + \
-                                        content['Experience'][exp]['Dates'] + '</h4>' + '<p>• ' + \
+                                        experience['name'] + '</h2><h3>' + \
+                                        experience['position'] + '</h3><h4>' + \
+                                        start + '-' + end + '</h4>' + '<p>• ' + \
                                         '</p><p>• ' \
-                                            .join(list(content['Experience'][exp]['Summary'])) \
+                                            .join(list(experience['highlights'])) \
                                         + '</p></div>'
 
     # Certifications
@@ -372,28 +391,9 @@ def resume_schema():
             schema.Optional("profiles"): list,
         },
         schema.Optional("Skills"): list,
-        "Experience": {
-            1: {
-                "Company": str,
-                "Title": str,
-                "Dates": str,
-                "Summary": list,
-            },
-            schema.Optional(2): {
-                "Company": str,
-                "Title": str,
-                "Dates": str,
-                "Summary": list,
-            },
-            schema.Optional(3): {
-                "Company": str,
-                "Title": str,
-                "Dates": str,
-                "Summary": list,
-            },
-        },
+        schema.Optional("work"): list,
         schema.Optional("Certifications"): list,
-        schema.Optional("education"): list
+        schema.Optional("education"): list,
     }, ignore_extra_keys=True)
 
     validate_schema(config_schema, file='resume.yaml')
