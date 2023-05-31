@@ -96,22 +96,28 @@ certificates:
   issuer: "CompTIA"
   url: "https://www.comptia.org/"
   license: "COMP001007825623"
-Skills:
-  1:
+skills:
+- name: "DevOps"
+  level: "Master"
+  keywords:
+    - Research
     - Linux
     - AWS
     - GCP
-    - Mentoring
-  2:
-    - Bash
-    - Python
-    - PowerShell
-    - Research
-  3:
     - GitHub
     - Terraform / CloudFormation
     - Ansible / Chef / Puppet
+- name: "Leadership"
+  level: "Proficient"
+  keywords:
+    - Mentoring
     - Documentation
+- name: "Programming"
+  level: "Proficient"
+  keywords:
+    - Python
+    - Bash
+    - Powershell
 Experience:
   1:
     Company: "Salesforce"

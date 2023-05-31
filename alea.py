@@ -12,6 +12,8 @@
   * Make meta sections optional.
   * Expand education schema.
   * Expand certifications schema.
+  * Expand skills schema.
+  * Add priority ordering to skills.
   * Spec recommendations:
     - 'location' for school
     - 'license' for certificate
@@ -25,6 +27,7 @@ from datetime import date
 from os import path, remove
 from shutil import copyfile
 from string import Template
+import numpy
 import schema
 import yaml
 
@@ -138,15 +141,20 @@ def build_resume_object():
     build_analytics_object(content, resume_content)
 
     # Skills
-    rows = [len(content['Skills'][column]) for column in content['Skills']]
-    rows = max(rows)
+    skills = []
+    for section in content['skills']:
+        for skill in section['keywords']:
+            skills.append(skill)
+    rows = numpy.array_split(skills, 3)
+    longest_list = [len(row) for row in rows]
+    longest_list = max(longest_list)
 
-    for column in content['Skills']:
-        count = 0
+    for row in rows:
         resume_content['skills'] += '<ul class="talent">'
-        for skill in content['Skills'][column]:
+        count = 0
+        for skill in row:
             count += 1
-            if count == rows:
+            if count == longest_list:
                 resume_content['skills'] += '<li class="last">' + skill + "</li>"
             else:
                 resume_content['skills'] += "<li>" + skill + "</li>"
@@ -363,10 +371,7 @@ def resume_schema():
             },
             schema.Optional("profiles"): list,
         },
-        "Skills": {
-            1: list,
-            2: list
-        },
+        schema.Optional("Skills"): list,
         "Experience": {
             1: {
                 "Company": str,
@@ -388,7 +393,7 @@ def resume_schema():
             },
         },
         schema.Optional("Certifications"): list,
-        "education": list
+        schema.Optional("education"): list
     }, ignore_extra_keys=True)
 
     validate_schema(config_schema, file='resume.yaml')
