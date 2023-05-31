@@ -26,6 +26,7 @@
     - GitHub Action to publish json resume as a gist.
     - register json resume with jsonresume.org
     - Add sections to resume from spec, e.g. interests.
+    - Add information to README.md
 """
 
 import argparse
