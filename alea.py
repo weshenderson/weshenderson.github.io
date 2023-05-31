@@ -21,6 +21,11 @@
     - 'license' for certificate
     - meta details for site and googleAnalytics
     - add currentEmployee key for work history
+  * Larger Project:
+    - GitHub Action for PyLint
+    - GitHub Action to publish json resume as a gist.
+    - register json resume with jsonresume.org
+    - Add sections to resume from spec, e.g. interests.
 """
 
 import argparse
