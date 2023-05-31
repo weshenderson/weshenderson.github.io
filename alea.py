@@ -9,6 +9,7 @@
 
  TODO:
   * Look into alternative templating solutions.
+  * Make meta sections optional.
 """
 
 import argparse
@@ -117,11 +118,12 @@ def build_resume_object():
                       'thumbnail': content['meta']['siteThumbnail'],
                       'tags': ','.join(list(content['meta']['siteTags'])),
                       'twitter': content['meta']['siteTwitter'],
-                      'title': content['Contact']['Title'],
-                      'phone': content['Contact']['Phone'],
-                      'email': content['Contact']['Email'],
+                      'name': content['basics']['name'],
+                      'title': content['basics']['label'],
+                      'phone': content['basics']['phone'],
+                      'email': content['basics']['email'],
                       'subject': content['meta'].get('emailSubject') or '',
-                      'summary': content['Summary'],
+                      'summary': content['basics']['summary'],
                       'skills': '',
                       'experience': '',
                       'education': '', }
@@ -341,15 +343,23 @@ def resume_schema():
             "siteThumbnail": str,
             "siteTwitter": str,
             "siteTags": list,
-            schema.Optional("googleAnalytics"): schema.Or(str, None)
+            schema.Optional("googleAnalytics"): schema.Or(str, None),
+            schema.Optional("emailSubject"): schema.Or(str, None)
         },
-        "Contact": {
-            "Title": str,
-            "Phone": str,
-            "Email": str,
-            schema.Optional("Subject"): str
+        "basics": {
+            "name": str,
+            "label": str,
+            "image": str,
+            "email": str,
+            "phone": str,
+            "url": str,
+            "summary": str,
+            "location": {
+                "city": str,
+                "countryCode": str
+            },
+            schema.Optional("profiles"): list,
         },
-        "Summary": str,
         "Skills": {
             1: list,
             2: list
