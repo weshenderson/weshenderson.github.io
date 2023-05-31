@@ -27,6 +27,7 @@
     - register json resume with jsonresume.org
     - Add sections to resume from spec, e.g. interests.
     - Add information to README.md
+    - Add pre-commit for pylint.
 """
 
 import argparse
