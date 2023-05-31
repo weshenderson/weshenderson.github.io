@@ -10,6 +10,7 @@
  TODO:
   * Look into alternative templating solutions.
   * Make meta sections optional.
+  * Expand education schema.
 """
 
 import argparse
@@ -160,18 +161,18 @@ def build_resume_object():
     get_certifications(content, resume_content)
 
     # Education
-    for school in content['Education']:
-        resume_content['education'] += '<h2>' + content['Education'][school]['School'] + ' - ' + \
-                                       content['Education'][school]['Location'] + '</h2><h3>' + \
-                                       content['Education'][school]['Degree']
-        if 'GPA' in content['Education'][school]:
-            resume_content['education'] += ' &mdash; <strong>' + content['Education'][school][
-                'GPA'] + ' GPA</strong></h3>'
+    for school in content['education']:
+        resume_content['education'] += '<h2>' + school['institution'] + ' - ' + \
+                                       school['location'] + '</h2><h3>' + \
+                                       school['studyType'] + ' in ' + school['area']
+        if 'score' in school:
+            resume_content['education'] += ' &mdash; <strong>' + school['score'] \
+                                           + ' GPA</strong></h3>'
         else:
             resume_content['education'] += '</h3>'
-        if 'Achievements' in content['Education'][school]:
+        if 'courses' in school:
             resume_content['education'] += '<p>• ' + '</p><p>• '. \
-                join(list(content['Education'][school]['Achievements'])) + '</p>'
+                join(list(school['courses'])) + '</p>'
 
     return resume_content
 
@@ -391,15 +392,7 @@ def resume_schema():
                 "License": str,
             },
         },
-        "Education": {
-            1: {
-                "School": str,
-                "Location": str,
-                "Degree": str,
-                schema.Optional("GPA"): str,
-                schema.Optional("Achievements"): list,
-            }
-        },
+        "education": list
     }, ignore_extra_keys=True)
 
     validate_schema(config_schema, file='resume.yaml')

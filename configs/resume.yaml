@@ -33,6 +33,18 @@ basics:
       username: NecromancerTux
     - network: github
       url: https://github.com/necrux
+education:
+- institution: "Northwest Vista College"
+  url: "https://www.alamo.edu/nvc/"
+  area: "Computer Forensics"
+  studyType: "Associate of Applied Science"
+  startDate: "2010-01-01"
+  endDate: "2012-05-15"
+  score: "4.0"
+  location: "San Antonio, Texas"
+  courses:
+    - "Marketable Skills Achievement Award: Linux RHCT"
+    - "Marketable Skills Achievement Award: Information Security & Assurance"
 Skills:
   1:
     - Linux
@@ -124,12 +136,3 @@ Certifications:
     Title: "CompTIA A+"
     Year: "2008"
     License: "COMP001007825623"
-Education:
-  1:
-    School: "Northwest Vista College"
-    Location: "San Antonio, Texas"
-    Degree: "Associate of Applied Science in Computer Forensics"
-    GPA: "4.0"
-    Achievements:
-      - "Marketable Skills Achievement Award: Linux RHCT"
-      - "Marketable Skills Achievement Award: Information Security & Assurance"
