@@ -1,11 +1,12 @@
 {
-  "Meta": {
-    "Author": "Wes Henderson",
-    "Description": "The resume of Wes Henderson.",
-    "Icon": "https://www.weshenderson.info/assets/images/resume.ico",
-    "Thumbnail": "https://www.weshenderson.info/assets/images/necrux-scaled.webp",
-    "Twitter": "NecromancerTux",
-    "Tags": [
+  "meta": {
+    "theme": "elegant",
+    "siteAuthor": "Wes Henderson",
+    "siteDescription": "The resume of Wes Henderson.",
+    "siteIcon": "https://www.weshenderson.info/assets/images/resume.ico",
+    "siteThumbnail": "https://www.weshenderson.info/assets/images/necrux-scaled.webp",
+    "siteTwitter": "NecromancerTux",
+    "siteTags": [
       "Wes",
       "Henderson",
       "Wes Henderson",
@@ -13,11 +14,9 @@
       "Resume",
       "San Antonio",
       "Texas"
-    ]
-  },
-  "Google": {
-    "Analytics": true,
-    "ID": "G-1HMXV18Z9V"
+    ],
+    "googleAnalytics": "G-1HMXV18Z9V",
+    "emailSubject": "You're hired! ;)"
   },
   "Contact": {
     "Title": "Systems Engineer",

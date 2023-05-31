@@ -49,11 +49,11 @@ def build_index_object():
     year = today.year
 
     # Initialize site_content.
-    site_content = {'author': content['Meta']['Author'],
-                    'description': content['Meta']['Description'],
-                    'icon': content['Meta']['Icon'],
-                    'tags': ','.join(list(content['Meta']['Tags'])),
-                    'twitter': content['Meta']['Twitter'],
+    site_content = {'author': content['meta']['Author'],
+                    'description': content['meta']['Description'],
+                    'icon': content['meta']['Icon'],
+                    'tags': ','.join(list(content['meta']['Tags'])),
+                    'twitter': content['meta']['Twitter'],
                     'image': content['Image']['Path'],
                     'alt': content['Image']['AltText'],
                     'header': '',
@@ -111,16 +111,16 @@ def build_resume_object():
         content = yaml.safe_load(file)
 
     # Grab the meta, Overview, & Summary info.
-    resume_content = {'author': content['Meta']['Author'],
-                      'description': content['Meta']['Description'],
-                      'icon': content['Meta']['Icon'],
-                      'thumbnail': content['Meta']['Thumbnail'],
-                      'tags': ','.join(list(content['Meta']['Tags'])),
-                      'twitter': content['Meta']['Twitter'],
+    resume_content = {'author': content['meta']['siteAuthor'],
+                      'description': content['meta']['siteDescription'],
+                      'icon': content['meta']['siteIcon'],
+                      'thumbnail': content['meta']['siteThumbnail'],
+                      'tags': ','.join(list(content['meta']['siteTags'])),
+                      'twitter': content['meta']['siteTwitter'],
                       'title': content['Contact']['Title'],
                       'phone': content['Contact']['Phone'],
                       'email': content['Contact']['Email'],
-                      'subject': content['Contact'].get('Subject') or '',
+                      'subject': content['meta'].get('emailSubject') or '',
                       'summary': content['Summary'],
                       'skills': '',
                       'experience': '',
@@ -230,8 +230,8 @@ def get_certifications(config_file, resume_content):
 
 def build_analytics_object(config_file, content_object):
     """Build Google Analytics and append to the dictionary."""
-    if config_file['Google']['Analytics']:
-        content_object['google_id'] = config_file['Google']['ID']
+    content_object['google_id'] = config_file["meta"].get("googleAnalytics")
+    if content_object['google_id']:
         content_object['google'] = """
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=$google_id"></script>
@@ -291,16 +291,13 @@ def index_schema():
     """Definition for the content.yaml schema."""
 
     config_schema = schema.Schema({
-        "Meta": {
+        "meta": {
             "Author": str,
             "Description": str,
             "Icon": str,
             "Twitter": str,
-            "Tags": list
-        },
-        "Google": {
-            "Analytics": bool,
-            schema.Optional("ID"): schema.Or(str, None)
+            "Tags": list,
+            schema.Optional("googleAnalytics"): schema.Or(str, None)
         },
         "Page": {
             "Color": {
@@ -337,17 +334,14 @@ def resume_schema():
     """Definition for the resume.yaml schema."""
 
     config_schema = schema.Schema({
-        "Meta": {
-            "Author": str,
-            "Description": str,
-            "Icon": str,
-            "Thumbnail": str,
-            "Twitter": str,
-            "Tags": list
-        },
-        "Google": {
-            "Analytics": bool,
-            schema.Optional("ID"): schema.Or(str, None)
+        "meta": {
+            "siteAuthor": str,
+            "siteDescription": str,
+            "siteIcon": str,
+            "siteThumbnail": str,
+            "siteTwitter": str,
+            "siteTags": list,
+            schema.Optional("googleAnalytics"): schema.Or(str, None)
         },
         "Contact": {
             "Title": str,
