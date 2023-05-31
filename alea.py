@@ -12,6 +12,7 @@
 """
 
 import argparse
+import json
 import sys
 from datetime import date
 from os import path, remove
@@ -33,12 +34,15 @@ LOGO = """
 ▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌
  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀ 
 """
+INDEX = 'configs/content.yaml'
+RESUME_YAML = 'configs/resume.yaml'
+RESUME_JSON = 'configs/resume.json'
 
 
 def build_index_object():
     """Convert content.yaml into a dictionary."""
 
-    with open('configs/content.yaml', encoding='UTF-8') as file:
+    with open(INDEX, encoding='UTF-8') as file:
         content = yaml.safe_load(file)
 
     today = date.today()
@@ -103,7 +107,7 @@ def build_index_object():
 
 def build_resume_object():
     """Convert resume.yaml into a dictionary."""
-    with open('configs/resume.yaml', encoding='UTF-8') as file:
+    with open(RESUME_YAML, encoding='UTF-8') as file:
         content = yaml.safe_load(file)
 
     # Grab the meta, Overview, & Summary info.
@@ -417,6 +421,16 @@ def validate_schema(correct_schema, file):
         sys.exit(1)
 
 
+def generate_json():
+    """Generate a JSON copy of the resume."""
+    print("Generating the JSON version of the resume.")
+    with open(RESUME_YAML, encoding='UTF-8') as file:
+        content = yaml.safe_load(file)
+
+    with open(RESUME_JSON, 'w', encoding='UTF-8') as file:
+        json.dump(content, file, indent=2)
+
+
 def main():
     """Entrypoint for Alea."""
 
@@ -448,6 +462,12 @@ def main():
                              default=False,
                              action='store_true',
                              help='Generate the new resume.html and assets.')
+    job_options.add_argument('-j',
+                             '--json',
+                             default=False,
+                             dest="json_resume",
+                             action='store_true',
+                             help='Generate the JSON resume copy.')
     job_options.add_argument('-c',
                              '--check',
                              default=False,
@@ -455,11 +475,6 @@ def main():
                              help='Validate the yaml schema (must include -r or -i).')
 
     args = job_options.parse_args()
-    stdout = args.stdout
-    backup = args.backup
-    index = args.index
-    resume = args.resume
-    check = args.check
 
     index_templates = {'html': {'source': 'templates/index.tmpl',
                                 'destination': 'index.html',
@@ -472,39 +487,41 @@ def main():
                                                'destination': 'konami-resume.html'
                                                }}
 
-    if check and index and resume:
+    if args.check and args.index and args.resume:
         index_schema()
         resume_schema()
         sys.exit(0)
-    elif check and index:
+    elif args.check and args.index:
         index_schema()
         sys.exit(0)
-    elif check and resume:
+    elif args.check and args.resume:
         resume_schema()
         sys.exit(0)
-    elif check:
+    elif args.check:
         print('Must specify either -i and/or -r in order to validate the correct schema.')
         sys.exit(1)
 
-    if backup and index and resume:
+    if args.backup and args.index and args.resume:
         backup_files(index_templates)
         backup_files(resume_templates)
-    elif backup and index:
+    elif args.backup and args.index:
         backup_files(index_templates)
-    elif backup and resume:
+    elif args.backup and args.resume:
         backup_files(resume_templates)
-    elif backup:
+    elif args.backup:
         print('Must specify either -i and/or -r to backup the proper files.')
         sys.exit(1)
 
-    if index:
+    if args.index:
         index_schema()
         site_content = build_index_object()
-        update_content(index_templates, site_content, stdout)
-    if resume:
+        update_content(index_templates, site_content, args.stdout)
+    if args.resume:
         resume_schema()
         resume_content = build_resume_object()
-        update_content(resume_templates, resume_content, stdout)
+        update_content(resume_templates, resume_content, args.stdout)
+    if args.json_resume:
+        generate_json()
 
 
 if __name__ == "__main__":

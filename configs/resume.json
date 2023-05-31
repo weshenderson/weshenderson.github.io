@@ -1,0 +1,154 @@
+{
+  "Meta": {
+    "Author": "Wes Henderson",
+    "Description": "The resume of Wes Henderson.",
+    "Icon": "https://www.weshenderson.info/assets/images/resume.ico",
+    "Thumbnail": "https://www.weshenderson.info/assets/images/necrux-scaled.webp",
+    "Twitter": "NecromancerTux",
+    "Tags": [
+      "Wes",
+      "Henderson",
+      "Wes Henderson",
+      "Systems Engineer",
+      "Resume",
+      "San Antonio",
+      "Texas"
+    ]
+  },
+  "Google": {
+    "Analytics": true,
+    "ID": "G-1HMXV18Z9V"
+  },
+  "Contact": {
+    "Title": "Systems Engineer",
+    "Phone": "(210) 589-0628",
+    "Email": "whendersonii@gmail.com",
+    "Subject": "You're hired! ;)"
+  },
+  "Summary": "I am a community oriented Linux nerd with more than a decade of IT experience and a penchant for automation, documentation, and mentoring. I am keenly aware of operations and ever mindful of opportunities for process improvement; I believe that continuous improvement is paramount for any organization. The key to maintaining continuous improvement is to build and maintain a strong team through constant, organic training.",
+  "Skills": {
+    "1": [
+      "Linux",
+      "AWS",
+      "GCP",
+      "Mentoring"
+    ],
+    "2": [
+      "Bash",
+      "Python",
+      "PowerShell",
+      "Research"
+    ],
+    "3": [
+      "GitHub",
+      "Terraform / CloudFormation",
+      "Ansible / Chef / Puppet",
+      "Documentation"
+    ]
+  },
+  "Experience": {
+    "1": {
+      "Company": "Salesforce",
+      "Title": "Lead Systems Engineer",
+      "Dates": "November 2019-Present",
+      "Summary": [
+        "Led a small team on our \u2018Bring Your Own Key\u2019 (BYOK) initiative; this product allowed customers to fully own the keys their databases were encrypted with and represented $6 million in recurring revenue for Pardot.",
+        "Helped to identify and deploy cost saving measures in our public cloud infrastructure, representing a savings of $3 million dollars annually.",
+        "Led multiple teams across multiple business units in order to meet deployment deadlines.",
+        "Built a bespoke tooling pipeline for the SRE team, allowing tools to be created and shared widely while circumventing common pitfalls around such tooling, e.g. tribal knowledge resulting in decreased visibility and adoption.",
+        "Built a CLI tool to rapidly manage asynchronous jobs, greatly decreasing response time while increasing visibility."
+      ]
+    },
+    "2": {
+      "Company": "TrueAbility",
+      "Title": "Deployment Engineer",
+      "Dates": "December 2017-November 2019",
+      "Summary": [
+        "Mentored junior team members and built pathways from support to engineering.",
+        "Helped many top companies build, deploy, and grade their performance based assessments.",
+        "Acted as a consultant on exam creation and deployment.",
+        "Created bespoke environments/grading via Bash and Powershell, primarily.",
+        "Contributed to the underlying codebase where applicable.",
+        "Maintained the AWS and GCP infrastructure for internal tooling and exams respectively."
+      ]
+    },
+    "3": {
+      "Company": "Rackspace Hosting",
+      "Title": "DevOps Engineer",
+      "Dates": "May 2013-December 2017",
+      "Summary": [
+        "Architect and deploy scalable cloud solutions for customers in an AWS ecosystem via CloudFormation.",
+        "Design for customers\u2019 regulatory requirements (e.g. PCI, HIPAA, etc).",
+        "Educate customers on distributed computing principles and CI/CD solutions.",
+        "Collaborate with team members via GitHub.",
+        "Wrote a Python framework to automate the build process.",
+        "Created custom tooling in Bash and Python.",
+        "Active contributor to both the internal Rackspace wiki and public blog."
+      ]
+    }
+  },
+  "Certifications": {
+    "1": {
+      "Title": "AWS Certified Solutions Architect",
+      "Year": "2017",
+      "License": "AWS-ASA-29789"
+    },
+    "2": {
+      "Title": "Red Hat Certified Engineer",
+      "Year": "2016",
+      "License": "130-119-274"
+    },
+    "3": {
+      "Title": "Red Hat Certified System Admin",
+      "Year": "2013",
+      "License": "130-119-274"
+    },
+    "4": {
+      "Title": "Linux Professional Institute Cert 1",
+      "Year": "2012",
+      "License": "LPI000250530"
+    },
+    "5": {
+      "Title": "Novell Certified Linux Admin",
+      "Year": "2012",
+      "License": "10176504"
+    },
+    "6": {
+      "Title": "Novell DC Technical Specialist",
+      "Year": "2012",
+      "License": "10176504"
+    },
+    "7": {
+      "Title": "CompTIA Linux+",
+      "Year": "2012",
+      "License": "COMP001007825623"
+    },
+    "8": {
+      "Title": "CompTIA Security+",
+      "Year": "2010",
+      "License": "COMP001007825623"
+    },
+    "9": {
+      "Title": "CompTIA Network+",
+      "Year": "2010",
+      "License": "COMP001007825623"
+    },
+    "10": {
+      "Title": "CompTIA A+",
+      "Year": "2008",
+      "License": "COMP001007825623"
+    }
+  },
+  "Education": {
+    "1": {
+      "School": "Northwest Vista College",
+      "Location": "San Antonio, Texas",
+      "Degree": "Associate of Applied Science in Computer Forensics",
+      "GPA": "4.0",
+      "Achievements": [
+        "Marketable Skills Achievement Award: Linux RHCT",
+        "Marketable Skills Achievement Award: Information Security & Assurance"
+      ]
+    }
+  }
+}

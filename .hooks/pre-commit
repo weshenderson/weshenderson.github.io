@@ -7,6 +7,7 @@ INDEX_CSS='assets/css/main.css'
 RESUME='resume.html'
 KONAMI='konami-resume.html'
 PDF='docs/Resume.pdf'
+JSON='configs/resume.json'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 FILE_CHECK=(configs/
             alea
@@ -17,10 +18,11 @@ function alea {
     for file in ${FILE_CHECK[@]}; do
         if git status --porcelain | grep -q ${file}; then
             pushd "${BASE_PATH}" &>/dev/null
-                ./alea.py --index --resume
+                ./alea.py --index --resume --json
                 git add ${INDEX}
                 git add ${INDEX_CSS}
                 git add ${RESUME}
+                git add ${JSON}
                 if [ -f ${KONAMI} ]; then
                     git add ${KONAMI}
                 fi
