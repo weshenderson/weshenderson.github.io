@@ -58,6 +58,78 @@
       ]
     }
   ],
+  "certificates": [
+    {
+      "name": "Certified Solutions Architect",
+      "date": "2017-01-01",
+      "issuer": "AWS",
+      "url": "https://aws.amazon.com/certification/",
+      "license": "AWS-ASA-29789"
+    },
+    {
+      "name": "Certified Engineer",
+      "date": "2016-01-01",
+      "issuer": "Red Hat",
+      "url": "https://www.redhat.com/en/services/training-and-certification",
+      "license": "130-119-274"
+    },
+    {
+      "name": "Certified System Admin",
+      "date": "2013-01-01",
+      "issuer": "Red Hat",
+      "url": "https://www.redhat.com/en/services/training-and-certification",
+      "license": "130-119-274"
+    },
+    {
+      "name": "Cert 1",
+      "date": "2012-01-01",
+      "issuer": "Linux Professional Institute",
+      "url": "https://www.lpi.org/",
+      "license": "LPI000250530"
+    },
+    {
+      "name": "Certified Linux Admin",
+      "date": "2012-01-01",
+      "issuer": "Novell",
+      "url": "",
+      "license": "10176504"
+    },
+    {
+      "name": "DC Technical Specialist",
+      "date": "2012-01-01",
+      "issuer": "Novell",
+      "url": "",
+      "license": "10176504"
+    },
+    {
+      "name": "Linux+",
+      "date": "2012-01-01",
+      "issuer": "CompTIA",
+      "url": "https://www.comptia.org/",
+      "license": "COMP001007825623"
+    },
+    {
+      "name": "Security+",
+      "date": "2010-01-01",
+      "issuer": "CompTIA",
+      "url": "https://www.comptia.org/",
+      "license": "COMP001007825623"
+    },
+    {
+      "name": "Network+",
+      "date": "2010-01-01",
+      "issuer": "CompTIA",
+      "url": "https://www.comptia.org/",
+      "license": "COMP001007825623"
+    },
+    {
+      "name": "A+",
+      "date": "2008-01-01",
+      "issuer": "CompTIA",
+      "url": "https://www.comptia.org/",
+      "license": "COMP001007825623"
+    }
+  ],
   "Skills": {
     "1": [
       "Linux",
@@ -117,58 +189,6 @@
         "Created custom tooling in Bash and Python.",
         "Active contributor to both the internal Rackspace wiki and public blog."
       ]
-    }
-  },
-  "Certifications": {
-    "1": {
-      "Title": "AWS Certified Solutions Architect",
-      "Year": "2017",
-      "License": "AWS-ASA-29789"
-    },
-    "2": {
-      "Title": "Red Hat Certified Engineer",
-      "Year": "2016",
-      "License": "130-119-274"
-    },
-    "3": {
-      "Title": "Red Hat Certified System Admin",
-      "Year": "2013",
-      "License": "130-119-274"
-    },
-    "4": {
-      "Title": "Linux Professional Institute Cert 1",
-      "Year": "2012",
-      "License": "LPI000250530"
-    },
-    "5": {
-      "Title": "Novell Certified Linux Admin",
-      "Year": "2012",
-      "License": "10176504"
-    },
-    "6": {
-      "Title": "Novell DC Technical Specialist",
-      "Year": "2012",
-      "License": "10176504"
-    },
-    "7": {
-      "Title": "CompTIA Linux+",
-      "Year": "2012",
-      "License": "COMP001007825623"
-    },
-    "8": {
-      "Title": "CompTIA Security+",
-      "Year": "2010",
-      "License": "COMP001007825623"
-    },
-    "9": {
-      "Title": "CompTIA Network+",
-      "Year": "2010",
-      "License": "COMP001007825623"
-    },
-    "10": {
-      "Title": "CompTIA A+",
-      "Year": "2008",
-      "License": "COMP001007825623"
     }
   }
 }

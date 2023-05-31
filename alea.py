@@ -11,6 +11,11 @@
   * Look into alternative templating solutions.
   * Make meta sections optional.
   * Expand education schema.
+  * Expand certifications schema.
+  * Spec recommendations:
+    - 'location' for school
+    - 'license' for certificate
+    - meta details for site and googleAnalytics
 """
 
 import argparse
@@ -180,52 +185,49 @@ def build_resume_object():
 def get_certifications(config_file, resume_content):
     """Build the certifications object."""
 
-    if not config_file.get('Certifications'):
+    if not config_file.get('certificates'):
         resume_content['certifications'] = ''
         return
 
-    cert_count = len(config_file['Certifications'])
+    cert_count = len(config_file['certificates'])
     count = 1
 
     resume_content['certifications'] = '<div class="yui-gf"><div class="yui-u first">' \
                                        '<h2>Certifications</h2></div>' \
                                        '<div class="yui-u"><ul class="talent">'
-    for cert in config_file['Certifications']:
+    for cert in config_file['certificates']:
         if count < cert_count:
             resume_content['certifications'] += '<li>' + \
-                                                config_file['Certifications'][cert]['Title'] + \
+                                                cert['issuer'] + ' ' + cert['name'] + \
                                                 '</li>'
         else:
             resume_content['certifications'] += '<li class="last">' + \
-                                                config_file['Certifications'][cert]['Title'] + \
+                                                cert['issuer'] + ' ' + cert['name'] + \
                                                 '</li>'
         count += 1
     resume_content['certifications'] += '</ul>'
 
     count = 1
     resume_content['certifications'] += '<ul class="talent-center">'
-    for cert in config_file['Certifications']:
+    for cert in config_file['certificates']:
+        year = cert['date'].split("-")
         if count < cert_count:
-            resume_content['certifications'] += '<li>' + \
-                                                config_file['Certifications'][cert]['Year'] + \
-                                                '</li>'
+            resume_content['certifications'] += '<li>' + year[0] + '</li>'
         else:
-            resume_content['certifications'] += '<li class="last">' + \
-                                                config_file['Certifications'][cert]['Year'] + \
-                                                '</li>'
+            resume_content['certifications'] += '<li class="last">' + year[0] + '</li>'
         count += 1
     resume_content['certifications'] += '</ul>'
 
     count = 1
     resume_content['certifications'] += '<ul class="talent">'
-    for cert in config_file['Certifications']:
+    for cert in config_file['certificates']:
         if count < cert_count:
             resume_content['certifications'] += '<li>' + \
-                                                config_file['Certifications'][cert]['License'] + \
+                                                cert['license'] + \
                                                 '</li>'
         else:
             resume_content['certifications'] += '<li class="last">' + \
-                                                config_file['Certifications'][cert]['License'] + \
+                                                cert['license'] + \
                                                 '</li>'
         count += 1
     resume_content['certifications'] += '</ul></div></div><!--// .yui-gf-->'
@@ -385,13 +387,7 @@ def resume_schema():
                 "Summary": list,
             },
         },
-        schema.Optional("Certifications"): {
-            1: {
-                "Title": str,
-                "Year": str,
-                "License": str,
-            },
-        },
+        schema.Optional("Certifications"): list,
         "education": list
     }, ignore_extra_keys=True)
 
