@@ -61,30 +61,30 @@
   "certificates": [
     {
       "name": "Certified Solutions Architect",
-      "date": "2017-01-01",
+      "date": "2017-01-26",
       "issuer": "AWS",
       "url": "https://aws.amazon.com/certification/",
       "license": "AWS-ASA-29789"
     },
     {
-      "name": "Certified Engineer",
-      "date": "2016-01-01",
+      "name": "RHCE",
+      "date": "2016-04-15",
       "issuer": "Red Hat",
       "url": "https://www.redhat.com/en/services/training-and-certification",
       "license": "130-119-274"
     },
     {
-      "name": "Certified System Admin",
-      "date": "2013-01-01",
+      "name": "RHCSA",
+      "date": "2013-07-12",
       "issuer": "Red Hat",
       "url": "https://www.redhat.com/en/services/training-and-certification",
       "license": "130-119-274"
     },
     {
       "name": "Cert 1",
-      "date": "2012-01-01",
+      "date": "2012-03-16",
       "issuer": "Linux Professional Institute",
-      "url": "https://www.lpi.org/",
+      "url": "https://cs.lpi.org/caf/Xamman/certification/verify/LPI000250530/blzpac7l7c",
       "license": "LPI000250530"
     },
     {
@@ -103,30 +103,30 @@
     },
     {
       "name": "Linux+",
-      "date": "2012-01-01",
+      "date": "2012-01-27",
       "issuer": "CompTIA",
-      "url": "https://www.comptia.org/",
+      "url": "https://www.certmetrics.com/comptia/public/verification.aspx?code=0BQ4PR0KQDFQC6KD",
       "license": "COMP001007825623"
     },
     {
       "name": "Security+",
-      "date": "2010-01-01",
+      "date": "2010-12-06",
       "issuer": "CompTIA",
-      "url": "https://www.comptia.org/",
+      "url": "https://www.certmetrics.com/comptia/public/verification.aspx?code=CTG3VRGBEPF156F2",
       "license": "COMP001007825623"
     },
     {
       "name": "Network+",
-      "date": "2010-01-01",
+      "date": "2010-12-30",
       "issuer": "CompTIA",
-      "url": "https://www.comptia.org/",
+      "url": "https://www.certmetrics.com/comptia/public/verification.aspx?code=JZKHWVXBFHB1SS5G",
       "license": "COMP001007825623"
     },
     {
       "name": "A+",
-      "date": "2008-01-01",
+      "date": "2008-11-02",
       "issuer": "CompTIA",
-      "url": "https://www.comptia.org/",
+      "url": "https://www.certmetrics.com/comptia/public/verification.aspx?code=MV26L81P42FQKZL2",
       "license": "COMP001007825623"
     }
   ],
