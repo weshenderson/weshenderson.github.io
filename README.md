@@ -41,7 +41,7 @@ Previously this work was done via Pandoc, however this results in a prettier end
 
 
 ### Hooks and Easter Eggs
-The pre-commit hook generates a "Konami resume template" if `resume.yaml` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resume):
+The pre-commit hook generates a "Konami resume template" if `resume.yaml` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
 
 ```
 up, up, down, down, left, right, left, right, b, a
