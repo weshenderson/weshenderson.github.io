@@ -29,7 +29,7 @@ Body:
   Blog: "https://necrux.com"
   GitHub: "https://github.com/necrux"
   LinkedIn: "https://www.linkedin.com/in/wes-henderson"
-  GPG Key: "docs/wes-henderson-public-key.txt"
+  GPG Key: "assets/txt/wes-henderson-public-key.txt"
   Keybase: "https://keybase.io/necrux"
   Twitter: "https://twitter.com/necromancertux"
   Resume: "/resumes/resume.html"
