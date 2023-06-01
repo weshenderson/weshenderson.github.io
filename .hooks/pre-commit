@@ -52,5 +52,11 @@ function create-pdf-resume {
     fi
 }
 
+function check-code {
+    echo 'Linting code: pylint.'
+    pylint $(git ls-files '*.py')
+}
+
+check-code
 alea
 create-pdf-resume

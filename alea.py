@@ -9,13 +9,12 @@
 
  TODO:
   * Look into alternative templating solutions.
-  * Make meta sections optional.
   * Expand education schema.
   * Expand certifications schema.
   * Expand skills schema.
   * Expand work schema.
   * Add priority ordering to skills.
-  * Reduce local variables in 'build_resume_object'.
+  * Create functions building the resume.
   * Spec recommendations:
     - 'location' for school
     - 'license' for certificate
@@ -23,11 +22,7 @@
     - add currentEmployee key for work history
   * Larger Project:
     - GitHub Action for PyLint
-    - GitHub Action to publish json resume as a gist.
-    - register json resume with jsonresume.org
-    - Add sections to resume from spec, e.g. interests.
     - Add information to README.md
-    - Add pre-commit for pylint.
 """
 
 import argparse
@@ -171,7 +166,31 @@ def build_resume_object():
         resume_content['skills'] += "</ul>"
 
     # Experience
-    for experience in content['work']:
+    get_experience(content, resume_content)
+
+    # Certifications
+    get_certifications(content, resume_content)
+
+    # Education
+    for school in content['education']:
+        resume_content['education'] += '<h2>' + school['institution'] + ' - ' + \
+                                       school['location'] + '</h2><h3>' + \
+                                       school['studyType'] + ' in ' + school['area']
+        if 'score' in school:
+            resume_content['education'] += ' &mdash; <strong>' + school['score'] \
+                                           + ' GPA</strong></h3>'
+        else:
+            resume_content['education'] += '</h3>'
+        if 'courses' in school:
+            resume_content['education'] += '<p>• ' + '</p><p>• '. \
+                join(list(school['courses'])) + '</p>'
+
+    return resume_content
+
+
+def get_experience(config_file, resume_content):
+    """Build the experience object."""
+    for experience in config_file['work']:
         start_year = int(experience["startDate"].split("-")[0])
         start_month = int(experience["startDate"].split("-")[1])
         start_day = int(experience["startDate"].split("-")[2])
@@ -195,25 +214,6 @@ def build_resume_object():
                                         '</p><p>• ' \
                                             .join(list(experience['highlights'])) \
                                         + '</p></div>'
-
-    # Certifications
-    get_certifications(content, resume_content)
-
-    # Education
-    for school in content['education']:
-        resume_content['education'] += '<h2>' + school['institution'] + ' - ' + \
-                                       school['location'] + '</h2><h3>' + \
-                                       school['studyType'] + ' in ' + school['area']
-        if 'score' in school:
-            resume_content['education'] += ' &mdash; <strong>' + school['score'] \
-                                           + ' GPA</strong></h3>'
-        else:
-            resume_content['education'] += '</h3>'
-        if 'courses' in school:
-            resume_content['education'] += '<p>• ' + '</p><p>• '. \
-                join(list(school['courses'])) + '</p>'
-
-    return resume_content
 
 
 def get_certifications(config_file, resume_content):
@@ -374,12 +374,12 @@ def resume_schema():
 
     config_schema = schema.Schema({
         "meta": {
-            "siteAuthor": str,
-            "siteDescription": str,
-            "siteIcon": str,
-            "siteThumbnail": str,
-            "siteTwitter": str,
-            "siteTags": list,
+            schema.Optional("siteAuthor"): str,
+            schema.Optional("siteDescription"): str,
+            schema.Optional("siteIcon"): str,
+            schema.Optional("siteThumbnail"): str,
+            schema.Optional("siteTwitter"): str,
+            schema.Optional("siteTags"): list,
             schema.Optional("googleAnalytics"): schema.Or(str, None),
             schema.Optional("emailSubject"): schema.Or(str, None)
         },
