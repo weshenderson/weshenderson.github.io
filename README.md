@@ -11,10 +11,10 @@ This site is powered by [Alea](https://github.com/necrux/alea) and hosted with G
 ## Workflow
 1. A change is made to `configs/resume.yaml`.
 2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following versions of the resume:
-* `configs/resume.json` *(JSON)*
+* `resume.json` *(JSON)*
 * `resume.html` *(HTML)*
 * `resume-konami.html` *(HTML)*
-* `docs/Resume.pdf` *(PDF)*
+* `resume.pdf` *(PDF)*
 3. The changes are pushed to GitHub.
 4. A [GitHub Action](https://github.com/weshenderson/weshenderson.github.io/blob/main/.github/workflows/resume.yml) uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
 5. The JSON Resume registry is updated with my [new resume](https://registry.jsonresume.org/necrux).
