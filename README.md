@@ -16,8 +16,12 @@ This site is powered by [Alea](https://github.com/necrux/alea) and hosted with G
 * `resume-konami.html` *(HTML)*
 * `resume.pdf` *(PDF)*
 3. The changes are pushed to GitHub.
-4. A [GitHub Action](https://github.com/weshenderson/weshenderson.github.io/blob/main/.github/workflows/resume.yml) uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
+4. The following GitHub Actions are ran:
+* [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Lints my code.
+* [Update Resume Gist](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml): Uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
+* [pages-build-deployment](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
 5. The JSON Resume registry is updated with my [new resume](https://registry.jsonresume.org/necrux).
+6. My [GitHub Page](https://www.weshenderson.info/) is updated with my new content/resume.
 
 ## Hooks
 This repo relies heavily on pre-commit hooks to auto-generate new resources whenever certain files are updated. This is especially important for my resume as I would have to maintain 5 versions otherwise. The hooks (and Actions) allow me to effectively separate the content from the format!
