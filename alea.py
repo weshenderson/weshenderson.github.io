@@ -14,14 +14,13 @@
   * Expand skills schema.
   * Expand work schema.
   * Add priority ordering to skills.
-  * Create functions building the resume.
+  * Create functions for building the resume.
   * Spec recommendations:
     - 'location' for school
     - 'license' for certificate
     - meta details for site and googleAnalytics
     - add currentEmployee key for work history
   * Larger Project:
-    - GitHub Action for PyLint
     - Add information to README.md
 """
 
