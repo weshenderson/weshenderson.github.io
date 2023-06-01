@@ -20,8 +20,6 @@
     - 'license' for certificate
     - meta details for site and googleAnalytics
     - add currentEmployee key for work history
-  * Larger Project:
-    - Add information to README.md
 """
 
 import argparse
