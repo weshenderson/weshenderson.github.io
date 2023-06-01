@@ -17,9 +17,11 @@
   * Create functions for building the resume.
   * Spec recommendations:
     - 'location' for school
+        - Issue: https://github.com/jsonresume/resume-schema/issues/417
     - 'license' for certificate
     - meta details for site and googleAnalytics
     - add currentEmployee key for work history
+        - Issue: https://github.com/jsonresume/resume-schema/issues/410
 """
 
 import argparse

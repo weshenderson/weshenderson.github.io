@@ -37,7 +37,7 @@ The PDF version of my resume is generated via Google Chrome dev tools:
             file://${BASE_PATH}/${TMP}
 ```
 
-Previously this work was done via Pandoc, however this results in a prettier end product without having to also create LateX templates since Chrome is able to render the underlying CSS.
+Previously this work was done via Pandoc, however this results in a prettier end product without having to create LateX templates since Chrome is able to render the underlying CSS.
 
 
 ### Hooks and Easter Eggs
