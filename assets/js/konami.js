@@ -39,5 +39,5 @@ document.addEventListener('keydown', function(e) {
 
 function activateCheats() {
   alert("cheats activated");
-	window.open("https://www.weshenderson.info/konami-resume.html", "_self");
+	window.open("https://www.weshenderson.info/resumes/resume-konami.html", "_self");
 }

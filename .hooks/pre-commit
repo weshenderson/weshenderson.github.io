@@ -4,10 +4,10 @@ set -eo pipefail
 
 INDEX='index.html'
 INDEX_CSS='assets/css/main.css'
-RESUME='resume.html'
-KONAMI='konami-resume.html'
-PDF='docs/Resume.pdf'
-JSON='configs/resume.json'
+RESUME='resumes/resume.html'
+KONAMI='resumes/resume-konami.html'
+PDF='resumes/Resume.pdf'
+JSON='resumes/resume.json'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 FILE_CHECK=(configs/
             alea
@@ -37,7 +37,7 @@ function create-pdf-resume {
         pushd "${BASE_PATH}" &>/dev/null
             local TMP='resume_pdf.html'
             cp ${RESUME} ${TMP}
-            sed -i 's@<h3><a id="pdf" href="docs/Resume.pdf">Download PDF</a></h3>@@g' ${TMP}
+            sed -i 's@<h3><a id="pdf" href="resumes/resume.pdf">Download PDF</a></h3>@@g' ${TMP}
             /usr/bin/google-chrome \
                 --headless \
                 --disable-gpu \

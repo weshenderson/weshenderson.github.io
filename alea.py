@@ -8,7 +8,6 @@
  hook is in place).
 
  TODO:
-  * Look into alternative templating solutions.
   * Expand education schema.
   * Expand certifications schema.
   * Expand skills schema.
@@ -50,7 +49,7 @@ LOGO = """
 """
 INDEX = 'configs/content.yaml'
 RESUME_YAML = 'configs/resume.yaml'
-RESUME_JSON = 'configs/resume.json'
+RESUME_JSON = 'resumes/resume.json'
 
 
 def build_index_object():
@@ -486,9 +485,9 @@ def main():
                                            'destination': 'assets/css/main.css',
                                            }}
     resume_templates = {'html': {'source': 'templates/srt-resume.tmpl',
-                                 'destination': 'resume.html',
+                                 'destination': 'resumes/resume.html',
                                  }, 'konami': {'source': 'templates/srt-konami-resume.tmpl',
-                                               'destination': 'konami-resume.html'
+                                               'destination': 'resumes/resume-konami.html'
                                                }}
 
     if args.check and args.index and args.resume:
