@@ -2,8 +2,8 @@
 """
  Author: Wes Henderson
  Quickly generate a new index.html and/or resume.html based off of
- the configs/content.yaml and configs/resume.yaml files respectively.
- Any changes to this file, content.yaml, resume.yaml, or their templates
+ the configs/index.yaml and configs/resume.yaml files respectively.
+ Any changes to this file, index.yaml, resume.yaml, or their templates
  will trigger this script at the time of commit (assuming the pre-commit
  hook is in place).
 
@@ -47,13 +47,13 @@ LOGO = """
 ▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌
  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀ 
 """
-INDEX = 'configs/content.yaml'
+INDEX = 'configs/index.yaml'
 RESUME_YAML = 'configs/resume.yaml'
 RESUME_JSON = 'resumes/resume.json'
 
 
 def build_index_object():
-    """Convert content.yaml into a dictionary."""
+    """Convert index.yaml into a dictionary."""
 
     with open(INDEX, encoding='UTF-8') as file:
         content = yaml.safe_load(file)
@@ -325,7 +325,7 @@ def update_content(content_templates, site_content, stdout):
 
 
 def index_schema():
-    """Definition for the content.yaml schema."""
+    """Definition for the index.yaml schema."""
 
     config_schema = schema.Schema({
         "meta": {
@@ -364,7 +364,7 @@ def index_schema():
         }
     }, ignore_extra_keys=True)
 
-    validate_schema(config_schema, file='content.yaml')
+    validate_schema(config_schema, file='index.yaml')
 
 
 def resume_schema():
