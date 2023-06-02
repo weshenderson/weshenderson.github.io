@@ -20,8 +20,9 @@ pageLayout:
     clickedLink: 'turquoise'
   font: 'Sans-serif'
   borders: False
-Header:
-  Title: "Father, Traveler, Problem Solver, & Linux Nerd"
+content:
+  header:
+  - "Father, Traveler, Problem Solver, & Linux Nerd"
 Image:
   Path: "https://www.weshenderson.info/assets/images/necrux-scaled.webp"
   AltText: "Necrux the Octocat!"

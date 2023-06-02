@@ -79,8 +79,8 @@ def build_index_object():
                     'borders': 'none'}
 
     # Grab the header(s).
-    for title in content['Header']:
-        site_content['header'] += '<p>' + content['Header'][title] + '</p>'
+    for title in content['content']['header']:
+        site_content['header'] += '<p>' + title + '</p>'
 
     # Grab the link(s).
     for link in content['Body']:
@@ -345,8 +345,8 @@ def index_schema():
             "font": str,
             "borders": bool
         },
-        "Header": {
-            "Title": str
+        "content": {
+            "header": list
         },
         "Image": {
             "Path": str,
