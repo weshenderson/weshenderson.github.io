@@ -395,9 +395,9 @@ def resume_schema():
             },
             schema.Optional("profiles"): list,
         },
-        schema.Optional("Skills"): list,
+        schema.Optional("skills"): list,
         schema.Optional("work"): list,
-        schema.Optional("Certifications"): list,
+        schema.Optional("certificates"): list,
         schema.Optional("education"): list,
     }, ignore_extra_keys=True)
 
