@@ -19,7 +19,7 @@ pageLayout:
     font: '#ff00fb'
     clickedLink: 'turquoise'
   font: 'Sans-serif'
-  borders: False
+  borders: false
 content:
   header:
   - "Father, Traveler, Problem Solver, & Linux Nerd"
@@ -34,13 +34,13 @@ content:
     Keybase: "https://keybase.io/necrux"
     Twitter: "https://twitter.com/necromancertux"
     Resume: "/resumes/resume.html"
-Footer:
-  Title: ""
-  CombinedTitle:
-    Title: "529 Donation Links: "
-    Links:
-      Kairi: "https://go.fidelity.com/jnz1ko"
-      Kalel: "https://go.fidelity.com/tsrje3"
-      Cairo: "https://go.fidelity.com/6pgu38"
-    FS: " | "
-  Copyright: True
+  footer:
+    - title: "529 Donation Links: "
+      combineTitle: true
+      links:
+      - Kairi: "https://go.fidelity.com/jnz1ko"
+        Kalel: "https://go.fidelity.com/tsrje3"
+        Cairo: "https://go.fidelity.com/6pgu38"
+      fs: " | "
+  copyright: true
+

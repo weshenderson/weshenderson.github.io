@@ -90,23 +90,23 @@ def build_index_object():
 
     # Grab the footer(s).
     count = 1
-    for title in content['Footer']:
-        if title not in ('Copyright', 'CombinedTitle'):
-            site_content['footer'] += '<p>' + content['Footer'][title] + '</p>'
-    if 'CombinedTitle' in content['Footer']:
-        delimiter = content['Footer']['CombinedTitle']['FS']
-        site_content['footer'] += '<p>' + content['Footer']['CombinedTitle']['Title']
-        for link in content['Footer']['CombinedTitle']['Links']:
-            if count < len(content['Footer']['CombinedTitle']['Links']):
-                site_content['footer'] += '<a target="_blank" href="' + \
-                                          content['Footer']['CombinedTitle']['Links'][
-                                              link] + '">' + link + '</a>' + delimiter
-                count += 1
-            else:
-                site_content['footer'] += '<a target="_blank" href="' + \
-                                          content['Footer']['CombinedTitle']['Links'][
-                                              link] + '">' + link + '</a></p>'
-    if content['Footer']['Copyright']:
+    for title in content['content']['footer']:
+        if not title['combineTitle']:
+            site_content['footer'] += '<p>' + title['title'] + '</p>'
+            print(site_content['footer'])
+        else:
+            delimiter = title['fs']
+            site_content['footer'] += '<p>' + title['title']
+            for links in title['links']:
+                for link in links:
+                    if count < len(links):
+                        site_content['footer'] += '<a target="_blank" href="' + \
+                                                  links[link] + '">' + link + '</a>' + delimiter
+                        count += 1
+                    else:
+                        site_content['footer'] += '<a target="_blank" href="' + \
+                                                  links[link] + '">' + link + '</a></p>'
+    if content['content']['copyright']:
         site_content['footer'] += f"<p>© {year} {site_content['author']}</p>"
 
     # Set/unset the div borders (good for troubleshooting).
@@ -352,15 +352,10 @@ def index_schema():
                 "path": str,
                 "altText": str
             },
-            "body": list
+            "body": list,
+            "footer": list,
+            "copyright": schema.Or(bool, error="Unsupported option; must be either True or False.")
         },
-        "Footer": {
-            schema.Optional("Title"): schema.Or(str, None),
-            schema.Optional("CombinedTitle"): {
-                schema.Optional(object): object
-            },
-            "Copyright": schema.Or(bool, error="Unsupported option; must be either True or False.")
-        }
     }, ignore_extra_keys=True)
 
     validate_schema(config_schema, file='index.yaml')
