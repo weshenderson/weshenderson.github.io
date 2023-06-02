@@ -62,11 +62,11 @@ def build_index_object():
     year = today.year
 
     # Initialize site_content.
-    site_content = {'author': content['meta']['Author'],
-                    'description': content['meta']['Description'],
-                    'icon': content['meta']['Icon'],
-                    'tags': ','.join(list(content['meta']['Tags'])),
-                    'twitter': content['meta']['Twitter'],
+    site_content = {'author': content['meta']['siteAuthor'],
+                    'description': content['meta']['siteDescription'],
+                    'icon': content['meta']['siteIcon'],
+                    'tags': ','.join(list(content['meta']['siteTags'])),
+                    'twitter': content['meta']['siteTwitter'],
                     'image': content['Image']['Path'],
                     'alt': content['Image']['AltText'],
                     'header': '',
@@ -329,11 +329,11 @@ def index_schema():
 
     config_schema = schema.Schema({
         "meta": {
-            "Author": str,
-            "Description": str,
-            "Icon": str,
-            "Twitter": str,
-            "Tags": list,
+            "siteAuthor": str,
+            "siteDescription": str,
+            "siteIcon": str,
+            "siteTwitter": str,
+            "siteTags": list,
             schema.Optional("googleAnalytics"): schema.Or(str, None)
         },
         "Page": {

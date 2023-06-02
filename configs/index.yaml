@@ -1,10 +1,10 @@
 ---
 meta:
-  Author: "Wes Henderson"
-  Description: "The personal webpage of Wes Henderson."
-  Icon: "https://www.weshenderson.info/assets/images/skull.ico"
-  Twitter: "NecromancerTux"
-  Tags:
+  siteAuthor: "Wes Henderson"
+  siteDescription: "The personal webpage of Wes Henderson."
+  siteIcon: "https://www.weshenderson.info/assets/images/skull.ico"
+  siteTwitter: "NecromancerTux"
+  siteTags:
     - "Wes"
     - "Henderson"
     - "Wes Henderson"
