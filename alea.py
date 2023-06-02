@@ -67,8 +67,8 @@ def build_index_object():
                     'icon': content['meta']['siteIcon'],
                     'tags': ','.join(list(content['meta']['siteTags'])),
                     'twitter': content['meta']['siteTwitter'],
-                    'image': content['Image']['Path'],
-                    'alt': content['Image']['AltText'],
+                    'image': content['content']['heroImage']['path'],
+                    'alt': content['content']['heroImage']['altText'],
                     'header': '',
                     'body': '',
                     'footer': '',
@@ -346,11 +346,11 @@ def index_schema():
             "borders": bool
         },
         "content": {
-            "header": list
-        },
-        "Image": {
-            "Path": str,
-            "AltText": str
+            "header": list,
+            "heroImage": {
+                "path": str,
+                "altText": str
+            }
         },
         "Body": {
             schema.Optional(object): object
