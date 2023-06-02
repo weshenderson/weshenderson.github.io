@@ -13,13 +13,13 @@ meta:
     - "San Antonio"
     - "Texas"
   googleAnalytics: "G-1HMXV18Z9V"
-Page:
-  Color:
-    Background: 'black'
-    Font: '#ff00fb'
-    Clicked-Link: 'turquoise'
-  Font: 'Sans-serif'
-  Borders: False
+pageLayout:
+  color:
+    background: 'black'
+    font: '#ff00fb'
+    clickedLink: 'turquoise'
+  font: 'Sans-serif'
+  borders: False
 Header:
   Title: "Father, Traveler, Problem Solver, & Linux Nerd"
 Image:

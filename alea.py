@@ -72,10 +72,10 @@ def build_index_object():
                     'header': '',
                     'body': '',
                     'footer': '',
-                    'background': content['Page']['Color']['Background'],
-                    'font_color': content['Page']['Color']['Font'],
-                    'link': content['Page']['Color']['Clicked-Link'],
-                    'font': content['Page']['Font'],
+                    'background': content['pageLayout']['color']['background'],
+                    'font_color': content['pageLayout']['color']['font'],
+                    'link': content['pageLayout']['color']['clickedLink'],
+                    'font': content['pageLayout']['font'],
                     'borders': 'none'}
 
     # Grab the header(s).
@@ -109,7 +109,7 @@ def build_index_object():
         site_content['footer'] += f"<p>© {year} {site_content['author']}</p>"
 
     # Set/unset the div borders (good for troubleshooting).
-    if content['Page']['Borders']:
+    if content['pageLayout']['borders']:
         site_content['borders'] = '2px solid yellow'
 
     # Build Google Analytics.
@@ -336,14 +336,14 @@ def index_schema():
             "siteTags": list,
             schema.Optional("googleAnalytics"): schema.Or(str, None)
         },
-        "Page": {
-            "Color": {
-                "Background": str,
-                "Font": str,
-                "Clicked-Link": str
+        "pageLayout": {
+            "color": {
+                "background": str,
+                "font": str,
+                "clickedLink": str
             },
-            "Font": str,
-            "Borders": bool
+            "font": str,
+            "borders": bool
         },
         "Header": {
             "Title": str
