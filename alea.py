@@ -83,9 +83,10 @@ def build_index_object():
         site_content['header'] += '<p>' + title + '</p>'
 
     # Grab the link(s).
-    for link in content['Body']:
-        site_content['body'] += '<a target="_blank" href="' + \
-                                content['Body'][link] + '">' + link + '</a><br>'
+    for entry in content['content']['body']:
+        for site in entry:
+            site_content['body'] += '<a target="_blank" href="' + \
+                                    entry[site] + '">' + site + '</a><br>'
 
     # Grab the footer(s).
     count = 1
@@ -350,10 +351,8 @@ def index_schema():
             "heroImage": {
                 "path": str,
                 "altText": str
-            }
-        },
-        "Body": {
-            schema.Optional(object): object
+            },
+            "body": list
         },
         "Footer": {
             schema.Optional("Title"): schema.Or(str, None),

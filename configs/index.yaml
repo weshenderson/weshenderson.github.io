@@ -26,14 +26,14 @@ content:
   heroImage:
     path: "https://www.weshenderson.info/assets/images/necrux-scaled.webp"
     altText: "Necrux the Octocat!"
-Body:
-  Blog: "https://necrux.com"
-  GitHub: "https://github.com/necrux"
-  LinkedIn: "https://www.linkedin.com/in/wes-henderson"
-  GPG Key: "assets/txt/wes-henderson-public-key.txt"
-  Keybase: "https://keybase.io/necrux"
-  Twitter: "https://twitter.com/necromancertux"
-  Resume: "/resumes/resume.html"
+  body:
+  - Blog: "https://necrux.com"
+    GitHub: "https://github.com/necrux"
+    LinkedIn: "https://www.linkedin.com/in/wes-henderson"
+    GPG Key: "assets/txt/wes-henderson-public-key.txt"
+    Keybase: "https://keybase.io/necrux"
+    Twitter: "https://twitter.com/necromancertux"
+    Resume: "/resumes/resume.html"
 Footer:
   Title: ""
   CombinedTitle:
