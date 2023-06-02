@@ -93,7 +93,6 @@ def build_index_object():
     for title in content['content']['footer']:
         if not title['combineTitle']:
             site_content['footer'] += '<p>' + title['title'] + '</p>'
-            print(site_content['footer'])
         else:
             delimiter = title['fs']
             site_content['footer'] += '<p>' + title['title']
