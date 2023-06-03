@@ -43,6 +43,10 @@
       {
         "network": "GitHub",
         "url": "https://github.com/necrux"
+      },
+      {
+        "network": "Blog",
+        "url": "https://necrux.com"
       }
     ]
   },

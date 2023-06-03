@@ -35,6 +35,8 @@ basics:
       url: "https://www.linkedin.com/in/wes-henderson/"
     - network: "GitHub"
       url: "https://github.com/necrux"
+    - network: "Blog"
+      url: "https://necrux.com"
 education:
 - institution: "Northwest Vista College"
   url: "https://www.alamo.edu/nvc/"
