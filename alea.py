@@ -85,23 +85,23 @@ def build_index_object():
 
     # Grab the footer(s).
     count = 1
-    for title in content['content']['footer']:
-        if not title['combineTitle']:
-            site_content['footer'] += f'<p>{title["title"]}</p>'
+    for entry in content['content']['footer']:
+        if not entry['combineTitle']:
+            site_content['footer'] += f'<p>{entry["title"]}</p>'
         else:
-            delimiter = title['fs']
-            site_content['footer'] += f'<p>{title["title"]}'
-            for links in title['links']:
-                for link in links:
+            delimiter = entry['fs']
+            site_content['footer'] += f'<p>{entry["title"]}'
+            for links in entry['links']:
+                for label, link in links.items():
                     if count < len(links):
-                        site_content['footer'] += '<a target="_blank" href="' + \
-                                                  links[link] + '">' + link + '</a>' + delimiter
+                        site_content['footer'] += f'<a target="_blank" href="' \
+                                                  f'{link}">{label}</a> {delimiter} '
                         count += 1
                     else:
-                        site_content['footer'] += '<a target="_blank" href="' + \
-                                                  links[link] + '">' + link + '</a></p>'
+                        site_content['footer'] += f'<a target="_blank" href="' \
+                                                  f'{link}">{label}</a></p>'
     if content['content']['copyright']:
-        site_content['footer'] += f"<p>© {year} {site_content['author']}</p>"
+        site_content['footer'] += f'<p>© {year} {site_content["author"]}</p>'
 
     # Set/unset the div borders (good for troubleshooting).
     if content['pageLayout']['borders']:
