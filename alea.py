@@ -69,7 +69,7 @@ def build_index_object():
                     'twitter': content['meta']['siteTwitter'],
                     'image': content['content']['heroImage']['path'],
                     'alt': content['content']['heroImage']['altText'],
-                    'header': ''.join([f'<p>{line}</p>' for line in content['content']['header']]),
+                    'header': ''.join(f'<p>{line}</p>' for line in content['content']['header']),
                     'body': '',
                     'footer': '',
                     'background': content['pageLayout']['color']['background'],
