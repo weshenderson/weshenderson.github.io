@@ -32,12 +32,16 @@
     },
     "profiles": [
       {
-        "network": "twitter",
+        "network": "Twitter",
         "url": "https://twitter.com/necromancertux",
         "username": "NecromancerTux"
       },
       {
-        "network": "github",
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/wes-henderson/"
+      },
+      {
+        "network": "GitHub",
         "url": "https://github.com/necrux"
       }
     ]
