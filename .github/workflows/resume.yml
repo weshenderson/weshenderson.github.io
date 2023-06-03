@@ -1,6 +1,9 @@
 name: Update Resume Gist
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   update-resume-gist:
