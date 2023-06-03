@@ -69,7 +69,7 @@ def build_index_object():
                     'twitter': content['meta']['siteTwitter'],
                     'image': content['content']['heroImage']['path'],
                     'alt': content['content']['heroImage']['altText'],
-                    'header': '',
+                    'header': ''.join([f'<p>{line}</p>' for line in content['content']['header']]),
                     'body': '',
                     'footer': '',
                     'background': content['pageLayout']['color']['background'],
@@ -78,15 +78,10 @@ def build_index_object():
                     'font': content['pageLayout']['font'],
                     'borders': 'none'}
 
-    # Grab the header(s).
-    for title in content['content']['header']:
-        site_content['header'] += '<p>' + title + '</p>'
-
     # Grab the link(s).
     for entry in content['content']['body']:
         for site in entry:
-            site_content['body'] += '<a target="_blank" href="' + \
-                                    entry[site] + '">' + site + '</a><br>'
+            site_content['body'] += f'<a target="_blank" href="{entry[site]}">{site}</a><br>'
 
     # Grab the footer(s).
     count = 1
