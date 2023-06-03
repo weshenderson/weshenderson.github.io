@@ -144,8 +144,8 @@ def build_resume_object():
         for skill in section['keywords']:
             skills.append(skill)
     rows = numpy.array_split(skills, 3)
-    longest_list = [len(row) for row in rows]
-    longest_list = max(longest_list)
+    skill_lists = [len(row) for row in rows]
+    longest_list = max(skill_lists)
 
     for row in rows:
         resume_content['skills'] += '<ul class="talent">'
