@@ -9,6 +9,22 @@ The personal webpage of Wes Henderson.
 This site is powered by [Alea](https://github.com/necrux/alea) and hosted with GitHub Pages. Alea is the templating engine that creates `index.html` and `resume.html` based off of their respective yaml config files. All resume versions are generated from `configs/resume.yaml`, which is fully compliant with the [JSON Resume](https://jsonresume.org/) 1.0.0 spec.
 
 ## Workflow
+
+```mermaid
+flowchart LR;
+    A[Workstation]-->B(Git Hooks);
+    B-->C(HTML);
+    B-->D(PDF);
+    B-->E(JSON);
+    C-->F[GitHub];
+    D-->F[GitHub];
+    E-->F[GitHub];
+    F-->G(Actions);
+    G-->H[Pages];
+    G-->I[Gist];
+    I-->J[Registry];
+```
+
 1. A change is made to `configs/resume.yaml`.
 2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following versions of the resume:
 * `resume.json` *(JSON)*
