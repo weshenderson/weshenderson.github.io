@@ -80,8 +80,8 @@ def build_index_object():
 
     # Grab the link(s).
     for entry in content['content']['body']:
-        for site in entry:
-            site_content['body'] += f'<a target="_blank" href="{entry[site]}">{site}</a><br>'
+        for site, link in entry.items():
+            site_content['body'] += f'<a target="_blank" href="{link}">{site}</a><br>'
 
     # Grab the footer(s).
     count = 1
