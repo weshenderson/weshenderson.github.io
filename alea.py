@@ -52,7 +52,7 @@ RESUME_YAML = 'configs/resume.yaml'
 RESUME_JSON = 'resumes/resume.json'
 
 
-def build_index_object():
+def build_index_object() -> dict:
     """Convert index.yaml into a dictionary."""
 
     with open(INDEX, encoding='UTF-8') as file:
@@ -113,7 +113,7 @@ def build_index_object():
     return site_content
 
 
-def build_resume_object():
+def build_resume_object() -> dict:
     """Convert resume.yaml into a dictionary."""
     with open(RESUME_YAML, encoding='UTF-8') as file:
         content = yaml.safe_load(file)
