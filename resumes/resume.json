@@ -78,14 +78,14 @@
       "name": "RHCE",
       "date": "2016-04-15",
       "issuer": "Red Hat",
-      "url": "https://www.redhat.com/en/services/training-and-certification",
+      "url": "https://rhtapps.redhat.com/verify?certId=130-119-274",
       "license": "130-119-274"
     },
     {
       "name": "RHCSA",
       "date": "2013-07-12",
       "issuer": "Red Hat",
-      "url": "https://www.redhat.com/en/services/training-and-certification",
+      "url": "https://rhtapps.redhat.com/verify?certId=130-119-274",
       "license": "130-119-274"
     },
     {
