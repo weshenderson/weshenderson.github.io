@@ -27,6 +27,7 @@ basics:
   location:
     city: "San Antonio"
     countryCode: "US"
+    region: "Texas"
   profiles:
     - network: "Twitter"
       url: "https://twitter.com/necromancertux"
