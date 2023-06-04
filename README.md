@@ -27,15 +27,15 @@ flowchart LR;
 
 1. A change is made to `configs/resume.yaml`.
 2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following versions of the resume:
-* `resume.json` *(JSON)*
-* `resume.html` *(HTML)*
-* `resume-konami.html` *(HTML)*
-* `resume.pdf` *(PDF)*
+   * `resume.json` *(JSON)*
+   * `resume.html` *(HTML)*
+   * `resume-konami.html` *(HTML)*
+   * `resume.pdf` *(PDF)*
 3. The changes are pushed to GitHub.
 4. The following GitHub Actions are ran:
-* [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Lints my code.
-* [Update Resume Gist](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml): Uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
-* [pages-build-deployment](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
+   * [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Lints my code.
+   * [Update Resume Gist](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml): Uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
+   * [pages-build-deployment](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
 5. The JSON Resume registry is updated with my [new resume](https://registry.jsonresume.org/necrux).
 6. My [GitHub Page](https://www.weshenderson.info/) is updated with my new content/resume.
 
