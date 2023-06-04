@@ -1,4 +1,4 @@
-# weshenderson.info
+# [weshenderson.info](https://weshenderson.info)
 [![CI/CD](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml) [![Linter](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml) [![Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment)
 
 The personal webpage of Wes Henderson.
@@ -11,18 +11,18 @@ This site is powered by [Alea](https://github.com/necrux/alea) and hosted with G
 ## Workflow
 
 ```mermaid
-flowchart LR;
-    A[Workstation]-->B(Git Hooks);
-    B-->C(HTML);
-    B-->D(PDF);
-    B-->E(JSON);
+flowchart LR
+    A[Workstation]-->B{{Git Hooks}};
+    B-->C((HTML));
+    B-->D((PDF));
+    B-->E((JSON));
     C-->F[GitHub];
     D-->F[GitHub];
     E-->F[GitHub];
-    F-->G(Actions);
+    F-->G{{Actions}};
     G-->H[Pages];
     G-->I[Gist];
-    I-->J[Registry];
+    I-->J(Registry);
 ```
 
 1. A change is made to `configs/resume.yaml`.
