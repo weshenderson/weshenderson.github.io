@@ -204,8 +204,7 @@ def get_experience(config_file, resume_content):
                                         experience['name'] + '</h2><h3>' + \
                                         experience['position'] + '</h3><h4>' + \
                                         start + '-' + end + '</h4>' + '<p>• ' + \
-                                        '</p><p>• ' \
-                                            .join(list(experience['highlights'])) \
+                                        '</p><p>• '.join(list(experience['highlights'])) \
                                         + '</p></div>'
 
 
