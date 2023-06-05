@@ -1,7 +1,7 @@
 body {
   background-color: black;
   color: #ff00fb;
-  font-family: Sans-serif;
+  font-family: monospace;
   margin-bottom: 0%;
   margin-left: 15%;
   margin-right: 5%;
@@ -21,7 +21,7 @@ img {
 
 .flex-child {
   flex: 1;
-  font-size: 2em;
+  font-size: 3em;
   text-align: center;
   border: none;
 }
@@ -45,7 +45,7 @@ a:visited {
   background-color: inherit;
   border: none;
   font-family: inherit;
-  font-size: 1em;
+  font-size: 1.5em;
   left: 0;
   position: fixed;
   text-align: center;
@@ -58,7 +58,7 @@ a:visited {
   border: none;
   bottom: 0;
   font-family: inherit;
-  font-size: 1em;
+  font-size: 1.5em;
   left: 0;
   position: fixed;
   text-align: center;

@@ -18,7 +18,7 @@ pageLayout:
     background: 'black'
     font: '#ff00fb'
     clickedLink: 'turquoise'
-  font: 'Sans-serif'
+  font: 'monospace'
   borders: false
 content:
   header:
