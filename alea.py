@@ -81,6 +81,7 @@ def build_index_object() -> dict:
         'font': content['pageLayout']['font']['name'],
         'font_size_primary': content['pageLayout']['font']['size'],
         'font_size_secondary': content['pageLayout']['font']['size'] / 2,
+        'google_font': '',
         'borders': 'none'
     }
 
@@ -106,6 +107,11 @@ def build_index_object() -> dict:
     # Set/unset the div borders (good for troubleshooting).
     if content['pageLayout']['borders']:
         site_content['borders'] = '2px solid yellow'
+
+    # Set a Google font.
+    if content['pageLayout']['font']['googleFont']:
+        site_content['google_font'] = content['pageLayout']['font']['fontLink']
+        print('** Google fonts are not yet implemented. **')
 
     # Build Google Analytics.
     build_analytics_object(content, site_content)
