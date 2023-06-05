@@ -62,25 +62,25 @@ def build_index_object() -> dict:
     year = today.year
 
     # Initialize site_content.
-    site_content = {'author': content['meta']['siteAuthor'],
-                    'description': content['meta']['siteDescription'],
-                    'icon': content['meta']['siteIcon'],
-                    'tags': ','.join(list(content['meta']['siteTags'])),
-                    'twitter': content['meta']['siteTwitter'],
-                    'image': content['content']['heroImage']['path'],
-                    'alt': content['content']['heroImage']['altText'],
-                    'header': ''.join(f'<p>{line}</p>' for line in content['content']['header']),
-                    'body': '',
-                    'footer': '',
-                    'background': content['pageLayout']['color']['background'],
-                    'font_color': content['pageLayout']['color']['font'],
-                    'link': content['pageLayout']['color']['clickedLink'],
-                    'font': content['pageLayout']['font'],
-                    'borders': 'none'}
-
-    # Grab the link(s).
-    for site, link in content['content']['body'].items():
-        site_content['body'] += f'<a target="_blank" href="{link}">{site}</a><br>'
+    site_content = {
+        'author': content['meta']['siteAuthor'],
+        'description': content['meta']['siteDescription'],
+        'icon': content['meta']['siteIcon'],
+        'tags': ','.join(content['meta']['siteTags']),
+        'twitter': content['meta']['siteTwitter'],
+        'image': content['content']['heroImage']['path'],
+        'alt': content['content']['heroImage']['altText'],
+        'header': ''.join(f'<p>{line}</p>'
+                          for line in content['content']['header']),
+        'body': ''.join(f'<a target="_blank" href="{link}">{site}</a><br>'
+                        for site, link in content['content']['body'].items()),
+        'footer': '',
+        'background': content['pageLayout']['color']['background'],
+        'font_color': content['pageLayout']['color']['font'],
+        'link': content['pageLayout']['color']['clickedLink'],
+        'font': content['pageLayout']['font'],
+        'borders': 'none'
+    }
 
     # Grab the footer(s).
     count = 1
