@@ -78,7 +78,9 @@ def build_index_object() -> dict:
         'background': content['pageLayout']['color']['background'],
         'font_color': content['pageLayout']['color']['font'],
         'link': content['pageLayout']['color']['clickedLink'],
-        'font': content['pageLayout']['font'],
+        'font': content['pageLayout']['font']['name'],
+        'font_size_primary': content['pageLayout']['font']['size'],
+        'font_size_secondary': content['pageLayout']['font']['size'] / 2,
         'borders': 'none'
     }
 
@@ -334,7 +336,13 @@ def index_schema():
                 "font": str,
                 "clickedLink": str
             },
-            "font": str,
+            "font": {
+                "googleFont": schema.Or(bool,
+                                        error="Unsupported option; must be either true or false."),
+                "fontLink": str,
+                "name": str,
+                "size": int
+            },
             "borders": bool
         },
         "content": {
@@ -345,7 +353,7 @@ def index_schema():
             },
             "body": dict,
             "footer": list,
-            "copyright": schema.Or(bool, error="Unsupported option; must be either True or False.")
+            "copyright": schema.Or(bool, error="Unsupported option; must be either true or false.")
         },
     }, ignore_extra_keys=True)
 
