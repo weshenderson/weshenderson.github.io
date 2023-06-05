@@ -79,9 +79,8 @@ def build_index_object() -> dict:
                     'borders': 'none'}
 
     # Grab the link(s).
-    for entry in content['content']['body']:
-        for site, link in entry.items():
-            site_content['body'] += f'<a target="_blank" href="{link}">{site}</a><br>'
+    for site, link in content['content']['body'].items():
+        site_content['body'] += f'<a target="_blank" href="{link}">{site}</a><br>'
 
     # Grab the footer(s).
     count = 1
@@ -91,15 +90,14 @@ def build_index_object() -> dict:
         else:
             delimiter = entry['fs']
             site_content['footer'] += f'<p>{entry["title"]}'
-            for links in entry['links']:
-                for label, link in links.items():
-                    if count < len(links):
-                        site_content['footer'] += f'<a target="_blank" href="' \
-                                                  f'{link}">{label}</a> {delimiter} '
-                        count += 1
-                    else:
-                        site_content['footer'] += f'<a target="_blank" href="' \
-                                                  f'{link}">{label}</a></p>'
+            for label, link in entry['links'].items():
+                if count < len(entry['links']):
+                    site_content['footer'] += f'<a target="_blank" href="' \
+                                              f'{link}">{label}</a> {delimiter} '
+                    count += 1
+                else:
+                    site_content['footer'] += f'<a target="_blank" href="' \
+                                              f'{link}">{label}</a></p>'
     if content['content']['copyright']:
         site_content['footer'] += f'<p>© {year} {site_content["author"]}</p>'
 
@@ -345,7 +343,7 @@ def index_schema():
                 "path": str,
                 "altText": str
             },
-            "body": list,
+            "body": dict,
             "footer": list,
             "copyright": schema.Or(bool, error="Unsupported option; must be either True or False.")
         },

@@ -27,7 +27,7 @@ content:
     path: "https://www.weshenderson.info/assets/images/necrux-scaled.webp"
     altText: "Necrux the Octocat!"
   body:
-  - Blog: "https://necrux.com"
+    Blog: "https://necrux.com"
     GitHub: "https://github.com/necrux"
     LinkedIn: "https://www.linkedin.com/in/wes-henderson"
     GPG Key: "assets/txt/wes-henderson-public-key.txt"
@@ -38,7 +38,7 @@ content:
     - title: "529 Donation Links: "
       combineTitle: true
       links:
-      - Kairi: "https://go.fidelity.com/jnz1ko"
+        Kairi: "https://go.fidelity.com/jnz1ko"
         Kalel: "https://go.fidelity.com/tsrje3"
         Cairo: "https://go.fidelity.com/6pgu38"
       fs: "|"
