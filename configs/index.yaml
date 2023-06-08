@@ -17,7 +17,7 @@ pageLayout:
   color:
     background: 'black'
     font: '#ff00fb'
-    clickedLink: 'turquoise'
+    clickedLink: '#5cdff2'
   font:
     googleFont: false
     fontLink: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap'
