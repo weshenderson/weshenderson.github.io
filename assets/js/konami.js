@@ -1,3 +1,21 @@
+// Load cheats function
+function activateCheats() {
+  switchTheme();
+  alert("cheats activated");
+	window.open("https://www.weshenderson.info/resumes/resume-konami.html", "_self");
+};
+
+// Switch function
+function switchTheme() {
+  // Get root root element and data-theme value
+  const rootElem = document.documentElement
+  let dataTheme = rootElem.getAttribute("data-theme"), 
+      newTheme
+  
+  newTheme = (dataTheme === "professional") ? "konami" : "professional"
+  rootElem.setAttribute("data-theme", newTheme)
+};
+
 // a key map of allowed keys
 var allowedKeys = {
   37: 'left',
@@ -36,8 +54,3 @@ document.addEventListener('keydown', function(e) {
     konamiCodePosition = 0;
   }
 });
-
-function activateCheats() {
-  alert("cheats activated");
-	window.open("https://www.weshenderson.info/resumes/resume-konami.html", "_self");
-}
