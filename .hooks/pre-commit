@@ -33,7 +33,7 @@ function create-pdf-resume {
         pushd "${BASE_PATH}" &>/dev/null
             local TMP='resume_pdf.html'
             cp ${RESUME} ${TMP}
-            sed -i 's@<h3><a id="pdf" href="resumes/resume.pdf">Download PDF</a></h3>@@g' ${TMP}
+            sed -i 's@<h3><a id="pdf" href="resume.pdf">Download PDF</a></h3>@@g' ${TMP}
             /usr/bin/google-chrome \
                 --headless \
                 --disable-gpu \
