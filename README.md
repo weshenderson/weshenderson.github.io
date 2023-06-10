@@ -29,7 +29,6 @@ flowchart LR
 2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following versions of the resume:
    * `resume.json` *(JSON)*
    * `resume.html` *(HTML)*
-   * `resume-konami.html` *(HTML)*
    * `resume.pdf` *(PDF)*
 3. The changes are pushed to GitHub.
 4. The following GitHub Actions are ran:
@@ -40,7 +39,7 @@ flowchart LR
 6. My [GitHub Page](https://www.weshenderson.info/) is updated with my new content/resume.
 
 ## Hooks
-This repo relies heavily on pre-commit hooks to auto-generate new resources whenever certain files are updated. This is especially important for my resume as I would have to maintain 5 versions otherwise. The hooks (and Actions) allow me to effectively separate the content from the format!
+This repo relies heavily on pre-commit hooks to auto-generate new resources whenever certain files are updated. This is especially important for my resume as I would have to maintain 4 versions otherwise. The hooks (and Actions) allow me to effectively separate the content from the format!
 
 **PDF Resume**
 
@@ -61,7 +60,7 @@ Previously this work was done via Pandoc, however this results in a prettier end
 
 
 ### Hooks and Easter Eggs
-The pre-commit hook generates a "Konami resume template" if `resume.yaml` is updated. The Konami template uses a different layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
+I am using Javascript and data attributes to toggle the CSS layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
 
 ```
 up, up, down, down, left, right, left, right, b, a
