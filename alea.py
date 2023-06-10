@@ -485,9 +485,7 @@ def main():
                                            }}
     resume_templates = {'html': {'source': 'templates/srt-resume.tmpl',
                                  'destination': 'resumes/resume.html',
-                                 }, 'konami': {'source': 'templates/srt-konami-resume.tmpl',
-                                               'destination': 'resumes/resume-konami.html'
-                                               }}
+                                 }}
 
     if args.check and args.index and args.resume:
         index_schema()
