@@ -1,8 +1,7 @@
 // Load cheats function
 function activateCheats() {
-  switchTheme();
   alert("cheats activated");
-	window.open("https://www.weshenderson.info/resumes/resume-konami.html", "_self");
+  switchTheme();
 };
 
 // Switch function

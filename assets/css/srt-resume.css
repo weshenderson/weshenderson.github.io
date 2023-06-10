@@ -10,6 +10,17 @@
 ---------------------------------------------------------------------------------
 */
 
+:root[data-theme="professional"] {
+    --heading-color: #333;
+    --body-text-color: #444;
+    --inner-bg-color: #f5f5f5;
+}
+
+:root[data-theme="konami"] {
+    --heading-color: yellow;
+    --body-text-color: chartreuse;
+    --inner-bg-color: #000000;
+}
 
 .msg { padding: 10px; background: #222; position: relative; }
 .msg h1 { color: #fff;  }
@@ -17,8 +28,8 @@
 .msg a:hover { background: #266400; }
 
 /* //-- yui-grids style overrides -- */
-body { font-family: Georgia; color: #444; }
-#inner { padding: 10px 80px; margin: 80px auto; background: #f5f5f5; border: solid #666; border-width: 8px 0 2px 0; }
+body { font-family: Georgia; color: var(--body-text-color); }
+#inner { padding: 10px 80px; margin: 80px auto; background: var(--inner-bg-color); border: solid #666; border-width: 8px 0 2px 0; }
 .yui-gf { margin-bottom: 2em; padding-bottom: 2em; border-bottom: 1px solid #ccc; }
 
 /* //-- header, body, footer -- */
@@ -34,7 +45,7 @@ body { font-family: Georgia; color: #444; }
 #hd h1 { font-size: 48px; text-transform: uppercase; letter-spacing: 3px; }
 h2 { font-size: 152% }
 h3, h4 { font-size: 122%; }
-h1, h2, h3, h4 { color: #333; }
+h1, h2, h3, h4 { color: var(--heading-color); }
 p { font-size: 115%; line-height: 18px; padding-right: 3em; }
 a { color: #990003 }
 a:hover { text-decoration: none; }
@@ -71,5 +82,3 @@ a#pdf:hover { background: #222; }
 /* --// override to force 1/8th width grids -- */
 .yui-gf .yui-u{width:80.2%;}
 .yui-gf div.first{width:12.3%;}
-
-
