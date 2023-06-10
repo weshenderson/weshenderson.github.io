@@ -5,7 +5,6 @@ set -eo pipefail
 INDEX='index.html'
 INDEX_CSS='assets/css/main.css'
 RESUME='resumes/resume.html'
-KONAMI='resumes/resume-konami.html'
 PDF='resumes/resume.pdf'
 JSON='resumes/resume.json'
 BASE_PATH="$(git rev-parse --show-toplevel)"
@@ -23,9 +22,6 @@ function alea {
                 git add ${INDEX_CSS}
                 git add ${RESUME}
                 git add ${JSON}
-                if [ -f ${KONAMI} ]; then
-                    git add ${KONAMI}
-                fi
             popd &>/dev/null
             break
         fi
