@@ -1,9 +1,3 @@
-// Load cheats function
-function activateCheats() {
-  alert("cheats activated");
-  switchTheme();
-};
-
 // Switch function
 function switchTheme() {
   // Get root root element and data-theme value
@@ -12,6 +6,7 @@ function switchTheme() {
       newTheme
   
   newTheme = (dataTheme === "professional") ? "konami" : "professional"
+  alert("cheats activated");
   rootElem.setAttribute("data-theme", newTheme)
 };
 
@@ -46,7 +41,7 @@ document.addEventListener('keydown', function(e) {
 
     // if the last key is reached, activate cheats
     if (konamiCodePosition == konamiCode.length) {
-      activateCheats();
+      switchTheme();
       konamiCodePosition = 0;
     }
   } else {
