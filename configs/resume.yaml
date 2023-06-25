@@ -103,18 +103,21 @@ skills:
     - "GitHub"
     - "Terraform / CloudFormation"
     - "Ansible / Chef / Puppet"
+    - "Containers"
 - name: "Leadership"
   level: "Proficient"
   keywords:
     - "Mentoring"
     - "Documentation"
+    - "Communication"
+    - "Adaptability"
     - "Generalist"
 - name: "Programming"
   level: "Proficient"
   keywords:
     - "Python"
     - "Bash"
-    - "Powershell"
+    - "PowerShell"
     - "Automation"
 work:
 - highlights:

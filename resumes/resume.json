@@ -137,7 +137,8 @@
         "GCP",
         "GitHub",
         "Terraform / CloudFormation",
-        "Ansible / Chef / Puppet"
+        "Ansible / Chef / Puppet",
+        "Containers"
       ]
     },
     {
@@ -146,6 +147,8 @@
       "keywords": [
         "Mentoring",
         "Documentation",
+        "Communication",
+        "Adaptability",
         "Generalist"
       ]
     },
@@ -155,7 +158,7 @@
       "keywords": [
         "Python",
         "Bash",
-        "Powershell",
+        "PowerShell",
         "Automation"
       ]
     }
