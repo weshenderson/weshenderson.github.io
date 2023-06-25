@@ -130,6 +130,7 @@
       "name": "DevOps",
       "level": "Master",
       "keywords": [
+        "DevOps",
         "Research",
         "Linux",
         "AWS",
@@ -144,7 +145,8 @@
       "level": "Proficient",
       "keywords": [
         "Mentoring",
-        "Documentation"
+        "Documentation",
+        "Generalist"
       ]
     },
     {
@@ -153,7 +155,8 @@
       "keywords": [
         "Python",
         "Bash",
-        "Powershell"
+        "Powershell",
+        "Automation"
       ]
     }
   ],

@@ -95,6 +95,7 @@ skills:
 - name: "DevOps"
   level: "Master"
   keywords:
+    - "DevOps"
     - "Research"
     - "Linux"
     - "AWS"
@@ -107,12 +108,14 @@ skills:
   keywords:
     - "Mentoring"
     - "Documentation"
+    - "Generalist"
 - name: "Programming"
   level: "Proficient"
   keywords:
     - "Python"
     - "Bash"
     - "Powershell"
+    - "Automation"
 work:
 - highlights:
   - "Led a small team on our ‘Bring Your Own Key’ (BYOK) initiative; this product allowed customers to fully own the keys their databases were encrypted with and represented $6 million in recurring revenue for Pardot."
