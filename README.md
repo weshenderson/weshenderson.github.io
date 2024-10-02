@@ -72,9 +72,9 @@ These URLs are integrated with OpenAI's ChatGPT; they will pass my resume to Cha
 **Cover Letter**
 
 This endpoint attempts to write a cover letter that matches my resume:
-* https://registry.jsonresume.org/necrux.letter
+* https://registry.jsonresume.org/necrux/letter
 
 **Resume Suggestions**
 
 This endpoint asks ChatGPT to provide feedback and suggest improvements:
-* https://registry.jsonresume.org/necrux.suggest
+* https://registry.jsonresume.org/necrux/suggestions
