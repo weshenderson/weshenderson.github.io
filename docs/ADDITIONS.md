@@ -8,7 +8,6 @@ While fully compliant with [JSON Resume](https://jsonresume.org/) 1.0.0 spec, Al
 * `siteDescription`: Sets site description  HTML element.
 * `siteIcon`: Sets site icon HTML element.
 * `siteThumbnail`: Sets site thumbnail HTML element.
-* `siteTwitter`: Sets site twitter author card HTML element.
 * `siteTags`: Sets site tag(s) HTML element.
 * `googleAnalytics`: Optional string: Configures Google Analytics with the provided ID.
 * `emailSubject`: Optional string: Sets the email subject line.

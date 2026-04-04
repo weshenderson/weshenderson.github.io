@@ -3,7 +3,6 @@ meta:
   siteAuthor: "Wes Henderson"
   siteDescription: "The personal webpage of Wes Henderson."
   siteIcon: "https://www.weshenderson.info/assets/images/skull.ico"
-  siteTwitter: "NecromancerTux"
   siteTags:
     - "Wes"
     - "Henderson"
@@ -16,7 +15,7 @@ meta:
 pageLayout:
   color:
     background: 'black'
-    font: '#ff00fb'
+    font: 'green'
     clickedLink: '#5cdff2'
   font:
     googleFont: false
@@ -36,9 +35,9 @@ content:
     LinkedIn: "https://www.linkedin.com/in/wes-henderson"
     GPG Key: "assets/txt/wes-henderson-public-key.txt"
     Keybase: "https://keybase.io/necrux"
-    Mastodon: "https://fosstodon.org/@necrux"
-    Twitter: "https://twitter.com/necromancertux"
-    Resume: "/resumes/resume.html"
+    Bluesky: "https://bsky.app/profile/necrux.bsky.social"
+    Résumé: "/resumes/resume.html"
+    Maker World: "https://makerworld.com/en/@necrux"
   footer:
     - title: "529 Donation Links: "
       combineTitle: true
@@ -48,4 +47,3 @@ content:
         Cairo: "https://go.fidelity.com/6pgu38"
       fs: "|"
   copyright: true
-

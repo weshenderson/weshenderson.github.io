@@ -67,7 +67,6 @@ def build_index_object() -> dict:
         'description': content['meta']['siteDescription'],
         'icon': content['meta']['siteIcon'],
         'tags': ','.join(content['meta']['siteTags']),
-        'twitter': content['meta']['siteTwitter'],
         'image': content['content']['heroImage']['path'],
         'alt': content['content']['heroImage']['altText'],
         'header': ''.join(f'<p>{line}</p>'
@@ -130,7 +129,6 @@ def build_resume_object() -> dict:
                       'icon': content['meta']['siteIcon'],
                       'thumbnail': content['meta']['siteThumbnail'],
                       'tags': ','.join(list(content['meta']['siteTags'])),
-                      'twitter': content['meta']['siteTwitter'],
                       'name': content['basics']['name'],
                       'title': content['basics']['label'],
                       'phone': content['basics']['phone'],
@@ -332,7 +330,6 @@ def index_schema():
             "siteAuthor": str,
             "siteDescription": str,
             "siteIcon": str,
-            "siteTwitter": str,
             "siteTags": list,
             schema.Optional("googleAnalytics"): schema.Or(str, None)
         },
@@ -375,7 +372,6 @@ def resume_schema():
             schema.Optional("siteDescription"): str,
             schema.Optional("siteIcon"): str,
             schema.Optional("siteThumbnail"): str,
-            schema.Optional("siteTwitter"): str,
             schema.Optional("siteTags"): list,
             schema.Optional("googleAnalytics"): schema.Or(str, None),
             schema.Optional("emailSubject"): schema.Or(str, None)

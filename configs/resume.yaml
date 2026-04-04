@@ -5,7 +5,6 @@ meta:
   siteDescription: "The resume of Wes Henderson."
   siteIcon: "https://www.weshenderson.info/assets/images/resume.ico"
   siteThumbnail: "https://www.weshenderson.info/assets/images/necrux-scaled.webp"
-  siteTwitter: "NecromancerTux"
   siteTags:
     - "Wes"
     - "Henderson"
@@ -29,9 +28,6 @@ basics:
     countryCode: "US"
     region: "Texas"
   profiles:
-    - network: "Twitter"
-      url: "https://twitter.com/necromancertux"
-      username: "NecromancerTux"
     - network: "LinkedIn"
       url: "https://www.linkedin.com/in/wes-henderson/"
     - network: "GitHub"
