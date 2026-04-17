@@ -99,7 +99,7 @@ skills:
     - "Configuration Management"
     - "Monitoring"
     - "Infrastructure as Code (IaC)"
-    - "Service-Oriented Architecture (SOA)"
+    - "Microservices"
     - "Containerization"
     - "Incident Response"
 - name: "Tooling"
