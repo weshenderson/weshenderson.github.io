@@ -24,7 +24,7 @@
     "email": "whendersonii@gmail.com",
     "phone": "(210) 589-0628",
     "url": "https://weshenderson.info",
-    "summary": "I am a community oriented Linux nerd with more than a decade of IT experience and a penchant for automation, documentation, and mentoring. I am keenly aware of operations and ever mindful of opportunities for process improvement; I believe that continuous improvement is paramount for any organization. The key to maintaining continuous improvement is to build and maintain a strong team through constant, organic training.",
+    "summary": "Automation-focused Systems Engineer with 10+ years of experience in designing, integrating, and optimizing scalable infrastructure in cloud-native environments. Strong Linux advocate with deep technical acumen in automation, DevOps, and systems architecture. Skilled in mentoring, documentation, and fostering cross-functional collaboration. Proven ability to deliver innovative solutions that drive cost savings, reduce incident response times, and elevate organizational resilience.",
     "location": {
       "city": "San Antonio",
       "countryCode": "US",
@@ -125,14 +125,36 @@
       "level": "Master",
       "keywords": [
         "DevOps",
+        "Troubleshooting",
         "Research",
+        "Problem Solving",
+        "CI/CD Pipelines",
+        "Configuration Management",
+        "Monitoring",
+        "Infrastructure as Code (IaC)",
+        "Service-Oriented Architecture (SOA)",
+        "Containerization",
+        "Incident Response"
+      ]
+    },
+    {
+      "name": "Tooling",
+      "level": "Proficient",
+      "keywords": [
         "Linux",
+        "Kubernetes (EKS & GKE)",
+        "Helm",
         "AWS",
         "GCP",
         "GitHub",
         "Terraform / CloudFormation",
         "Ansible / Chef / Puppet",
-        "Containers"
+        "Docker",
+        "Apache",
+        "Nginx",
+        "MySQL",
+        "Grafana",
+        "Splunk"
       ]
     },
     {
@@ -140,10 +162,12 @@
       "level": "Proficient",
       "keywords": [
         "Mentoring",
+        "Team Leadership",
         "Documentation",
         "Communication",
         "Adaptability",
-        "Generalist"
+        "Generalist",
+        "Cross-Functional Collaboration"
       ]
     },
     {
@@ -153,62 +177,108 @@
         "Python",
         "Bash",
         "PowerShell",
-        "Automation"
+        "Automation",
+        "REST APIs",
+        "boto3",
+        "Fabric"
       ]
     }
   ],
   "work": [
     {
       "highlights": [
-        "Led a small team on our \u2018Bring Your Own Key\u2019 (BYOK) initiative; this product allowed customers to fully own the keys their databases were encrypted with and represented $6 million in recurring revenue for Pardot.",
-        "Helped to identify and deploy cost saving measures in our public cloud infrastructure, representing a savings of $3 million dollars annually.",
-        "Led multiple teams across multiple business units in order to meet deployment deadlines.",
-        "Built a bespoke tooling pipeline for the SRE team, allowing tools to be created and shared widely while circumventing common pitfalls around such tooling, e.g. tribal knowledge resulting in decreased visibility and adoption.",
-        "Built a CLI tool to rapidly manage asynchronous jobs, greatly decreasing response time while increasing visibility."
+        "Spearheaded the 'Bring Your Own Key' (BYOK) initiative, securing $6M in recurring revenue and satisfying key enterprise customer requirements.",
+        "Discovered and resolved critical cloud misconfigurations, saving $3M annually in AWS infrastructure costs.",
+        "Orchestrated the seamless onboarding of multiple business units to centralized infrastructure, ensuring full documentation and zero service disruptions.",
+        "Designed and implemented a custom CLI tool for managing asynchronous jobs, significantly reducing MTTR and boosting operational visibility.",
+        "Developed a reusable SRE tooling pipeline that reduced tribal knowledge dependencies and improved incident recovery workflows.",
+        "Facilitated alignment and collaboration across multiple teams to deliver infrastructure projects on time and within budget."
       ],
       "location": "remote",
       "name": "Salesforce",
       "position": "Lead Systems Engineer",
       "startDate": "2019-11-01",
-      "endDate": "2023-06-01",
-      "currentEmployee": true,
-      "summary": "Businesses succeed when they create meaningful connection. Our mission is to deliver it.",
+      "endDate": "2025-04-25",
+      "currentEmployee": false,
+      "summary": "Led strategic DevOps and systems initiatives across Mulesoft and Pardot, enabling key security features and delivering scalable, cost-effective infrastructure solutions.",
       "url": "https://www.salesforce.com/"
     },
     {
       "highlights": [
-        "Mentored junior team members and built pathways from support to engineering.",
-        "Helped many top companies build, deploy, and grade their performance based assessments.",
-        "Acted as a consultant on exam creation and deployment.",
-        "Created bespoke environments/grading via Bash and Powershell, primarily.",
-        "Contributed to the underlying codebase where applicable.",
-        "Maintained the AWS and GCP infrastructure for internal tooling and exams respectively."
+        "Designed and launched exams for major clients including Google, Elastic, Chef, Linux Foundation, and VMWare, increasing customer base and revenue.",
+        "Mentored junior engineers and built documentation/playbooks, reducing escalations and supporting career development within the team.",
+        "Engineered customized exam environments using Bash and PowerShell, rapidly adapting to client needs across a wide tech stack.",
+        "Contributed to internal infrastructure and codebase supporting AWS and GCP hybrid environments for exam delivery and tooling.",
+        "Created demonstration assessments that expanded company offerings into recruitment-focused products."
       ],
       "location": "San Antonio, TX",
       "name": "TrueAbility",
       "position": "Deployment Engineer",
       "startDate": "2018-02-05",
       "endDate": "2019-11-01",
-      "summary": "TrueAbility provides an advanced platform for delivering skills-based assessment for today\u2019s digital workforce\u2122.",
+      "summary": "Delivered high-stakes technical exam platforms for global tech clients and maintained hybrid cloud infrastructure, supporting internal and customer-facing tools.",
       "url": "https://www.trueability.com/"
     },
     {
       "highlights": [
-        "Architect and deploy scalable cloud solutions for customers in an AWS ecosystem via CloudFormation.",
-        "Design for customers\u2019 regulatory requirements (e.g. PCI, HIPAA, etc).",
-        "Educate customers on distributed computing principles and CI/CD solutions.",
-        "Collaborate with team members via GitHub.",
-        "Wrote a Python framework to automate the build process.",
-        "Created custom tooling in Bash and Python.",
-        "Active contributor to both the internal Rackspace wiki and public blog."
+        "Delivered 2\u20133 custom AWS deployments per week, adhering to compliance standards (e.g., PCI, HIPAA).",
+        "Authored a Python-based automation framework to accelerate builds, cutting deployment failure rates in half.",
+        "Enhanced customer satisfaction by creating custom tools in Bash and Python that streamlined onboarding and troubleshooting.",
+        "Supported knowledge sharing through active contributions to internal wikis and public blog content.",
+        "Acted as a technical liaison to educate clients on distributed systems and DevOps best practices."
       ],
       "location": "San Antonio, TX",
       "name": "Rackspace Hosting",
       "position": "DevOps Engineer",
       "startDate": "2013-05-06",
       "endDate": "2017-12-01",
-      "summary": "As you move through your cloud journey, our customer-first, cloud-first approach to service delivery helps ensure that all of your technologies work together to move you forward.",
+      "summary": "Built scalable cloud architectures in AWS for regulated industries and led automation efforts to streamline deployments and reduce operational friction.",
       "url": "https://www.rackspace.com/"
+    }
+  ],
+  "publications": [
+    {
+      "name": "The Anatomy of an SSH Connection",
+      "publisher": "necrux.com",
+      "releaseDate": "2015-12-19",
+      "url": "https://www.necrux.com/posts/2015/12/the-anatomy-of-an-ssh-connection/",
+      "summary": "A thorough exploration of the intricacies of establishing an SSH connection."
+    },
+    {
+      "name": "(S)FTP(S) or: How I Learned to Stop Worrying and Love File Transfer",
+      "publisher": "necrux.com",
+      "releaseDate": "2015-12-19",
+      "url": "https://www.necrux.com/posts/2015/12/ftp/",
+      "summary": "Understanding the mechanics of file transfer protocols."
+    },
+    {
+      "name": "Understanding and Adopting a Cloud Mindset for your Emerging Business",
+      "publisher": "Rackspace",
+      "releaseDate": "2015-04-28",
+      "url": "https://www.rackspace.com/blog",
+      "summary": "What are the true advantages of the cloud and how can your business leverage them?"
+    },
+    {
+      "name": "An Overview Of Disaster Recovery And Mitigation In The Cloud For Emerging Businesses",
+      "publisher": "Rackspace",
+      "releaseDate": "2014-04-28",
+      "url": "https://www.rackspace.com/blog",
+      "summary": "A guide to protecting your digital assets with a proven disaster recovery plan."
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Huebner Elementary School",
+      "position": "Volunteer",
+      "url": "https://huebner.neisd.net/",
+      "startDate": "2023-09-01",
+      "endDate": "2032-05-31",
+      "summary": "Helping students navigate the digital world safely while sparking curiosity about emerging technologies.",
+      "highlights": [
+        "Lead classroom 3D printing demonstrations.",
+        "Conduct Internet safety classes.",
+        "Design and print 3D awards/merch for the school."
+      ]
     }
   ]
 }
