@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Disabling PDF generation due to changes with Chrome headless; it is no longer
+# a separate binary shipped with Chrome. Must explore alternatives, or finally adopt LaTex.
+
 set -eo pipefail
 
 INDEX='index.html'
@@ -12,6 +15,12 @@ FILE_CHECK=(configs/
             alea
             templates/
             assets)
+
+if [ -f /wsl ]; then
+    BIN='/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
+else
+    BIN='/usr/bin/google-chrome'
+fi
 
 function alea {
     for file in ${FILE_CHECK[@]}; do
@@ -34,14 +43,14 @@ function create-pdf-resume {
             local TMP='resume_pdf.html'
             cp ${RESUME} ${TMP}
             sed -i 's@<h3><a id="pdf" href="resume.pdf">Download PDF</a></h3>@@g' ${TMP}
-            /usr/bin/google-chrome \
+            echo "${BIN}" \
                 --headless \
                 --disable-gpu \
                 --no-pdf-header-footer \
                 --no-margins \
                 --run-all-compositor-stages-before-draw \
-                --print-to-pdf=${PDF} \
-                file://${BASE_PATH}/${TMP}
+                --print-to-pdf ${PDF} \
+                ${TMP}
             rm -f ${TMP}
             git add ${PDF}
         popd &>/dev/null
@@ -55,4 +64,4 @@ function check-code {
 
 check-code
 alea
-create-pdf-resume
+#create-pdf-resume
