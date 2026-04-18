@@ -274,7 +274,6 @@ def get_certifications(config_file, resume_content):
 def get_publications(config_file, resume_content):
     """Build the publications object."""
 
-    publication_count = len(config_file['publications'])
     count      = 1
     name       = config_file['basics']['name'].split()
     last_name  = name[1]
@@ -293,7 +292,6 @@ def get_publications(config_file, resume_content):
                                           publication["name"] + '.</a> ' + \
                                           publication["publisher"] + '.</p>'
         count += 1
-
 
 def get_volunteer_work(config_file, resume_content):
     """Build the volunteer_work object."""
