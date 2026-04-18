@@ -9,7 +9,7 @@
       "Wes",
       "Henderson",
       "Wes Henderson",
-      "Systems Engineer",
+      "Staff Systems Engineer",
       "Resume",
       "San Antonio",
       "Texas"
@@ -273,6 +273,7 @@
       "url": "https://huebner.neisd.net/",
       "startDate": "2023-09-01",
       "endDate": "2032-05-31",
+      "current": true,
       "summary": "Helping students navigate the digital world safely while sparking curiosity about emerging technologies.",
       "highlights": [
         "Lead classroom 3D printing demonstrations.",

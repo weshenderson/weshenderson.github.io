@@ -137,7 +137,9 @@ def build_resume_object() -> dict:
                       'summary': content['basics']['summary'],
                       'skills': '',
                       'experience': '',
-                      'education': '', }
+                      'education': '',
+                      'publications': '',
+                      'volunteer': '', }
 
     # Build the Google Analytics object.
     build_analytics_object(content, resume_content)
@@ -182,11 +184,18 @@ def build_resume_object() -> dict:
             resume_content['education'] += '<p>• ' + '</p><p>• '. \
                 join(list(school['courses'])) + '</p>'
 
+    # Publications
+    get_publications(content, resume_content)
+
+    # Volunteer Work
+    get_volunteer_work(content, resume_content)
+
     return resume_content
 
 
 def get_experience(config_file, resume_content):
     """Build the experience object."""
+
     for experience in config_file['work']:
         start_year = int(experience["startDate"].split("-")[0])
         start_month = int(experience["startDate"].split("-")[1])
@@ -261,6 +270,57 @@ def get_certifications(config_file, resume_content):
                                                 '</li>'
         count += 1
     resume_content['certifications'] += '</ul></div></div><!--// .yui-gf-->'
+
+def get_publications(config_file, resume_content):
+    """Build the publications object."""
+
+    publication_count = len(config_file['publications'])
+    count      = 1
+    name       = config_file['basics']['name'].split()
+    last_name  = name[1]
+    first_name = name[0]
+    for publication in config_file['publications']:
+        release_year = int(publication["releaseDate"].split("-")[0])
+        release_month = int(publication["releaseDate"].split("-")[1])
+        release_day = int(publication["releaseDate"].split("-")[2])
+        release_date = datetime(release_year, release_month, release_day)
+        release_month = release_date.strftime("%B")
+        release = f"{release_month} {release_day}, {release_year}"
+        resume_content['publications'] += '<p><strong>' + str(count) + \
+                                          '.</strong>    ' + last_name + ', ' + \
+                                          first_name + ' (' + str(release) + '). ' + \
+                                          '<a href="' + publication["url"] + '">' + \
+                                          publication["name"] + '.</a> ' + \
+                                          publication["publisher"] + '.</p>'
+        count += 1
+
+
+def get_volunteer_work(config_file, resume_content):
+    """Build the volunteer_work object."""
+
+    for work in config_file['volunteer']:
+        start_year = int(work["startDate"].split("-")[0])
+        start_month = int(work["startDate"].split("-")[1])
+        start_day = int(work["startDate"].split("-")[2])
+        start = datetime(start_year, start_month, start_day)
+        start_month = start.strftime("%B")
+        end_year = int(work["endDate"].split("-")[0])
+        end_month = int(work["endDate"].split("-")[1])
+        end_day = int(work["endDate"].split("-")[2])
+        end = datetime(end_year, end_month, end_day)
+        end_month = end.strftime("%B")
+        start = f"{start_month} {start_year}"
+        end = f"{end_month} {end_year}"
+
+        if work.get("current"):
+            end = "Present"
+
+        resume_content['volunteer'] += '<div class="job"><h2>' + \
+                                        work['organization'] + '</h2><h3>' + \
+                                        work['position'] + '</h3><h4>' + \
+                                        start + '-' + end + '</h4>' + '<p>• ' + \
+                                        '</p><p>• '.join(work['highlights']) \
+                                        + '</p></div>'
 
 
 def build_analytics_object(config_file, content_object):
