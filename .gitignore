@@ -163,3 +163,4 @@ _site/
 
 configs/resume.sample.json
 configs/resume.sample.yaml
+*.swp

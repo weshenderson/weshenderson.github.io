@@ -41,17 +41,20 @@ This repo relies heavily on pre-commit hooks to auto-generate new resources when
 
 **PDF Resume**
 
-The PDF version of my resume is generated via Google Chrome dev tools:
+The PDF version of my resume is generated via `chrome-headless-shell`. The old headless browser no longer ships with the default Google Chrome dev tools within Chrome as it a separate binary and an entirely different browser. You can read more about these changes [here](https://developer.chrome.com/docs/chromium/headless).
+
+I have built the new `chrome-headless-shell` as a dockerfile for portability. Simply run `docker-compose` up after exporting the `TMP` and `OUTPUT` variables.
 
 ```
-/usr/bin/google-chrome \
-            --headless \
-            --disable-gpu \
-            --no-pdf-header-footer \
-            --no-margins \
-            --run-all-compositor-stages-before-draw \
-            --print-to-pdf=${PDF} \
-            file://${BASE_PATH}/${TMP}
+/chrome-headless
+    --no-sandbox
+    --headless
+    --disable-gpu
+    --no-pdf-header-footer
+    --no-margins
+    --run-all-compositor-stages-before-draw
+    --print-to-pdf=${OUTPUT}
+    ${TMP}
 ```
 
 Previously this work was done via Pandoc, however this results in a prettier end product without having to create LateX templates since Chrome is able to render the underlying CSS.

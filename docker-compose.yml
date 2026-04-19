@@ -1,0 +1,24 @@
+services:
+  pdf:
+    build: .
+    image: html-to-pdf
+    working_dir: /tmp/
+    environment:
+      - PDF=${TMP}
+      - OUTPUT=${OUTPUT}
+    command: >
+        /chrome-headless
+          --no-sandbox
+          --headless
+          --disable-gpu
+          --no-pdf-header-footer
+          --no-margins
+          --run-all-compositor-stages-before-draw
+          --print-to-pdf=${OUTPUT}
+          ${TMP}
+    volumes:
+        - ./resumes:/tmp/resumes
+
+    # Interactive Shell for Troubleshooting
+    #stdin_open: true # docker run -i
+    #tty: true        # docker run -t

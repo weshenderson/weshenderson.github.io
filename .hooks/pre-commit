@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-
-# Disabling PDF generation due to changes with Chrome headless; it is no longer
-# a separate binary shipped with Chrome. Must explore alternatives, or finally adopt LaTex.
-
 set -eo pipefail
 
 INDEX='index.html'
@@ -17,9 +13,9 @@ FILE_CHECK=(configs/
             assets)
 
 if [ -f /wsl ]; then
-    BIN='/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
+    COMPOSE_BIN='/mnt/c/Program Files/Docker/Docker/resources/bin/docker-compose'
 else
-    BIN='/usr/bin/google-chrome'
+    COMPOSE_BIN='docker-compose'
 fi
 
 function alea {
@@ -40,17 +36,11 @@ function alea {
 function create-pdf-resume {
     if git status --porcelain | grep -q "${RESUME}"; then
         pushd "${BASE_PATH}" &>/dev/null
-            local TMP='resume_pdf.html'
+	    export TMP="resumes/resume_tmp_pdf.html"
+	    export OUTPUT=${PDF}
             cp ${RESUME} ${TMP}
             sed -i 's@<h3><a id="pdf" href="resume.pdf">Download PDF</a></h3>@@g' ${TMP}
-            echo "${BIN}" \
-                --headless \
-                --disable-gpu \
-                --no-pdf-header-footer \
-                --no-margins \
-                --run-all-compositor-stages-before-draw \
-                --print-to-pdf ${PDF} \
-                ${TMP}
+	    "${COMPOSE_BIN}" up
             rm -f ${TMP}
             git add ${PDF}
         popd &>/dev/null
@@ -64,4 +54,4 @@ function check-code {
 
 check-code
 alea
-#create-pdf-resume
+create-pdf-resume
