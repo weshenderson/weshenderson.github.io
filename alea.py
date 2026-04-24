@@ -80,8 +80,7 @@ def build_index_object() -> dict:
         'font': content['pageLayout']['font']['name'],
         'font_size_primary': content['pageLayout']['font']['size'],
         'font_size_secondary': content['pageLayout']['font']['size'] / 2,
-        'google_font': '',
-        'borders': 'none'
+        'google_font': ''
     }
 
     # Grab the footer(s).
@@ -102,10 +101,6 @@ def build_index_object() -> dict:
                                               f'{link}">{label}</a></p>'
     if content['content']['copyright']:
         site_content['footer'] += f'<p>© {year} {site_content["author"]}</p>'
-
-    # Set/unset the div borders (good for troubleshooting).
-    if content['pageLayout']['borders']:
-        site_content['borders'] = '2px solid yellow'
 
     # Set a Google font.
     if content['pageLayout']['font']['googleFont']:
@@ -403,8 +398,7 @@ def index_schema():
                 "fontLink": str,
                 "name": str,
                 "size": int
-            },
-            "borders": bool
+            }
         },
         "content": {
             "header": list,

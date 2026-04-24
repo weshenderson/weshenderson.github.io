@@ -22,7 +22,6 @@ pageLayout:
     fontLink: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap'
     name: 'monospace'
     size: 3
-  borders: false
 content:
   header:
   - "Father, Traveler, Problem Solver, & Linux Nerd"
