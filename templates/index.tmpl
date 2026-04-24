@@ -21,19 +21,21 @@
     $google
   </head>
   <body>
-    <div class="flex-container">
-      <div class="header">
+      <header>
         $header
-      </div>
-      <div class="flex-child">
-        <img src="$image" alt="$alt">
-      </div>
-      <div class="flex-child">
-        $body
-      </div>
-      <div class="footer">
+      </header>
+
+      <main class="content">
+        <div class="left">
+          <img src="$image" alt="$alt">
+        </div>
+        <div class="right">
+          <p>$body</p>
+        </div>
+      </main>
+
+      <footer>
         $footer
-      </div>
-    </div>
+      </footer>
   </body>
 </html>

@@ -1,35 +1,17 @@
+/* Reset + base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: $font;
   background-color: $background;
   color: $font_color;
-  font-family: $font;
-  margin-bottom: 0%;
-  margin-left: 15%;
-  margin-right: 5%;
-  margin-top: 10%;
-}
-
-img {
-  max-width: 100%;
-  max-height: 100%;
-  display: block;
-}
-
-.flex-container {
-  display: flex;
-  margin-top: 20%;
-}
-
-.flex-child {
-  flex: 1;
-  font-size: ${font_size_primary}em;
-  text-align: center;
-  border: $borders;
-  margin-top: 10%;
-}
-
-.flex-child:first-child {
-  margin-right: 20px;
-  max-width: 100%;
 }
 
 a {	
@@ -42,30 +24,45 @@ a:visited {
   font-family: inherit;
 }
 
-.header {
-  background-color: inherit;
-  border: $borders;
-  font-family: inherit;
+/* Header & footer centered horizontally */
+header,
+footer {
   font-size: ${font_size_secondary}em;
-  left: 0;
-  position: fixed;
   text-align: center;
-  top: 0;
-  width: 100%;
+  padding: 1rem;
 }
 
-.footer {
+/* Main content takes remaining space */
+.content {
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: inherit;
-  border: $borders;
-  bottom: 0;
-  font-family: inherit;
-  font-size: ${font_size_secondary}em;
-  left: 0;
-  position: fixed;
+  align-items: center;        /* vertical centering */
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+/* Left (image) */
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: center;    /* horizontal centering inside column */
+  align-items: center;        /* vertical centering */
+}
+
+.left img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Right (link-tree) */
+.right {
+  flex: 1;
+  font-size: ${font_size_primary}em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right p {
   text-align: center;
-  width: 100%;
-  margin-bottom: 5%;
 }
