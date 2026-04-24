@@ -24,6 +24,7 @@ img {
   font-size: 3em;
   text-align: center;
   border: none;
+  margin-top: 10%;
 }
 
 .flex-child:first-child {
@@ -54,6 +55,9 @@ a:visited {
 }
 
 .footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background-color: inherit;
   border: none;
   bottom: 0;
@@ -63,4 +67,5 @@ a:visited {
   position: fixed;
   text-align: center;
   width: 100%;
+  margin-bottom: 5%;
 }
