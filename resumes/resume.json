@@ -10,6 +10,7 @@
       "Henderson",
       "Wes Henderson",
       "Staff Systems Engineer",
+      "DevOps Engineer",
       "Resume",
       "San Antonio",
       "Texas"
@@ -189,10 +190,12 @@
       "highlights": [
         "Spearheaded the 'Bring Your Own Key' (BYOK) initiative, securing $6M in recurring revenue and satisfying key enterprise customer requirements.",
         "Discovered and resolved critical cloud misconfigurations, saving $3M annually in AWS infrastructure costs.",
-        "Orchestrated the seamless onboarding of multiple business units to centralized infrastructure, ensuring full documentation and zero service disruptions.",
-        "Designed and implemented a custom CLI tool for managing asynchronous jobs, significantly reducing MTTR and boosting operational visibility.",
+        "Orchestrated the onboarding of multiple business units to Kubernetes with zero service disruptions.",
+        "Designed and implemented an extensible CLI tool for managing asynchronous jobs, significantly reducing MTTR and boosting operational visibility.",
         "Developed a reusable SRE tooling pipeline that reduced tribal knowledge dependencies and improved incident recovery workflows.",
-        "Facilitated alignment and collaboration across multiple teams to deliver infrastructure projects on time and within budget."
+        "Facilitated alignment and collaboration across multiple teams to deliver infrastructure projects on time and within budget.",
+        "Led incident response and resolution efforts during on-call rotations.",
+        "Investigated and remediated system vulnerabilities."
       ],
       "location": "remote",
       "name": "Salesforce",
@@ -205,11 +208,13 @@
     },
     {
       "highlights": [
-        "Designed and launched exams for major clients including Google, Elastic, Chef, Linux Foundation, and VMWare, increasing customer base and revenue.",
+        "Designed and launched custom exams for major clients including Google, Elastic, Chef, SUSE, Linux Foundation, and VMWare.",
+        "Fully automated provisioning and grading of exam environments across diverse tech stacks, rapidly adapting to client needs.",
+        "Supported pre-sales efforts by answering technical inquiries and delivering customized product demonstrations tailored to customer needs.",
+        "Owned all post-sale account management activities, serving as the primary point of contact to drive customer success, retention, and growth.",
+        "Expanded company offerings into recruitment-focused products.",
         "Mentored junior engineers and built documentation/playbooks, reducing escalations and supporting career development within the team.",
-        "Engineered customized exam environments using Bash and PowerShell, rapidly adapting to client needs across a wide tech stack.",
-        "Contributed to internal infrastructure and codebase supporting AWS and GCP hybrid environments for exam delivery and tooling.",
-        "Created demonstration assessments that expanded company offerings into recruitment-focused products."
+        "Contributed to internal infrastructure and codebase supporting AWS and GCP hybrid environments for exam delivery and tooling."
       ],
       "location": "San Antonio, TX",
       "name": "TrueAbility",
