@@ -39,8 +39,7 @@ function create-pdf-resume {
 	    export TMP="resumes/resume_tmp_pdf.html"
 	    export OUTPUT=${PDF}
             cp ${RESUME} ${TMP}
-            sed -i 's@<h3><a id="pdf" href="resume.pdf">Download PDF</a></h3>@@g' ${TMP}
-            sed -i 's@<h3><a id="pdf" href="https://www.necrux.com/cv/">About Résumé</a></h3>@@g' ${TMP}
+            sed -i 's@<!-- H-ONLY -->.*<!-- /H-ONLY -->@@g' ${TMP}
 	    "${COMPOSE_BIN}" up
             rm -f ${TMP}
             git add ${PDF}
