@@ -4,7 +4,7 @@
 The personal webpage of Wes Henderson.
 
 ## Layout
-This site is powered by [Alea](https://github.com/necrux/alea) and hosted with GitHub Pages. Alea is the templating engine that creates `index.html` and `resume.html` based off of their respective yaml config files. All resume versions are generated from `configs/resume.yaml`, which is fully compliant with the [JSON Resume](https://jsonresume.org/) 1.0.0 spec.
+This site is powered by [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/alea.py) and hosted with GitHub Pages. Alea is the templating engine that creates `index.html` and `resume.html` based off of their respective yaml config files. All resume versions are generated from `configs/resume.yaml`, which is fully compliant with the [JSON Resume](https://jsonresume.org/) 1.0.0 spec.
 
 ## Workflow
 
