@@ -209,12 +209,13 @@
     {
       "highlights": [
         "Designed and launched custom exams for major clients including Google, Elastic, Chef, SUSE, Linux Foundation, and VMWare.",
-        "Fully automated provisioning and grading of exam environments across diverse tech stacks, rapidly adapting to client needs.",
+        "Fully automated the provisioning and grading of exam environments across diverse tech stacks, rapidly adapting to client needs.",
         "Supported pre-sales efforts by answering technical inquiries and delivering customized product demonstrations tailored to client needs.",
         "Owned all post-sale account management activities, serving as the primary point of contact to drive customer success, retention, and growth.",
         "Expanded company offerings into recruitment-focused products.",
         "Mentored junior engineers and built documentation/playbooks, reducing escalations and supporting career development within the team.",
-        "Contributed to internal infrastructure and codebase supporting AWS and GCP hybrid environments for exam delivery and tooling."
+        "Wrote Ansible playbooks and broght all internal infrastructure under configuration management.",
+        "Contributed to the internal codebase for exam delivery and associated tooling."
       ],
       "location": "San Antonio, TX",
       "name": "TrueAbility",
