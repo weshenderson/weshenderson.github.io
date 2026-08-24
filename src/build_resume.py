@@ -4,7 +4,6 @@ Build resume object.
 
 from datetime import datetime
 
-import numpy
 import yaml
 
 from .analytics import Analytics
@@ -45,28 +44,6 @@ class BuildResume:
 
         # Build the Google Analytics object.
         Analytics.build_analytics(content, resume_content)
-
-        # Skills
-        """
-        skills = []
-        for section in content['skills']:
-            for skill in section['keywords']:
-                skills.append(skill)
-        rows = numpy.array_split(skills, 3)
-        skill_lists = [len(row) for row in rows]
-        longest_list = max(skill_lists)
-
-        for row in rows:
-            resume_content['skills'] += '<ul class="talent">'
-            count = 0
-            for skill in row:
-                count += 1
-                if count == longest_list:
-                    resume_content['skills'] += '<li class="last">' + skill + "</li>"
-                else:
-                    resume_content['skills'] += "<li>" + skill + "</li>"
-            resume_content['skills'] += "</ul>"
-        """
 
         # Skills w/ Headings
         BuildResume.get_skills(content, resume_content)
