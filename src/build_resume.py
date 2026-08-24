@@ -55,18 +55,7 @@ class BuildResume:
         BuildResume.get_certifications(content, resume_content)
 
         # Education
-        for school in content['education']:
-            resume_content['education'] += '<h2>' + school['institution'] + ' - ' + \
-                                        school['location'] + '</h2><h3>' + \
-                                        school['studyType'] + ' in ' + school['area']
-            if 'score' in school:
-                resume_content['education'] += ' &mdash; <strong>' + school['score'] \
-                                            + ' GPA</strong></h3>'
-            else:
-                resume_content['education'] += '</h3>'
-            if 'courses' in school:
-                resume_content['education'] += '<p>• ' + '</p><p>• '. \
-                    join(list(school['courses'])) + '</p>'
+        BuildResume.get_education(content, resume_content)
 
         # Publications
         BuildResume.get_publications(content, resume_content)
@@ -135,15 +124,11 @@ class BuildResume:
             return
 
         # pylint: disable=unsubscriptable-object
-        cert_count = len(config_file['certificates'])
-        count = 1
-
-        # pylint: disable=unsubscriptable-object
         resume_content['certifications'] = '<div class="yui-gf"><div class="yui-u first">' \
                                         '<h2>Certifications</h2></div>' \
                                         '<div class="yui-u"><ul class="talent">'
         for cert in config_file['certificates']:
-            if count < cert_count:
+            if cert != config_file['certificates'][-1]:
                 resume_content['certifications'] += '<li>' + \
                                                     cert['issuer'] + ' ' + cert['name'] + \
                                                     '</li>'
@@ -151,26 +136,22 @@ class BuildResume:
                 resume_content['certifications'] += '<li class="last">' + \
                                                     cert['issuer'] + ' ' + cert['name'] + \
                                                     '</li>'
-            count += 1
         resume_content['certifications'] += '</ul>'
 
-        count = 1
         resume_content['certifications'] += '<ul class="talent-center">'
         # pylint: disable=unsubscriptable-object
         for cert in config_file['certificates']:
             year = cert['date'].split("-")
-            if count < cert_count:
+            if cert != config_file['certificates'][-1]:
                 resume_content['certifications'] += '<li>' + year[0] + '</li>'
             else:
                 resume_content['certifications'] += '<li class="last">' + year[0] + '</li>'
-            count += 1
         resume_content['certifications'] += '</ul>'
 
-        count = 1
         resume_content['certifications'] += '<ul class="talent">'
         # pylint: disable=unsubscriptable-object
         for cert in config_file['certificates']:
-            if count < cert_count:
+            if cert != config_file['certificates'][-1]:
                 resume_content['certifications'] += '<li>' + \
                                                     cert['license'] + \
                                                     '</li>'
@@ -178,8 +159,24 @@ class BuildResume:
                 resume_content['certifications'] += '<li class="last">' + \
                                                     cert['license'] + \
                                                     '</li>'
-            count += 1
         resume_content['certifications'] += '</ul></div></div><!--// .yui-gf-->'
+
+    @staticmethod
+    def get_education(config_file, resume_content):
+        """Build the education object."""
+
+        for school in config_file['education']:
+            resume_content['education'] += '<h2>' + school['institution'] + \
+                                            ' - ' + school['location'] + '</h2><h3>' + \
+                                            school['studyType'] + ' in ' + school['area']
+            if 'score' in school:
+                resume_content['education'] += ' &mdash; <strong>' + school['score'] \
+                                                + ' GPA</strong></h3>'
+            else:
+                resume_content['education'] += '</h3>'
+            if 'courses' in school:
+                resume_content['education'] += '<br><p>• ' + '</p><p>• '. \
+                                                join(list(school['courses'])) + '</p>'
 
     @staticmethod
     def get_publications(config_file, resume_content):
@@ -229,9 +226,9 @@ class BuildResume:
             if work.get("current"):
                 end = "Present"
 
-            resume_content['volunteer'] += '<div class="job"><h2>' + \
-                                            work['organization'] + '</h2><h3>' + \
-                                            work['position'] + '</h3><h4>' + \
-                                            start + '-' + end + '</h4>' + '<p>• ' + \
+            resume_content['volunteer'] += '<h2>' + work['organization'] + \
+                                            '</h2><h3>' + work['position'] + \
+                                            '</h3><h4>' + start + '-' + end + \
+                                            '</h4><br>' + '<p>• ' + \
                                             '</p><p>• '.join(work['highlights']) \
-                                            + '</p></div>'
+                                            + '</p>'
