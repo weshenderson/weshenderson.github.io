@@ -8,9 +8,11 @@ PDF='resumes/resume.pdf'
 JSON='resumes/resume.json'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 FILE_CHECK=(configs/
-            alea
+            alea.py
             templates/
-            assets)
+            assets/
+            src/
+            .hooks/)
 
 if [ -f /wsl ]; then
     COMPOSE_BIN='/mnt/c/Program Files/Docker/Docker/resources/bin/docker-compose'
