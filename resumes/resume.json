@@ -122,40 +122,60 @@
   ],
   "skills": [
     {
-      "name": "DevOps",
+      "name": "DevOps and Tooling",
       "level": "Master",
       "keywords": [
-        "DevOps",
-        "Troubleshooting",
-        "Research",
-        "Problem Solving",
         "CI/CD Pipelines",
+        "Automation",
         "Configuration Management",
-        "Monitoring",
         "Infrastructure as Code (IaC)",
+        "Immutable Infrastructure",
         "Microservices",
         "Containerization",
-        "Incident Response"
+        "Jenkins",
+        "ArgoCD",
+        "GitHub Actions"
       ]
     },
     {
-      "name": "Tooling",
+      "name": "Infrastructure, Platforms, and Management",
       "level": "Proficient",
       "keywords": [
         "Linux",
         "Kubernetes (EKS & GKE)",
-        "Helm",
         "AWS",
         "GCP",
-        "GitHub",
-        "Terraform / CloudFormation",
-        "Ansible / Chef / Puppet",
+        "Helm",
+        "Terraform",
+        "CloudFormation",
+        "Ansible",
+        "Chef",
+        "Puppet",
         "Docker",
         "Apache",
         "Nginx",
         "MySQL",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "name": "Observability",
+      "level": "Proficient",
+      "keywords": [
         "Grafana",
+        "Prometheus",
         "Splunk"
+      ]
+    },
+    {
+      "name": "Systems Analysis",
+      "level": "Proficient",
+      "keywords": [
+        "Incident Response",
+        "Root Cause Analysis",
+        "Technical Research",
+        "Troubleshooting",
+        "Problem Solving"
       ]
     },
     {
@@ -163,7 +183,6 @@
       "level": "Proficient",
       "keywords": [
         "Mentoring",
-        "Team Leadership",
         "Documentation",
         "Communication",
         "Adaptability",
@@ -172,16 +191,12 @@
       ]
     },
     {
-      "name": "Programming",
+      "name": "Programming and Scripting",
       "level": "Proficient",
       "keywords": [
         "Python",
         "Bash",
-        "PowerShell",
-        "Automation",
-        "REST APIs",
-        "boto3",
-        "Fabric"
+        "PowerShell"
       ]
     }
   ],
