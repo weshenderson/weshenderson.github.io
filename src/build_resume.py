@@ -47,6 +47,7 @@ class BuildResume:
         Analytics.build_analytics(content, resume_content)
 
         # Skills
+        """
         skills = []
         for section in content['skills']:
             for skill in section['keywords']:
@@ -65,6 +66,10 @@ class BuildResume:
                 else:
                     resume_content['skills'] += "<li>" + skill + "</li>"
             resume_content['skills'] += "</ul>"
+        """
+
+        # Skills w/ Headings
+        BuildResume.get_skills(content, resume_content)
 
         # Experience
         BuildResume.get_experience(content, resume_content)
@@ -93,6 +98,26 @@ class BuildResume:
         BuildResume.get_volunteer_work(content, resume_content)
 
         return resume_content
+
+    @staticmethod
+    def get_skills(config_file, resume_content):
+        """Build the skills object."""
+
+        resume_content['skills'] += '<div class="skill">'
+
+        # pylint: disable=unsubscriptable-object
+        for skills in config_file['skills']:
+            resume_content['skills'] += '<p><b>' + skills['name'] + ': </b>'
+
+            for keyword in skills['keywords']:
+                if keyword != skills['keywords'][-1]:
+                    resume_content['skills'] += keyword + ', '
+                else:
+                    resume_content['skills'] += keyword
+
+            resume_content['skills'] += '</p>'
+
+        resume_content['skills'] += '</div>'
 
     @staticmethod
     def get_experience(config_file, resume_content):

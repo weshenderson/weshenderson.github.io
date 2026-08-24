@@ -69,6 +69,10 @@ a#button:hover { background: #222; }
 .job h4 { position: absolute; top: 0.35em; right: 0 }
 .job p { margin: 0.75em 0 0em 0; }
 
+.skill { position: relative; margin-bottom: 1em; padding: 0; }
+.skill h4 { position: absolute; top: 0.35em; right: 0 }
+.skill p { margin: 0.75em 0 0em 0; }
+
 .last { border: none; }
 .skills-list {  }
 .skills-list ul { margin: 0; }
