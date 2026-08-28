@@ -14,28 +14,44 @@ meta:
   googleAnalytics: "G-1HMXV18Z9V"
 pageLayout:
   color:
-    background: 'black'
-    font: 'green'
-    clickedLink: '#5cdff2'
+    background: "black"
+    font: "green"
+    clickedLink: "#5cdff2"
+    primary: "green"
+    secondary: "#8b5bb5"
+    tertiary: "grey"
   font:
     googleFont: false
-    fontLink: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap'
-    name: 'monospace'
+    fontLink: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap"
+    name: "monospace"
     size: 3
 content:
-  header:
-  - "Father, Traveler, Problem Solver, & Linux Nerd"
+  header: "#!"
   heroImage:
-    path: "https://www.weshenderson.info/assets/images/necrux-scaled.webp"
+    path: "assets/images/necrux-scaled-black-bg.webp"
     altText: "Necrux the Octocat!"
-  body:
+  resume: "resumes/resume.html"
+  prompt: "[necrux@system]:~$"
+  name: "Wes Henderson"
+  title: "Staff Systems Engineer"
+  site: "weshenderson.info"
+  description: "> Father, Traveler, Problem Solver, 3D Printer Enthusiast, & Linux Nerd"
+  pid: "80085"
+  system-info:
+    enable: enable
+    heading: "[system]"
+    table:
+      uptime: "40y"
+      shell: "/bin/bash"
+      editor: "vim"
+      distro: "Red Hat 10"
+  links:
     Blog: "https://necrux.com"
     GitHub: "https://github.com/necrux"
     LinkedIn: "https://www.linkedin.com/in/wes-henderson"
     GPG Key: "assets/txt/wes-henderson-public-key.txt"
     Keybase: "https://keybase.io/necrux"
     Bluesky: "https://bsky.app/profile/necrux.bsky.social"
-    Résumé: "/resumes/resume.html"
     Maker World: "https://makerworld.com/en/@necrux"
   footer:
     - title: "529 Donation Links: "

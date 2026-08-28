@@ -37,12 +37,12 @@ class SchemaValidations:
                 }
             },
             "content": {
-                "header": list,
+                "header": str,
                 "heroImage": {
                     "path": str,
                     "altText": str
                 },
-                "body": dict,
+                "links": dict,
                 "footer": list,
                 "copyright": schema.Or(bool, error=bool_error)
             },

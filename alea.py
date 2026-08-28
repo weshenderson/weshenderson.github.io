@@ -15,8 +15,7 @@
     * skills
     * work
   * Consider adding priority ordering to skills.
-  * Consider grouping skills.
-  * Create functions for building the resume.
+  * Migrate to divs with optional 'display: off' options.
   * Spec recommendations:
     - 'location' for school
         - Issue: https://github.com/jsonresume/resume-schema/issues/417

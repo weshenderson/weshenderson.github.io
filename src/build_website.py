@@ -12,7 +12,7 @@ from .schema import SchemaValidations
 class BuildWebsite:
     """Website operations."""
 
-    INDEX   = 'configs/index.yaml'
+    INDEX = 'configs/index.yaml'
 
     def build_index_object(self) -> dict:
         """Convert index.yaml into a dictionary."""
@@ -29,17 +29,31 @@ class BuildWebsite:
         # Initialize site_content.
         site_content = {
             'author': content['meta']['siteAuthor'],
-            'description': content['meta']['siteDescription'],
+            'site_description': content['meta']['siteDescription'],
             'icon': content['meta']['siteIcon'],
             'tags': ','.join(content['meta']['siteTags']),
             'image': content['content']['heroImage']['path'],
             'alt': content['content']['heroImage']['altText'],
-            'header': ''.join(f'<p>{line}</p>'
-                            for line in content['content']['header']),
-            'body': ''.join(f'<a target="_blank" href="{link}">{site}</a><br>'
-                            for site, link in content['content']['body'].items()),
+            'header': content['content']['header'],
+            'resume': content['content']['resume'],
+            'links': ''.join(f'<li><a target="_blank" rel="noopener" href="{link}">{site}</a></li>'
+                            for site, link in content['content']['links'].items()),
+            'prompt': content['content']['prompt'],
+            'name': content['content']['name'],
+            'description': content['content']['description'],
+            'title': content['content']['title'],
+            'site': content['content']['site'],
+            'pid': content['content']['pid'],
+            'sys_info': '',
+            'sys_info_heading': content['content']['system-info']['heading'],
+            'sys_info_content': ''.join(f'<tr><td>{field}:</td><td>{status}</td></tr>'
+                                       for field, status in \
+                                        content['content']['system-info']['table'].items()),
             'footer': '',
             'background': content['pageLayout']['color']['background'],
+            'primary': content['pageLayout']['color']['primary'],
+            'secondary': content['pageLayout']['color']['secondary'],
+            'tertiary': content['pageLayout']['color']['tertiary'],
             'font_color': content['pageLayout']['color']['font'],
             'link': content['pageLayout']['color']['clickedLink'],
             'font': content['pageLayout']['font']['name'],
@@ -48,24 +62,41 @@ class BuildWebsite:
             'google_font': ''
         }
 
-        # Grab the footer(s).
+        # Build the sys-info table.
+        if not content['content']['system-info']['enable']:
+            site_content['sys_info'] = ""
+        else:
+            site_content['sys_info'] += '<table class="system-info">'
+            site_content['sys_info'] += f'<tr><th colspan="2">\
+                                          {site_content["sys_info_heading"]}</th></tr>'
+            site_content['sys_info'] += site_content['sys_info_content']
+            site_content['sys_info'] += '</table>'
+
+        # Build the footer.
+        if content['content']['copyright']:
+            site_content['footer'] += f'<p>Connection to {site_content["site"]} closed.\
+                                        <br>© {year} {site_content["author"]}.<br>\
+                                        All rights reserved.</p>'
+        else:
+            site_content['footer'] += f'<p>Connection to {site_content["site"]} closed.</p>'
+
         count = 1
         for entry in content['content']['footer']:
             if not entry['combineTitle']:
-                site_content['footer'] += f'<p>{entry["title"]}</p>'
+                site_content['footer'] += f'<p class="donations">{entry["title"]}</p>'
             else:
                 delimiter = entry['fs']
-                site_content['footer'] += f'<p>{entry["title"]}'
+                site_content['footer'] += f'<p class="donations">{entry["title"]}'
                 for label, link in entry['links'].items():
                     if count < len(entry['links']):
-                        site_content['footer'] += f'<a target="_blank" href="' \
-                                                f'{link}">{label}</a> {delimiter} '
+                        site_content['footer'] += f'<a target="_blank" rel="noopener \
+                                                    noreferrer" href="' \
+                                                  f'{link}">{label}</a> {delimiter} '
                         count += 1
                     else:
-                        site_content['footer'] += f'<a target="_blank" href="' \
-                                                f'{link}">{label}</a></p>'
-        if content['content']['copyright']:
-            site_content['footer'] += f'<p>© {year} {site_content["author"]}</p>'
+                        site_content['footer'] += f'<a target="_blank" rel="noopener noreferrer"\
+                                                    href="' \
+                                                  f'{link}">{label}</a></p>'
 
         # Set a Google font.
         if content['pageLayout']['font']['googleFont']:
