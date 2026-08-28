@@ -339,7 +339,7 @@ footer {
   }
 
   .hero {
-    order: -1;
+    display: none;
   }
 
   .name {
