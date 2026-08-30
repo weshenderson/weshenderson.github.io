@@ -90,37 +90,6 @@
     </main>
 
     <div class="footer-bar"></div>
-
-
-
-
-<!--
-        count = 1
-        for entry in content['content']['footer']:
-            if not entry['combineTitle']:
-                site_content['footer'] += f'<p class="donations">{entry["title"]}</p>'
-            else:
-
-
-                delimiter = entry['fs']
-
-
-
-                site_content['footer'] += f'<p class="donations">{entry["title"]}'
-                for label, link in entry['links'].items():
-                    if count < len(entry['links']):
-                        site_content['footer'] += f'<a target="_blank" rel="noopener \
-                                                    noreferrer" href="' \
-                                                  f'{link}">{label}</a> {delimiter} '
-                        count += 1
-                    else:
-                        site_content['footer'] += f'<a target="_blank" rel="noopener noreferrer"\
-                                                    href="' \
-                                                  f'{link}">{label}</a></p>'
-                -->
-
-
-
     <footer>
       {% if content.copyright %}
       <p>Connection to {{ content.site }} closed.<br>© {{ current_year }} {{ meta.siteAuthor }}.<br>All rights reserved.</p>
