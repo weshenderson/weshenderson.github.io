@@ -94,7 +94,7 @@ def main():
                             'source': False,
                             'destination': 'resumes/resume.docx'},
                         'md': {
-                            'source': 'resume.md',
+                            'source': 'resume.md.j2',
                             'destination': 'resumes/resume.md'},
                         }
 
