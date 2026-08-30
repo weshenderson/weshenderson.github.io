@@ -12,7 +12,7 @@ This site is powered by [Alea](https://github.com/weshenderson/weshenderson.gith
 flowchart LR
     A[Workstation] --> B{{Git Hooks}}
 
-    B --> D(("Generated Artifacts[1]"))
+    B --> D((Generate Artifacts *))
 
     D --> F[GitHub Repository]
 
@@ -22,20 +22,18 @@ flowchart LR
     G --> I[GitHub Gist]
 
     I --> J[(Registry)]
-
-    %% Link the node to the footnote anchor
-    click D "#user-content-fn-1" "Go to footnote"
 ```
+\* *Generate Artifacts: HTML, JSON, PDF, Markdown, and DOCX.*
 
 1. A change is made to `configs/resume.yaml`.
-2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following versions of the resume:
+2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following artifacts:
    * `resume.json` *(JSON)*
    * `resume.html` *(HTML)*
    * `resume.pdf` *(PDF)*
    * `resume.md` *(markdown)*
    * `resume.docx` *(DOCX)*
-3. The changes are pushed to GitHub.
-4. The following GitHub Actions are ran:
+3. Changes are pushed to GitHub.
+4. The following GitHub Actions run:
    * [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Lints my code.
    * [Update Resume Gist](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml): Uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
    * [pages-build-deployment](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
@@ -72,5 +70,3 @@ I am using Javascript and data attributes to toggle the CSS layout in order to g
 ```
 up, up, down, down, left, right, left, right, b, a, <enter>
 ```
-
-[^1]: `HTML`, `JSON`, `PDF`, `markdown`, and `DOCX` artifacts.
