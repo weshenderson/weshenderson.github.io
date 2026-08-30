@@ -10,6 +10,8 @@
  TODO:
   * Move remaining HTML dependencies to their respective data files.
   * Fix the -s option (broken after migrating to jinga2).
+  * Offload PDF build to GitHub Actions.
+  * Expand hooks.
   * Implement artifact provenance.
   * Expand schema definitions:
     * education

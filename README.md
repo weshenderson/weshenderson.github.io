@@ -10,24 +10,31 @@ This site is powered by [Alea](https://github.com/weshenderson/weshenderson.gith
 
 ```mermaid
 flowchart LR
-    A[Workstation]-->B{{Git Hooks}};
-    B-->C((HTML));
-    B-->D((PDF));
-    B-->E((JSON));
-    C-->F[GitHub];
-    D-->F[GitHub];
-    E-->F[GitHub];
-    F-->G{{Actions}};
-    G-->H[Pages];
-    G-->I[Gist];
-    I-->J(Registry);
+    A[Workstation] --> B{{Git Hooks}}
+
+    B --> D(("Generated Artifacts[1]"))
+
+    D --> F[GitHub Repository]
+
+    F --> G{{GitHub Actions}}
+
+    G --> H[GitHub Pages]
+    G --> I[GitHub Gist]
+
+    I --> J[(Registry)]
+
+    %% Link the node to the footnote anchor
+    click D "#user-content-fn-1" "Go to footnote"
 ```
+[^1]: `HTML`, `JSON`, `PDF`, `markdown`, and `DOCX` artifacts.
 
 1. A change is made to `configs/resume.yaml`.
 2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following versions of the resume:
    * `resume.json` *(JSON)*
    * `resume.html` *(HTML)*
    * `resume.pdf` *(PDF)*
+   * `resume.md` *(markdown)*
+   * `resume.docx` *(DOCX)*
 3. The changes are pushed to GitHub.
 4. The following GitHub Actions are ran:
    * [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Lints my code.
@@ -64,5 +71,5 @@ Previously this work was done via Pandoc, however this results in a prettier end
 I am using Javascript and data attributes to toggle the CSS layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
 
 ```
-up, up, down, down, left, right, left, right, b, a
+up, up, down, down, left, right, left, right, b, a, <enter>
 ```
