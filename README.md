@@ -12,7 +12,7 @@ This site is powered by [Alea](https://github.com/weshenderson/weshenderson.gith
 flowchart LR
     A[Workstation] --> B{{Git Hooks}}
 
-    B --> D(("Generated Artifacts[1]"))
+    B --> D(("Generated Artifacts"))
 
     D --> F[GitHub Repository]
 
