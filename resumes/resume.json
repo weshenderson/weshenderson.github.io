@@ -80,14 +80,14 @@
       "license": "AWS-ASA-29789"
     },
     {
-      "name": "Red Hat Certified Engineer (RHCE)",
+      "name": "RHCE",
       "date": "2016-04-15",
       "issuer": "Red Hat",
       "url": "https://rhtapps.redhat.com/verify?certId=130-119-274",
       "license": "130-119-274"
     },
     {
-      "name": "Red Hat Certified System Administrator (RHCSA)",
+      "name": "RHCSA",
       "date": "2013-07-12",
       "issuer": "Red Hat",
       "url": "https://rhtapps.redhat.com/verify?certId=130-119-274",

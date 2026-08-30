@@ -200,10 +200,10 @@ Automation-focused Systems Engineer with 10+ years of experience in designing, i
 | **Certified Solutions Architect**                   | AWS | 2017 | `AWS-ASA-29789` |
 |         |                   |               |                      |
 |  |                   |               |                      |
-| **Red Hat Certified Engineer (RHCE)**                   | Red Hat | 2016 | `130-119-274` |
+| **RHCE**                   | Red Hat | 2016 | `130-119-274` |
 |         |                   |               |                      |
 |  |                   |               |                      |
-| **Red Hat Certified System Administrator (RHCSA)**                   | Red Hat | 2013 | `130-119-274` |
+| **RHCSA**                   | Red Hat | 2013 | `130-119-274` |
 |         |                   |               |                      |
 |  |                   |               |                      |
 | **LPIC-1**                   | Linux Professional Institute | 2012 | `LPI000250530` |
