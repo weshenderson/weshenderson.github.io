@@ -16,6 +16,7 @@
     * certifications
     * skills
     * work
+  * Add a 'Selected Projects' section to the resume?
   * Spec recommendations:
     - 'location' for school
         - Issue: https://github.com/jsonresume/resume-schema/issues/417
@@ -30,6 +31,7 @@ import sys
 
 from src import GenerateFiles
 from src import SchemaValidations
+from src import MachineResume
 
 def main():
     """Entrypoint for Alea."""
@@ -59,7 +61,7 @@ def main():
                              '--resume',
                              default=False,
                              action='store_true',
-                             help='Generate the new resume.html and assets.')
+                             help='Build new resume assets.')
     job_options.add_argument('-j',
                              '--json',
                              default=False,
@@ -82,22 +84,16 @@ def main():
                             'source': 'main.css',
                             'destination': 'assets/css/main.css'}
                         }
-    # pylint: disable=pointless-string-statement
-    '''
-    resume_templates = {'html': {
-                            'source': 'templates/srt-resume.tmpl',
-                            'destination': 'resumes/resume.html'},
-                        'html': {
-                            'source': 'templates/ats-resume.tmpl',
-                            'destination': 'resumes/ats-resume.html'},
-                        'txt': {
-                            'source': 'templates/resume-md.tmpl',
-                            'destination': 'resumes/resume.md'}
-                        }
-    '''
+
     resume_templates = {'html': {
                             'source': 'resume.html',
-                            'destination': 'resumes/resume.html'}
+                            'destination': 'resumes/resume.html'},
+                        'docx': {
+                            'source': False,
+                            'destination': 'resumes/resume.docx'},
+                        'md': {
+                            'source': 'resume.md',
+                            'destination': 'resumes/resume.md'},
                         }
 
     if args.check and args.index and args.resume:
@@ -131,6 +127,8 @@ def main():
     if args.resume:
         target = "resume"
         GenerateFiles.update_content(target, templates_dir, resume_templates)
+        MachineResume.generate_docx_resume(resume_templates['docx']['destination'])
+        MachineResume.validate_docx_resume(resume_templates['docx']['destination'])
     if args.json_resume:
         GenerateFiles.generate_json()
 

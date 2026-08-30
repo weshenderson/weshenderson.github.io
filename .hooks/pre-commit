@@ -5,8 +5,12 @@ INDEX='index.html'
 INDEX_CSS='assets/css/main.css'
 RESUME='resumes/resume.html'
 PDF='resumes/resume.pdf'
-JSON='resumes/resume.json'
 BASE_PATH="$(git rev-parse --show-toplevel)"
+RESUMES=(resumes/resume.html
+	 resumes/resume.json
+	 resumes/resume.pdf
+	 resumes/resume.docx
+	 resumes/resume.md)
 FILE_CHECK=(configs/
             alea.py
             templates/
@@ -27,8 +31,7 @@ function alea {
                 ./alea.py --index --resume --json
                 git add ${INDEX}
                 git add ${INDEX_CSS}
-                git add ${RESUME}
-                git add ${JSON}
+		git add ${RESUMES[@]}
             popd &>/dev/null
             break
         fi

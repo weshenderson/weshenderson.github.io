@@ -47,7 +47,11 @@ class GenerateFiles:
                 with open(RESUME_YAML, encoding='UTF-8') as config:
                     data = yaml.safe_load(config)
 
-                template = env.get_template(paths['source'])
+                try:
+                    template = env.get_template(paths['source'])
+                except AttributeError:
+                    continue
+
                 content  = template.render(**data, current_year=datetime.datetime.now().year)
 
                 with open(paths['destination'], 'w', encoding='UTF-8') as dest:

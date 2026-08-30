@@ -4,6 +4,7 @@ Initialization for Alea.
 
 from .generate_files import GenerateFiles
 from .schema import SchemaValidations
+from .build_resume_docx import MachineResume
 
 LOGO = """
  ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ 
@@ -17,6 +18,7 @@ LOGO = """
 ▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌       ▐░▌
 ▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌
  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀ 
+.......Advanced Link Encapsulation Algorithm.......
 """
 
 print(LOGO)

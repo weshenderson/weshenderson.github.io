@@ -4,7 +4,7 @@
 The personal webpage of Wes Henderson.
 
 ## Layout
-This site is powered by [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/alea.py) and hosted with GitHub Pages. Alea is the templating engine that creates `index.html` and `resume.html` based off of their respective yaml config files. All resume versions are generated from `configs/resume.yaml`, which is fully compliant with the [JSON Resume](https://jsonresume.org/) 1.0.0 spec.
+This site is powered by [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/alea.py) and hosted with GitHub Pages. Alea is the templating engine that creates `index.html` and `resume.html` based off of their respective yaml config files. All resume versions are generated from `configs/resume.yaml`, which is fully compatible with the [JSON Resume](https://jsonresume.org/) 1.0.0 spec.
 
 ## Workflow
 
@@ -37,7 +37,7 @@ flowchart LR
 6. My [GitHub Page](https://www.weshenderson.info/) is updated with my new content/resume.
 
 ## Hooks
-This repo relies heavily on pre-commit hooks to auto-generate new resources whenever certain files are updated. This is especially important for my resume as I would have to maintain 4 versions otherwise. The hooks (and Actions) allow me to effectively separate the content from the format!
+This repo relies heavily on pre-commit hooks to auto-generate new resources whenever certain files are updated. This is especially important for my resume as I would have to maintain 4 versions otherwise. The hooks (and Actions) allow me to effectively separate the content from the presentation!
 
 **PDF Resume**
 

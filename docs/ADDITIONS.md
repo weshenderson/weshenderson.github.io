@@ -1,6 +1,6 @@
 # Additions
 
-While fully compliant with [JSON Resume](https://jsonresume.org/) 1.0.0 spec, Alea does utilize a superset of features to further extend the theme. Those additions are outlined below.
+While fully compatible with [JSON Resume](https://jsonresume.org/) 1.0.0 spec, Alea does utilize a superset of features to further extend the theme. Those additions are outlined below.
 
 ## meta
 
