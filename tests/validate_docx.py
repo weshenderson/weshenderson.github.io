@@ -104,12 +104,14 @@ for section_number, section in enumerate(doc.sections, start=1):
 
     print(f"\nSection {section_number}:")
 
+    # pylint: disable=invalid-name
     HEADER_TEXT = " | ".join(
         paragraph.text.strip()
         for paragraph in section.header.paragraphs
         if paragraph.text.strip()
     )
 
+    # pylint: disable=invalid-name
     FOOTER_TEXT = " | ".join(
         paragraph.text.strip()
         for paragraph in section.footer.paragraphs
@@ -160,5 +162,6 @@ checks = {
 }
 
 for description, passed in checks.items():
+    # pylint: disable=invalid-name
     STATUS = "PASS" if passed else "FAIL"
     print(f"[{STATUS}] {description}")
