@@ -237,10 +237,10 @@ class MachineResume:
 
         lang.set(qn("w:val"), "en-US")
 
-        # Paragraph Helper
         # pylint: disable=too-many-arguments
         def add_paragraph(
             text="",
+            *,
             bold=False,
             italic=False,
             size=10,
@@ -248,8 +248,27 @@ class MachineResume:
             space_after=3,
             alignment=None,
             keep_with_next=False,
-            keep_together=False
-        ):
+            keep_together=False):
+            """
+            Add a formatted paragraph to the document.
+
+            Creates a paragraph with consistent line spacing, font formatting,
+            paragraph spacing, alignment, and pagination behavior.
+
+            Args:
+                text: Text to add to the paragraph.
+                bold: Whether the text should be bold.
+                italic: Whether the text should be italic.
+                size: Font size in points.
+                space_before: Space before the paragraph in points.
+                space_after: Space after the paragraph in points.
+                alignment: Optional paragraph alignment.
+                keep_with_next: Keep the paragraph with the following paragraph.
+                keep_together: Prevent the paragraph from being split across pages.
+
+            Returns:
+                The newly created paragraph.
+            """
             paragraph = doc.add_paragraph()
 
             paragraph.paragraph_format.space_before = Pt(space_before)
