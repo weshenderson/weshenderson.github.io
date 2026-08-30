@@ -3,8 +3,8 @@
     "theme": "elegant",
     "siteAuthor": "Wes Henderson",
     "siteDescription": "The resume of Wes Henderson.",
-    "siteIcon": "https://www.weshenderson.info/assets/images/resume.ico",
-    "siteThumbnail": "https://www.weshenderson.info/assets/images/necrux-scaled.webp",
+    "siteIcon": "../assets/images/resume.ico",
+    "siteThumbnail": "../assets/images/necrux-scaled.webp",
     "siteTags": [
       "Wes",
       "Henderson",
@@ -21,7 +21,7 @@
   "basics": {
     "name": "Wes Henderson",
     "label": "Staff Systems Engineer",
-    "image": "https://www.weshenderson.info/assets/images/necrux-scaled.webp",
+    "image": "../assets/images/necrux-scaled.webp",
     "email": "whendersonii@gmail.com",
     "phone": "(210) 589-0628",
     "url": "https://weshenderson.info",
@@ -29,12 +29,13 @@
     "location": {
       "city": "San Antonio",
       "countryCode": "US",
-      "region": "Texas"
+      "region": "Texas",
+      "stateCode": "TX"
     },
     "profiles": [
       {
         "network": "LinkedIn",
-        "url": "https://www.linkedin.com/in/wes-henderson/"
+        "url": "linkedin.com/in/wes-henderson"
       },
       {
         "network": "GitHub",

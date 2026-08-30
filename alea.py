@@ -8,14 +8,13 @@
  hook is in place).
 
  TODO:
-  * Templating support for loops.
+  * Move remaining HTML dependencies to their respective data files.
+  * Fix the -s option (broken after migrating to jinga2).
   * Expand schema definitions:
     * education
     * certifications
     * skills
     * work
-  * Consider adding priority ordering to skills.
-  * Migrate to divs with optional 'display: off' options.
   * Spec recommendations:
     - 'location' for school
         - Issue: https://github.com/jsonresume/resume-schema/issues/417
@@ -28,16 +27,11 @@
 import argparse
 import sys
 
-from src import BuildResume
-from src import BuildWebsite
 from src import GenerateFiles
 from src import SchemaValidations
 
 def main():
     """Entrypoint for Alea."""
-
-    resume  = BuildResume()
-    website = BuildWebsite()
 
     # Create the parser
     description = "Generate a link tree style webpage and/or a resume based off of YAML!"
@@ -79,14 +73,31 @@ def main():
 
     args = job_options.parse_args()
 
-    index_templates = {'html': {'source': 'templates/index.tmpl',
-                                'destination': 'index.html',
-                                }, 'css': {'source': 'templates/css.tmpl',
-                                           'destination': 'assets/css/main.css',
-                                           }}
-    resume_templates = {'html': {'source': 'templates/srt-resume.tmpl',
-                                 'destination': 'resumes/resume.html',
-                                 }}
+    templates_dir   = 'templates'
+    website_templates = {'html': {
+                            'source': 'index.html',
+                            'destination': 'index.html'},
+                        'css': {
+                            'source': 'main.css',
+                            'destination': 'assets/css/main.css'}
+                        }
+    # pylint: disable=pointless-string-statement
+    '''
+    resume_templates = {'html': {
+                            'source': 'templates/srt-resume.tmpl',
+                            'destination': 'resumes/resume.html'},
+                        'html': {
+                            'source': 'templates/ats-resume.tmpl',
+                            'destination': 'resumes/ats-resume.html'},
+                        'txt': {
+                            'source': 'templates/resume-md.tmpl',
+                            'destination': 'resumes/resume.md'}
+                        }
+    '''
+    resume_templates = {'html': {
+                            'source': 'resume.html',
+                            'destination': 'resumes/resume.html'}
+                        }
 
     if args.check and args.index and args.resume:
         SchemaValidations.index_schema()
@@ -103,10 +114,10 @@ def main():
         sys.exit(1)
 
     if args.backup and args.index and args.resume:
-        GenerateFiles.backup_files(index_templates)
+        GenerateFiles.backup_files(website_templates)
         GenerateFiles.backup_files(resume_templates)
     elif args.backup and args.index:
-        GenerateFiles.backup_files(index_templates)
+        GenerateFiles.backup_files(website_templates)
     elif args.backup and args.resume:
         GenerateFiles.backup_files(resume_templates)
     elif args.backup:
@@ -114,11 +125,11 @@ def main():
         sys.exit(1)
 
     if args.index:
-        site_content = website.build_index_object()
-        GenerateFiles.update_content(index_templates, site_content, args.stdout)
+        target = "website"
+        GenerateFiles.update_content(target, templates_dir, website_templates)
     if args.resume:
-        resume_content = resume.build_resume_object()
-        GenerateFiles.update_content(resume_templates, resume_content, args.stdout)
+        target = "resume"
+        GenerateFiles.update_content(target, templates_dir, resume_templates)
     if args.json_resume:
         GenerateFiles.generate_json()
 

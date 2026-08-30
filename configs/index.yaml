@@ -2,7 +2,8 @@
 meta:
   siteAuthor: "Wes Henderson"
   siteDescription: "The personal webpage of Wes Henderson."
-  siteIcon: "https://www.weshenderson.info/assets/images/skull.ico"
+  siteIcon: "assets/images/skull.ico"
+  siteImage: "assets/images/necrux-scaled.webp"
   siteTags:
     - "Wes"
     - "Henderson"
@@ -37,8 +38,8 @@ content:
   site: "weshenderson.info"
   description: "> Father, Traveler, Problem Solver, 3D Printer Enthusiast, & Linux Nerd"
   pid: "80085"
-  system-info:
-    enable: enable
+  sysinfo:
+    enable: true
     heading: "[system]"
     table:
       uptime: "40y"
@@ -53,12 +54,12 @@ content:
     Keybase: "https://keybase.io/necrux"
     Bluesky: "https://bsky.app/profile/necrux.bsky.social"
     Maker World: "https://makerworld.com/en/@necrux"
-  footer:
-    - title: "529 Donation Links: "
-      combineTitle: true
-      links:
-        Kairi: "https://go.fidelity.com/jnz1ko"
-        Kalel: "https://go.fidelity.com/tsrje3"
-        Cairo: "https://go.fidelity.com/6pgu38"
-      fs: "|"
+  donations:
+    enable: true
+    title: "529 Donation Links"
+    fieldSeparator: "|"
+    links:
+      Kairi: "https://go.fidelity.com/jnz1ko"
+      Kalel: "https://go.fidelity.com/tsrje3"
+      Cairo: "https://go.fidelity.com/6pgu38"
   copyright: true

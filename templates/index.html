@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ meta.siteAuthor }}</title>
+    <link rel="shortcut icon" href="{{ meta.siteIcon }}">
+    <link rel=icon type="image/ico" href="{{ meta.siteIcon }}">
+    <link rel=stylesheet href="assets/css/main.css" type="text/css" media=screen>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="{{ meta.siteAuthor }}">
+    <meta name="description" content="{{ meta.siteDescription }}">
+    <meta name="keywords" content="{{ meta.siteTags | join(', ') }}">
+    <meta property="og:site_name" content="{{ meta.siteAuthor }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ meta.siteAuthor }}">
+    <meta property="og:description" content="{{ meta.siteDescription }}">
+    <meta property="og:image" content="{{ meta.siteImage }}">
+    <meta property="og:image:secure_url" content="{{ meta.siteImage }}">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="{{ meta.siteImage }}">
+    {% if meta.googleAnalytics %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ meta.googleAnalytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{ meta.googleAnalytics }}');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    {% endif %}
+  </head>
+
+  <body>
+    <header>
+        <a class="home-button" href="#" style="text-decoration: none;">{{ content.header }}</a>
+        <a class="resume-button" href="{{ content.resume }}" target="_blank">Résumé</a>
+    </header>
+
+    <div class="header-bar"></div>
+
+    <main class="content">
+      <div class="terminal-windows">
+        <div class="intro-box">
+          <div class="whoami">
+            <p><span class="prompt">{{ content.prompt }}</span> whoami</p>
+            <p class="name">{{ content.name }}<span class="blinking-cursor"></span></p>
+            <p class="title">{{ content.title }}</p>
+            {% if content.sysinfo.enable %}
+            <table class="system-info">
+              <tr><th colspan="2"></th></tr>
+              {% for key, value in content.sysinfo.table.items() %}
+              <tr><td>{{ key }}:</td><td>{{ value }}</td></tr>
+              {% endfor %}
+            </table>
+            {% endif %}
+          </div>
+          <div class="links">
+            <div class="links-border">
+              <span>ls ~/links</span>
+              <span>PID: {{ content.pid }}</span>
+            </div>
+            <div class="links-body">
+              <ul class="links-list">
+                {% for site, link in content.links.items() %}
+                <li><a target="_blank" rel="noopener" href="{{ link }}">{{ site }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="description">
+          <div class="desc-border">
+            <span>description.txt</span>
+            <span>[READ ONLY]</span>
+          </div>
+          <div class="desc-body">
+            <p>{{ content.description }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero">
+      <div class="hero-image">
+        <div class="image-container">
+          <img src="{{ content.heroImage.path }}" alt="{{ content.heroImage.altText }}">
+        </div>
+      </div>
+      </div>
+    </main>
+
+    <div class="footer-bar"></div>
+
+
+
+
+<!--
+        count = 1
+        for entry in content['content']['footer']:
+            if not entry['combineTitle']:
+                site_content['footer'] += f'<p class="donations">{entry["title"]}</p>'
+            else:
+
+
+                delimiter = entry['fs']
+
+
+
+                site_content['footer'] += f'<p class="donations">{entry["title"]}'
+                for label, link in entry['links'].items():
+                    if count < len(entry['links']):
+                        site_content['footer'] += f'<a target="_blank" rel="noopener \
+                                                    noreferrer" href="' \
+                                                  f'{link}">{label}</a> {delimiter} '
+                        count += 1
+                    else:
+                        site_content['footer'] += f'<a target="_blank" rel="noopener noreferrer"\
+                                                    href="' \
+                                                  f'{link}">{label}</a></p>'
+                -->
+
+
+
+    <footer>
+      {% if content.copyright %}
+      <p>Connection to {{ content.site }} closed.<br>© {{ current_year }} {{ meta.siteAuthor }}.<br>All rights reserved.</p>
+      {% else %}
+      <p>Connection to {{ content.site }} closed.</p>
+      {% endif %}
+      
+      {% if content.donations.enable %}
+      <p class="donations">{{ content.donations.title }}:
+      {% for site, link in content.donations.links.items() %}
+      {% if loop.last %}
+      <a target="_blank" rel="noopener noreferrer" href="{{ link }}">{{ site }}</a>
+      {% else %}
+      <a target="_blank" rel="noopener noreferrer" href="{{ link }}">{{ site }}</a> {{ content.donations.fieldSeparator | default("") }}
+      {% endif %}
+      {% endfor %}
+      </p>
+      {% endif %}
+    </footer>
+
+  </body>
+</html>

@@ -1,0 +1,218 @@
+{% set months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %}
+<!DOCTYPE html>
+<html lang="en" data-theme="professional">
+  <head>
+    <title>{{ meta.siteAuthor }}, Resume</title>
+    <link rel="shortcut icon" href="{{ metasiteIcon }}">
+    <link rel=icon type="image/ico" href="{{ metasiteIcon }}">
+    <link rel="stylesheet" type="text/css" href="../assets/css/srt-reset-fonts-grids.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../assets/css/srt-resume.css" media="all">
+    <script type="text/javascript" src="../assets/js/konami.js"></script>
+    <meta charset="utf-8">
+    <meta name="author" content="{{ meta.siteAuthor }}">
+    <meta name="description" content="{{ meta.siteDescription }}">
+    <meta name="keywords" content="{{ meta.siteTags | join(', ') }}">
+    <meta property="og:site_name" content="{{ meta.siteAuthor }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ meta.siteAuthor }}">
+    <meta property="og:description" content="{{ meta.siteDescription }}">
+    <meta property="og:image" content="{{ meta.siteThumbnail }}">
+    <meta property="og:image:secure_url" content="{{ meta.siteThumbnail }}">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="{{ meta.siteThumbnail }}">
+    {% if meta.googleAnalytics %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ meta.googleAnalytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{ meta.googleAnalytics }}');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    {% endif %}
+  </head>
+
+  <body>
+    <div id="doc2" class="yui-t7">
+      <div id="inner">
+
+        <div id="hd">
+          <div class="yui-gc">
+            <div class="yui-u first">
+              <h1>{{ basics.name }}</h1>
+              <h2>{{ basics.label }}</h2>
+            </div>
+            <div class="yui-u">
+              <div class="contact-info">
+                <!-- H-ONLY --> <h3><a id="button" href="resume.pdf">Download PDF</a></h3> <!-- /H-ONLY -->
+                <!-- H-ONLY --> <h3><a id="button" href="https://www.necrux.com/cv/">About Résumé</a></h3> <!-- /H-ONLY -->
+                {% if meta.emailSubject %}
+                <h3><a href="mailto:{{ basics.email }}?subject={{ meta.emailSubject }}">{{ basics.email }}</a></h3>
+                {% else %}
+                <h3><a href="mailto:{{ basics.email }}">{{ basics.email }}</a></h3>
+                {% endif %}
+                <h3>{{ basics.phone }}</h3>
+              </div><!--// .contact-info -->
+            </div>
+          </div><!--// .yui-gc -->
+        </div><!--// hd -->
+
+        <div id="bd">
+          <div id="yui-main">
+            <div class="yui-b">
+
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Summary</h2>
+                </div>
+                <div class="yui-u">
+                  <p>
+                    {{ basics.summary }}
+                  </p>
+                </div>
+              </div><!--// .yui-gf -->
+
+              {% if skills %}
+              <div class="yui-gf">
+                  <div class="yui-u first">
+                      <h2>Skills</h2>
+                  </div>
+                  <div class="yui-u">
+                    <div class="skill">
+                    {% for skill in skills %}
+                      <p><b>{{ skill.name }}: </b> {{ skill.keywords | join(', ') }}</p>
+                    {% endfor %}
+                    </div>
+                  </div>
+              </div><!--// .yui-gf-->
+              {% endif %}
+
+              {% if work %}
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Relevant Experience</h2>
+                </div><!--// .yui-u -->
+                <div class="yui-u">
+                  {% for job in work %}
+                  {% set startYear = job.startDate.split('-') %}
+                  {% set startMonth = startYear[1] %}
+                  {% set endYear = job.endDate.split('-') %}
+                  {% set endMonth = endYear[1] %}
+                  <div class="job">
+                    <h2>{{ job.name }}</h2>
+                    <h3>{{ job.position }}</h3>
+                    <h4>{{ months[startMonth | int - 1] }} {{ startYear[0] }} - {% if work.current %}Present{% else %}{{ months[endMonth | int - 1] }} {{ endYear[0] }}{% endif %}</h4>
+                    {% for highlight in job.highlights %}
+                    <p>• {{ highlight }}</p>
+                    {% endfor %}
+                  </div>
+                  {% endfor %}
+                </div><!--// .yui-u -->
+              </div><!--// .yui-gf -->
+              {% endif %}
+
+              {% if certificates %}
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Certifications</h2>
+                </div>
+                <div class="yui-u">
+                  <ul class="talent">
+                    {% for cert in certificates %}
+                    <li> {{ cert.issuer }} {{ cert.name }} </li>
+                    {% endfor %}
+                  </ul>
+                  <ul class="talent-center">
+                    {% for cert in certificates %}
+                    {% set year = cert.date.split('-') %}
+                    <li> {{ year[0] }} </li>
+                    {% endfor %}
+                  </ul>
+                  <ul class="talent-center">
+                    {% for cert in certificates %}
+                    <li> {{ cert.license }} </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div><!--// .yui-gf-->
+              {% endif %}
+
+              {% if education %}
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Education</h2>
+                </div>
+                <div class="yui-u">
+                  {% for school in education %}
+                  <h2>{{ school.institution }} - {{ school.location }}</h2>
+                  <h3>{{ school.studyType }} in {{ school.area }} {% if school.score %}' &mdash; <strong> {{ school.score }} GPA</strong>{% endif %}</h3>
+                  {% if school.courses %}
+                  <br>
+                  {% for course in school.courses %}
+                  <p>• {{ course }}</p>
+                  {% endfor %}
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              </div><!--// .yui-gf -->
+              {% endif %}
+
+              {% if publications %}
+              <div class="yui-gf">
+                  <div class="yui-u first">
+                      <h2>Publications</h2>
+                  </div>
+                  <div class="yui-u">
+                    {% for article in publications %}
+                    {% set releaseDate = article.releaseDate.split('-') %}
+                    {% set releaseMonth = releaseDate[1] %}
+                    {% set nameArray = basics.name.split(' ') %}
+                    <p><strong>{{ loop.index }}.</strong> {{ nameArray[1] }}, {{ nameArray[0] }} ({{ months[releaseMonth | int - 1] }} {{ releaseDate[2] }}, {{ releaseDate[0] }}). <a target="_blank" href="{{ article.url }}">{{ article.name }}</a>. {{ article.publisher }}.</p>
+                    {% endfor %}
+                  </div>
+              </div><!--// .yui-gf-->
+              {% endif %}
+
+              {% if volunteer %}
+              <div class="yui-gf last">
+                <div class="yui-u first">
+                  <h2>Volunteer Work</h2>
+                </div>
+                <div class="yui-u">
+                  {% for work in volunteer %}
+                  {% set startYear = work.startDate.split('-') %}
+                  {% set startMonth = startYear[1] %}
+                  {% set endYear = work.endDate.split('-') %}
+                  {% set endMonth = endYear[1] %}
+                  <h2>{{ work.organization }}</h2>
+                  <h3>{{ work.position }}</h3>
+                  <h4>{{ months[startMonth | int - 1] }} {{ startYear[0] }} - {% if work.current %}Present{% else %}{{ months[endMonth | int - 1] }} {{ endYear[0] }}{% endif %}</h4>
+                  {% if work.highlights %}
+                  <br>
+                  {% for highlight in work.highlights %}
+                  <p>• {{ highlight }}</p>
+                  {% endfor %}
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              </div><!--// .yui-gf -->
+              {% endif %}
+
+            </div><!--// .yui-b -->
+          </div><!--// yui-main -->
+        </div><!--// bd -->
+
+        <div id="ft">
+          {% if meta.emailSubject %}
+          <p>{{ basics.name }} &mdash; <a href="mailto:{{ basics.email }}?subject={{ meta.emailSubject }}">{{ basics.email }}</a> &mdash; {{ basics.phone }}</p>
+          {% else %}
+          <p>{{ basics.name }} &mdash; <a href="mailto:{{ basics.email }}">{{ basics.email }}</a> &mdash; {{ basics.phone }}</p>
+          {% endif %}
+        </div><!--// footer -->
+
+      </div><!-- // inner -->
+    </div><!--// doc -->
+  </body>
+</html>

@@ -1,10 +1,10 @@
 :root {
   --page-width: 1200px;
   --page-padding: 1.5rem;
-  --background: $background;
-  --primary: $primary;
-  --secondary: $secondary;
-  --tertiary: $tertiary;
+  --background: {{ pageLayout.color.background }};
+  --primary: {{ pageLayout.color.primary }};
+  --secondary: {{ pageLayout.color.secondary }};
+  --tertiary: {{ pageLayout.color.tertiary }};
 }
 
 * {

@@ -43,7 +43,7 @@ class SchemaValidations:
                     "altText": str
                 },
                 "links": dict,
-                "footer": list,
+                "donations": dict,
                 "copyright": schema.Or(bool, error=bool_error)
             },
         }, ignore_extra_keys=True)

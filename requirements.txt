@@ -1,2 +1,4 @@
 pyyaml
 schema
+python-docx
+Jinja2
