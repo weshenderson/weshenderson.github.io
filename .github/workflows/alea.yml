@@ -35,6 +35,8 @@ jobs:
             - 'templates/*website*'
             - 'configs/*index*'
             - 'configs/*website*'
+            - 'configs/main.css'
+            - 'templates/.build.metadata'
     - name: Check for resume changes.
       id: resume_updates
       uses: dorny/paths-filter@v3
@@ -43,6 +45,7 @@ jobs:
           specific_file:
             - 'templates/*resume*'
             - 'configs/*resume*'
+            - 'templates/.build.metadata'
     - name: Updating website artifacts -- HTML, CSS
       if: steps.website_updates.outputs.specific_file == 'true'
       run: python ./alea.py -i
@@ -67,7 +70,7 @@ jobs:
         sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
         sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
         sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
-        sed -i "s/ALEA_COMMIT/GITHUB_SHA/g" ${FILES[@]}
+        sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
         sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
     - name: Inject resume build metadata.
       if: steps.resume_updates.outputs.specific_file == 'true'
