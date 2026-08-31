@@ -43,10 +43,10 @@ jobs:
             - 'configs/*resume*'
     - name: Updating website artifacts.
       if: steps.website_updates.outputs.specific_file == 'true'
-      run: alea.py -i
+      run: python ./alea.py -i
     - name: Updating resume artifacts.
       if: steps.resume_updates.outputs.specific_file == 'true'
-      run: alea.py -r
+      run: python ./alea.py -r
     - name: Commit and Push Artifact(s).
       run: |
         git config --global user.name "alea[bot]"
