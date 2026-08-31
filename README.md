@@ -4,7 +4,6 @@ The personal webpage of Wes Henderson.
 
 * [![Linter](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml)
 * [![Alea](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/alea.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/alea.yml)
-* [![CI/CD](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/gist.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/gist.yml)
 * [![Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment)
 
 ## Layout
@@ -38,9 +37,8 @@ flowchart LR
 3. Changes are pushed to GitHub.
 4. GitHub Actions work their magic:
    * [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Classic *(and sometimes annoying)* Python linter.
-   * [Gist](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/gist.yml): Uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
    * [Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
-   * [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/.github/workflows/alea.yml): Generates the following artifacts.
+   * [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/.github/workflows/alea.yml): Generates artifacts, inject metadata, and upload `resome.json` to a gist. Artifacts generated:
         * `index.html` / `main.css`
         * `resume.json`
         * `resume.html`
