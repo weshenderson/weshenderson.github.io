@@ -1,6 +1,6 @@
 FROM fedora:latest
 
-RUN dnf -y install npx
+RUN dnf -y install npx unzip
 
 RUN dnf -y install fedora-workstation-repositories && \
     dnf config-manager setopt google-chrome.enabled=1 && \
