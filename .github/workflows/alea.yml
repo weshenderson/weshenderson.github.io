@@ -59,6 +59,26 @@ jobs:
 
         docker compose --env-file .build.parameters up --build
         rm -f ${TMP}
+    - name: Inject website build metadata.
+      if: steps.website_updates.outputs.specific_file == 'true'
+      run: |
+        FILES=(index.html assets/css/main.css)
+        DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
+        sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
+        sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
+        sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
+        sed -i "s/ALEA_COMMIT/GITHUB_SHA/g" ${FILES[@]}
+        sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
+    - name: Inject resume build metadata.
+      if: steps.resume_updates.outputs.specific_file == 'true'
+      run: |
+        FILES=(resumes/resume.html resumes/resume.md)
+        DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
+        sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
+        sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
+        sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
+        sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
+        sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
     - name: Commit and Push Artifact(s).
       run: |
         git config --global user.name "alea[bot]"
