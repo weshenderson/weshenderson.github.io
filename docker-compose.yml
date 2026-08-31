@@ -2,17 +2,6 @@ services:
   pdf:
     build: .
     working_dir: /tmp/
-    #environment:
-    #  - PDF=${TMP}
-    #  - OUTPUT=${OUTPUT}
-    #command: |
-    #     whoami
-    #     pwd
-    #     ls
-    #     ls ./resumes/
-    #     ls ./assets/
-    #     echo "TMP: ${TMP}"
-    #     echo "OUTPUT: ${OUTPUT}"
     command: >
         /chrome-headless
           --no-sandbox
