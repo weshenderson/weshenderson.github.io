@@ -1,0 +1,63 @@
+name: Alea
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository.
+      uses: actions/checkout@v4
+    - name: Set up Python.
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies.
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Check for website changes.
+      id: website_updates
+      uses: dorny/paths-filter@v3
+      with:
+        filters: |
+          specific_file:
+            - templates/*index*'
+            - 'templates/*website*'
+            - 'configs/*index*'
+            - 'configs/*website*'
+    - name: Check for resume changes.
+      id: resume_updates
+      uses: dorny/paths-filter@v3
+      with:
+        filters: |
+          specific_file:
+            - 'templates/*resume*'
+            - 'configs/*resume*'
+    - name: Updating website artifacts.
+      if: steps.website_updates.outputs.specific_file == 'true'
+      run: alea.py -i
+    - name: Updating resume artifacts.
+      if: steps.resume_updates.outputs.specific_file == 'true'
+      run: alea.py -r
+    - name: Commit and Push Artifact(s).
+      run: |
+        git config --global user.name "alea[bot]"
+        git config --global user.email "alea[bot]@users.noreply.github.com"
+
+        git add index.html
+        git add resumes/
+
+        if ! git diff --cached --quiet; then
+          git commit -m "chore: artifact generation [skip ci]"
+          git push
+        else
+          echo "No changes detected in the artifact."
+        fi
