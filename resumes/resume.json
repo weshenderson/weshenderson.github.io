@@ -1,10 +1,10 @@
 {
   "buildData": {
-    "Build": "27",
-    "Run ID": "33446104796",
-    "Attempt": "1",
-    "Commit": "13d4434e0d304db36baa2ddcfbc3406da41b069b",
-    "Date": "2026-08-31 05:26:21 PM CDT"
+    "Build": "ALEA_BUILD",
+    "Run ID": "ALEA_RUN_ID",
+    "Attempt": "ALEA_ATTEMPT",
+    "Commit": "ALEA_COMMIT",
+    "Date": "ALEA_DATE"
   },
   "meta": {
     "theme": "elegant",
@@ -21,7 +21,8 @@
       "DevOps Engineer",
       "Resume",
       "San Antonio",
-      "Texas"
+      "Texas",
+      "RHCE"
     ],
     "googleAnalytics": "G-1HMXV18Z9V",
     "emailSubject": "You're hired! ;)"
