@@ -50,14 +50,13 @@ jobs:
     - name: Updating resume artifact -- PDF
       if: steps.resume_updates.outputs.specific_file == 'true'
       run: |
-        export RESUME='resumes/resume.html'
-        export TMP='resumes/resume_tmp_pdf.html'
-        export OUTPUT='resumes/resume.pdf'
+        source .build.parameters
 
         cp ${RESUME} ${TMP}
         sed -i 's@<!-- H-ONLY -->.*<!-- /H-ONLY -->@@g' ${TMP}
 
-        docker compose up -d
+        docker compose --env-file .build.parameters up -d
+        rm -f ${TMP}
     - name: Commit and Push Artifact(s).
       run: |
         git config --global user.name "alea[bot]"

@@ -3,9 +3,9 @@ services:
     build: .
     image: html-to-pdf
     working_dir: /tmp/
-    environment:
-      - PDF=${TMP}
-      - OUTPUT=${OUTPUT}
+    #environment:
+    #  - PDF=${TMP}
+    #  - OUTPUT=${OUTPUT}
     command: >
         /chrome-headless
           --no-sandbox
