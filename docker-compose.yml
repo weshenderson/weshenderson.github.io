@@ -5,24 +5,24 @@ services:
     #environment:
     #  - PDF=${TMP}
     #  - OUTPUT=${OUTPUT}
-    command: |
-         whoami
-         pwd
-         ls
-         ls ./resumes/
-         ls ./assets/
-         echo "TMP: ${TMP}"
-         echo "OUTPUT: ${OUTPUT}"
-    #command: >
-    #    /chrome-headless
-    #      --no-sandbox
-    #      --headless
-    #      --disable-gpu
-    #      --no-pdf-header-footer
-    #      --no-margins
-    #      --run-all-compositor-stages-before-draw
-    #      --print-to-pdf=${OUTPUT}
-    #      ${TMP}
+    #command: |
+    #     whoami
+    #     pwd
+    #     ls
+    #     ls ./resumes/
+    #     ls ./assets/
+    #     echo "TMP: ${TMP}"
+    #     echo "OUTPUT: ${OUTPUT}"
+    command: >
+        /chrome-headless
+          --no-sandbox
+          --headless
+          --disable-gpu
+          --no-pdf-header-footer
+          --no-margins
+          --run-all-compositor-stages-before-draw
+          --print-to-pdf='resumes/resume.pdf'
+          'resumes/resume_tmp_pdf.html'
     volumes:
         - ./resumes:/tmp/resumes
         - ./assets:/tmp/assets
