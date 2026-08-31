@@ -95,7 +95,7 @@ def main():
                             'destination': 'resumes/resume.docx'},
                         'md': {
                             'source': 'resume.md.j2',
-                            'destination': 'resumes/resume.md'},
+                            'destination': 'resumes/resume.md'}
                         }
 
     if args.check and args.index and args.resume:
@@ -128,6 +128,7 @@ def main():
         GenerateFiles.update_content(target, templates_dir, website_templates)
     if args.resume:
         target = "resume"
+        GenerateFiles.generate_json()
         GenerateFiles.update_content(target, templates_dir, resume_templates)
         MachineResume.generate_docx_resume(resume_templates['docx']['destination'])
         MachineResume.validate_docx_resume(resume_templates['docx']['destination'])
