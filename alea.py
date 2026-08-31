@@ -10,9 +10,7 @@
  TODO:
   * Move remaining HTML dependencies to their respective data files.
   * Fix the -s option (broken after migrating to jinga2).
-  * Offload PDF build to GitHub Actions.
-  * Expand hooks.
-  * Implement artifact provenance.
+  * Implement artifact provenance -- DOCX and PDF.
   * Expand schema definitions:
     * education
     * certifications
@@ -80,15 +78,15 @@ def main():
 
     templates_dir   = 'templates'
     website_templates = {'html': {
-                            'source': 'index.html',
+                            'source': 'index.html.j2',
                             'destination': 'index.html'},
                         'css': {
-                            'source': 'main.css',
+                            'source': 'main.css.j2',
                             'destination': 'assets/css/main.css'}
                         }
 
     resume_templates = {'html': {
-                            'source': 'resume.html',
+                            'source': 'resume.html.j2',
                             'destination': 'resumes/resume.html'},
                         'docx': {
                             'source': False,

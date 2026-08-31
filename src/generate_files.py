@@ -3,6 +3,7 @@ File creation: resume(s), website, file backups, etc.
 """
 
 from shutil import copyfile
+from pathlib import Path
 import datetime
 
 import json
@@ -15,6 +16,7 @@ from .schema import SchemaValidations
 INDEX_YAML  = 'configs/index.yaml'
 RESUME_YAML = 'configs/resume.yaml'
 RESUME_JSON = 'resumes/resume.json'
+BUILD_DATA  = 'templates/.build.metadata'
 
 class GenerateFiles:
     """File operations."""
@@ -57,18 +59,42 @@ class GenerateFiles:
                 with open(paths['destination'], 'w', encoding='UTF-8') as dest:
                     dest.write(content)
 
+
     @staticmethod
     def generate_json():
-        """Generate a JSON copy of the resume."""
+        """Generate a JSON copy of the resume with optional build data."""
 
         SchemaValidations.resume_schema()
 
+        build_data = GenerateFiles.read_build_info(BUILD_DATA)
+
+        if build_data:
+            content = build_data
+        else:
+            content = {}
+
         print("Generating the JSON version of the resume.")
         with open(RESUME_YAML, encoding='UTF-8') as file:
-            content = yaml.safe_load(file)
+            content.update(yaml.safe_load(file))
 
         with open(RESUME_JSON, 'w', encoding='UTF-8') as file:
             json.dump(content, file, indent=2)
+
+    @staticmethod
+    def read_build_info(build_data_file):
+        """Read build information from an optional metadata file."""
+
+        metadata_file = Path(build_data_file)
+
+        if not metadata_file.is_file():
+            return None
+
+        build_data = {}
+
+        with metadata_file.open(encoding="UTF-8") as file:
+            build_data = yaml.safe_load(file)
+
+        return {"buildData": build_data}
 
     @staticmethod
     def backup_files(templates):

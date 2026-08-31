@@ -31,11 +31,11 @@ jobs:
       with:
         filters: |
           specific_file:
-            - 'templates/*index*'
-            - 'templates/*website*'
             - 'configs/*index*'
             - 'configs/*website*'
-            - 'configs/main.css'
+            - 'templates/*index*'
+            - 'templates/*website*'
+            - 'templates/main.css.j2'
             - 'templates/.build.metadata'
     - name: Check for resume changes.
       id: resume_updates
@@ -43,8 +43,8 @@ jobs:
       with:
         filters: |
           specific_file:
-            - 'templates/*resume*'
             - 'configs/*resume*'
+            - 'templates/*resume*'
             - 'templates/.build.metadata'
     - name: Updating website artifacts -- HTML, CSS
       if: steps.website_updates.outputs.specific_file == 'true'
@@ -75,7 +75,7 @@ jobs:
     - name: Inject resume build metadata.
       if: steps.resume_updates.outputs.specific_file == 'true'
       run: |
-        FILES=(resumes/resume.html resumes/resume.md)
+        FILES=(resumes/resume.html resumes/resume.md resumes/resume.json)
         DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
         sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
         sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
