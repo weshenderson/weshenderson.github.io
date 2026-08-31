@@ -18,6 +18,7 @@ services:
           ${TMP}
     volumes:
         - ./resumes:/tmp/resumes
+        - ./assets:/tmp/assets
 
     # Interactive Shell for Troubleshooting
     #stdin_open: true # docker run -i

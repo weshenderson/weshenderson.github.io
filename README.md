@@ -23,7 +23,7 @@ flowchart LR
 
     I --> J[(Registry)]
 ```
-\* *Generate Artifacts: HTML, JSON, PDF, Markdown, and DOCX.*
+\* *Generate Artifacts: `HTML`, `JSON`, `PDF`, `Markdown`, and `DOCX`.*
 
 1. A change is made to `configs/resume.yaml`.
 2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following artifacts:
