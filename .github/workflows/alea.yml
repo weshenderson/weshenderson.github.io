@@ -56,7 +56,7 @@ jobs:
         git add resumes/
 
         if ! git diff --cached --quiet; then
-          git commit -m "chore: artifact generation [skip ci]"
+          git commit -m "alea: artifact generation [skip ci]"
           git push
         else
           echo "No changes detected in the artifact."
