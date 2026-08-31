@@ -43,7 +43,7 @@ jobs:
           specific_file:
             - 'templates/*resume*'
             - 'configs/*resume*'
-    - name: Updating website artifacts.
+    - name: Updating website artifacts -- HTML, CSS
       if: steps.website_updates.outputs.specific_file == 'true'
       run: python ./alea.py -i
     - name: Updating resume artifacts -- JSON, HTML, MD, DOCX
