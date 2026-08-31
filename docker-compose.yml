@@ -1,7 +1,6 @@
 services:
   pdf:
     build: .
-    image: html-to-pdf
     working_dir: /tmp/
     #environment:
     #  - PDF=${TMP}
