@@ -42,11 +42,11 @@ flowchart LR
    * [Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
    * [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/.github/workflows/alea.yml): Generates the following artifacts.
         * `index.html` / `main.css`
-        * `resume.json` *(JSON)*
-        * `resume.html` *(HTML)*
-        * `resume.pdf` *(PDF)*
-        * `resume.md` *(markdown)*
-        * `resume.docx` *(DOCX)*
+        * `resume.json`
+        * `resume.html`
+        * `resume.pdf`
+        * `resume.md`
+        * `resume.docx`
 
 ## Post Deployment
 Once deployed the website and various résumé formats can be found below:
@@ -63,7 +63,7 @@ All artifacts, other than PDFs, are generated with Alea from a canonical data so
 
 **PDF Resume**
 
-The PDF version of my resume is generated via `chrome-headless-shell`. The old headless browser no longer ships with the default Google Chrome dev tools within Chrome as it a separate binary and an entirely different browser. You can read more about these changes [here](https://developer.chrome.com/docs/chromium/headless).
+The PDF version of my resume is generated via `chrome-headless-shell`. The old headless browser no longer ships with the default Google Chrome dev tools inside Chrome as it a separate binary and an entirely different browser. You can read more about these changes [here](https://developer.chrome.com/docs/chromium/headless).
 
 I have built the new `chrome-headless-shell` as a dockerfile for portability. Simply run `docker-compose` up after exporting the `TMP` and `OUTPUT` variables.
 
@@ -89,7 +89,5 @@ Previously this work was done via Pandoc, however this results in a prettier end
 I am using Javascript and data attributes to toggle the CSS layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
 
 ```
-^ ^ v v < > < > B A ENTER
+up, up, down, down, left, right, left, right, B, A
 ```
-
-This was a hard requirement of my project from the beginning. I still cannot tell you why, it just felt right!
