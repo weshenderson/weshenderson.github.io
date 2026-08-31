@@ -20,11 +20,11 @@
     "emailSubject": "You're hired! ;)",
     "buildData": {
       "buildData": {
-        "Build": "ALEA_BUILD",
-        "Run ID": "ALEA_RUN_ID",
-        "Attempt": "ALEA_ATTEMPT",
-        "Commit": "ALEA_COMMIT",
-        "Date": "ALEA_DATE"
+        "Build": "30",
+        "Run ID": "33449586570",
+        "Attempt": "1",
+        "Commit": "29c7cabf6cd577ab9b88ecb4e4a2bd6800fdf501",
+        "Date": "2026-08-31 06:12:19 PM CDT"
       }
     }
   },
