@@ -55,7 +55,7 @@ jobs:
         cp ${RESUME} ${TMP}
         sed -i 's@<!-- H-ONLY -->.*<!-- /H-ONLY -->@@g' ${TMP}
 
-        docker compose --env-file .build.parameters up -d
+        docker compose --env-file .build.parameters up --build
         rm -f ${TMP}
     - name: Commit and Push Artifact(s).
       run: |
