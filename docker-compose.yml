@@ -21,8 +21,8 @@ services:
           --no-pdf-header-footer
           --no-margins
           --run-all-compositor-stages-before-draw
-          --print-to-pdf='resumes/resume.pdf'
-          'resumes/resume_tmp_pdf.html'
+          --print-to-pdf=${OUTPUT}
+          ${TMP}
     volumes:
         - ./resumes:/tmp/resumes
         - ./assets:/tmp/assets
