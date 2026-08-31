@@ -1,11 +1,4 @@
 {
-  "buildData": {
-    "Build": "ALEA_BUILD",
-    "Run ID": "ALEA_RUN_ID",
-    "Attempt": "ALEA_ATTEMPT",
-    "Commit": "ALEA_COMMIT",
-    "Date": "ALEA_DATE"
-  },
   "meta": {
     "theme": "elegant",
     "siteAuthor": "Wes Henderson",
@@ -21,11 +14,19 @@
       "DevOps Engineer",
       "Resume",
       "San Antonio",
-      "Texas",
-      "RHCE"
+      "Texas"
     ],
     "googleAnalytics": "G-1HMXV18Z9V",
-    "emailSubject": "You're hired! ;)"
+    "emailSubject": "You're hired! ;)",
+    "buildData": {
+      "buildData": {
+        "Build": "ALEA_BUILD",
+        "Run ID": "ALEA_RUN_ID",
+        "Attempt": "ALEA_ATTEMPT",
+        "Commit": "ALEA_COMMIT",
+        "Date": "ALEA_DATE"
+      }
+    }
   },
   "basics": {
     "name": "Wes Henderson",

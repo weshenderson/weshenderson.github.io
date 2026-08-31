@@ -68,14 +68,13 @@ class GenerateFiles:
 
         build_data = GenerateFiles.read_build_info(BUILD_DATA)
 
-        if build_data:
-            content = build_data
-        else:
-            content = {}
-
         print("Generating the JSON version of the resume.")
         with open(RESUME_YAML, encoding='UTF-8') as file:
-            content.update(yaml.safe_load(file))
+            content = yaml.safe_load(file)
+
+        if build_data:
+            content.setdefault("meta", {})
+            content["meta"]["buildData"] = build_data
 
         with open(RESUME_JSON, 'w', encoding='UTF-8') as file:
             json.dump(content, file, indent=2)
