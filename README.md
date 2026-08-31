@@ -1,10 +1,19 @@
 # 🐧 [weshenderson.info](https://weshenderson.info)
-[![CI/CD](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml) [![Linter](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml) [![Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment)
 
 The personal webpage of Wes Henderson.
 
+* [![Linter](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml)
+* [![Alea](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/alea.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/alea.yml)
+* [![CI/CD](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/gist.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/gist.yml)
+* [![Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment)
+
 ## Layout
-This site is powered by [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/alea.py) and hosted with GitHub Pages. Alea is the templating engine that creates `index.html` and `resume.html` based off of their respective yaml config files. All resume versions are generated from `configs/resume.yaml`, which is fully compatible with the [JSON Resume](https://jsonresume.org/) 1.0.0 spec.
+This site and résumé are powered by [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/alea.py) and hosted with GitHub Pages. Alea handles the data transformation and artifact generation for both the website and résumé, using separate canonical YAML data sources for each. You can read more about this project [here](https://www.necrux.com/cv/).
+
+All artifacts are generated automatically through GitHub Actions.
+
+> [!NOTE]
+The résumé data source is fully compatible with the [JSON Resume](https://jsonresume.org/) 1.0.0 specification.
 
 ## Workflow
 
@@ -12,42 +21,55 @@ This site is powered by [Alea](https://github.com/weshenderson/weshenderson.gith
 flowchart LR
     A[Workstation] --> B{{Git Hooks}}
 
-    B --> D((Generate Artifacts *))
+    B --> C[GitHub]
 
-    D --> F[GitHub Repository]
+    C --> D{{Actions}}
 
-    F --> G{{GitHub Actions}}
+    D --> E[Alea]
+    D --> F[Pages]
+    D --> G[Gist]
 
-    G --> H[GitHub Pages]
-    G --> I[GitHub Gist]
-
-    I --> J[(Registry)]
+    E --> H((Artifacts))
+    G --> I[(Registry)]
 ```
-\* *Generate Artifacts: `HTML`, `JSON`, `PDF`, `Markdown`, and `DOCX`.*
 
-1. A change is made to `configs/resume.yaml`.
-2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) is executed which generates the following artifacts:
-   * `resume.json` *(JSON)*
-   * `resume.html` *(HTML)*
-   * `resume.pdf` *(PDF)*
-   * `resume.md` *(markdown)*
-   * `resume.docx` *(DOCX)*
+1. A change is made to `configs/` or `/templates/`.
+2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) lints the codes and validates the schemas.
 3. Changes are pushed to GitHub.
-4. The following GitHub Actions run:
-   * [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Lints my code.
-   * [Update Resume Gist](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/resume.yml): Uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
-   * [pages-build-deployment](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
-5. The JSON Resume registry is updated with my [new resume](https://registry.jsonresume.org/necrux).
-6. My [GitHub Page](https://www.weshenderson.info/) is updated with my new content/resume.
+4. GitHub Actions work their magic:
+   * [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Classic *(and sometimes annoying)* Python linter.
+   * [Gist](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/gist.yml): Uploads `configs/resume.json` to a public [gist](https://gist.github.com/necrux/47c721cc5ac327c7acc1654fb822005b).
+   * [Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
+   * [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/.github/workflows/alea.yml): Generates the following artifacts.
+        * `index.html` / `main.css`
+        * `resume.json` *(JSON)*
+        * `resume.html` *(HTML)*
+        * `resume.pdf` *(PDF)*
+        * `resume.md` *(markdown)*
+        * `resume.docx` *(DOCX)*
 
-## Hooks
-This repo relies heavily on pre-commit hooks to auto-generate new resources whenever certain files are updated. This is especially important for my resume as I would have to maintain 4 versions otherwise. The hooks (and Actions) allow me to effectively separate the content from the presentation!
+## Post Deployment
+Once deployed the website and various résumé formats can be found below:
+
+* [Personal Website](https://www.weshenderson.info/)
+* [HTML Résumé](https://www.weshenderson.info/resumes/resume.html)
+* [PDF Résumé](https://www.weshenderson.info/resumes/resume.pdf)
+* [DOCX Résumé](https://www.weshenderson.info/resumes/resume.docx)
+* [Markdown Résumé](https://github.com/weshenderson/weshenderson.github.io/blob/main/resumes/resume.md)
+* [JSON Registry](https://registry.jsonresume.org/necrux)
+
+## Artifacts
+All artifacts, other than PDFs, are generated with Alea from a canonical data source. Separating the presentation from the data means that I can maintain many versions and formats without having to alter the underlying data!
 
 **PDF Resume**
 
 The PDF version of my resume is generated via `chrome-headless-shell`. The old headless browser no longer ships with the default Google Chrome dev tools within Chrome as it a separate binary and an entirely different browser. You can read more about these changes [here](https://developer.chrome.com/docs/chromium/headless).
 
 I have built the new `chrome-headless-shell` as a dockerfile for portability. Simply run `docker-compose` up after exporting the `TMP` and `OUTPUT` variables.
+
+> [!TIP]
+During the build process these variables are set with the [.build.parameters](
+https://github.com/weshenderson/weshenderson.github.io/blob/main/.build.parameters) file.
 
 ```
 /chrome-headless
@@ -60,13 +82,14 @@ I have built the new `chrome-headless-shell` as a dockerfile for portability. Si
     --print-to-pdf=${OUTPUT}
     ${TMP}
 ```
-
+> [!NOTE]
 Previously this work was done via Pandoc, however this results in a prettier end product without having to create LateX templates since Chrome is able to render the underlying CSS.
 
-
-### Hooks and Easter Eggs
+### Easter Eggs
 I am using Javascript and data attributes to toggle the CSS layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
 
 ```
-up, up, down, down, left, right, left, right, b, a, <enter>
+^ ^ v v < > < > B A ENTER
 ```
+
+This was a hard requirement of my project from the beginning. I still cannot tell you why, it just felt right!

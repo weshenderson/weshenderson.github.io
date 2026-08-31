@@ -1,62 +1,28 @@
 #!/usr/bin/env bash
 set -eo pipefail
+set -x
 
-INDEX='index.html'
-INDEX_CSS='assets/css/main.css'
-RESUME='resumes/resume.html'
-PDF='resumes/resume.pdf'
 BASE_PATH="$(git rev-parse --show-toplevel)"
-RESUMES=(resumes/resume.html
-	 resumes/resume.json
-	 resumes/resume.pdf
-	 resumes/resume.docx
-	 resumes/resume.md)
-FILE_CHECK=(configs/
-            alea.py
-            templates/
-            assets/
-            src/
-            .hooks/)
+RESUME_SRC='resume.yaml'
+JSON_RESUME='resumes/resume.json'
+PYTHON_FILES="$(git diff --cached --name-only --diff-filter=d | grep -q .py$)" ||:
 
-if [ -f /wsl ]; then
-    COMPOSE_BIN='/mnt/c/Program Files/Docker/Docker/resources/bin/docker-compose'
-else
-    COMPOSE_BIN='docker-compose'
-fi
-
+echo 'test'
 function alea {
-    for file in ${FILE_CHECK[@]}; do
-        if git status --porcelain | grep -q ${file}; then
-            pushd "${BASE_PATH}" &>/dev/null
-                ./alea.py --index --resume --json
-                git add ${INDEX}
-                git add ${INDEX_CSS}
-		git add ${RESUMES[@]}
-            popd &>/dev/null
-            break
-        fi
-    done
-}
-
-function create-pdf-resume {
-    if git status --porcelain | grep -q "${RESUME}"; then
+    if git status --porcelain | grep -q ${RESUME_SRC}; then
         pushd "${BASE_PATH}" &>/dev/null
-	    export TMP="resumes/resume_tmp_pdf.html"
-	    export OUTPUT=${PDF}
-            cp ${RESUME} ${TMP}
-            sed -i 's@<!-- H-ONLY -->.*<!-- /H-ONLY -->@@g' ${TMP}
-	    "${COMPOSE_BIN}" up
-            rm -f ${TMP}
-            git add ${PDF}
-        popd &>/dev/null
+            ./alea.py --json
+            git add ${JSON_RESUME}
+        popd
     fi
 }
 
 function check-code {
-    echo 'Linting code: pylint.'
-    pylint $(git ls-files '*.py')
+    if echo ${PYTHON_FILES} | grep -q '.py'; then
+        echo -e 'Linting staged Python files: pylint.\n'
+        pylint ${PYTHON_FILES}
+    fi
 }
 
 check-code
 alea
-create-pdf-resume

@@ -1,3 +1,6 @@
+# Upload json resume to a public gist.
+# This gets picked up by the json resume registry.
+
 name: Update Resume Gist
 
 on:

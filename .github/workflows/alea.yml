@@ -1,3 +1,5 @@
+# Generate all resume and website artifacts.
+
 name: Alea
 
 on:
