@@ -82,7 +82,6 @@ jobs:
         sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
         sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
         sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
-        python ./alea.py -m
     - name: Commit and Push Artifact(s).
       run: |
         git config --global user.name "alea[bot]"
