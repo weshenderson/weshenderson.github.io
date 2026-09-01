@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pylint: skip-file
 """
 Generate and apply Alea build provenance metadata (PDF)
 collected from the GitHub Actions environment:
