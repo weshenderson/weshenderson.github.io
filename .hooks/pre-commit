@@ -7,12 +7,9 @@ JSON_RESUME='resumes/resume.json'
 PYTHON_FILES="$(git diff --cached --name-only --diff-filter=d | grep -q .py$)" ||:
 
 function alea {
-    if git status --porcelain | grep -q ${RESUME_SRC}; then
-        pushd "${BASE_PATH}" &>/dev/null
-            ./alea.py --json
-            git add ${JSON_RESUME}
-        popd
-    fi
+    pushd "${BASE_PATH}" &>/dev/null
+        ./alea.py --check --resume --index
+    popd
 }
 
 function check-code {
@@ -22,5 +19,5 @@ function check-code {
     fi
 }
 
-check-code
 alea
+check-code
