@@ -1,10 +1,10 @@
 <!--
 Alea Build Information
-Build:   40
-Run ID:  33463463548
+Build:   44
+Run ID:  33471917849
 Attempt: 1
-Commit:  1b1191f4055ea0ae6672f5a96a9ca892444b2d2e
-Date:    2026-08-31 09:42:37 PM CDT
+Commit:  35210bf5df7f8967a9fb4d3e6aabbb7171a8e179
+Date:    2026-09-01 12:01:16 AM CDT
 -->
 
 # Wes Henderson
@@ -17,8 +17,8 @@ Date:    2026-08-31 09:42:37 PM CDT
 
 * 🌐 [Website](https://weshenderson.info)
 * 💼 [LinkedIn](https://linkedin.com/in/wes-henderson)
-* 🐙 [GitHub](https://github.com/necrux)
-* 📄 [Full Résumé](https://weshenderson.info/resumes/resume.html)
+* 🐧 [GitHub](https://github.com/necrux)
+* 📜 [Full Résumé](https://weshenderson.info/resumes/resume.html)
 * ✍️ [Blog](https://necrux.com)
 
 ---
@@ -389,16 +389,16 @@ This résumé is generated from a canonical YAML data source and rendered into m
 The content is intentionally separated from its presentation:
 
 ```text
-resume.yaml
+resume.yaml ─ Docker ────► PDF
     │
     ▼
-Python processing
+   Alea
     │
-    ├── Jinja2 ────────► HTML
+    ├──────────────────► JSON
     │
-    ├── HTML runtime ──► PDF
+    ├──── Jinja2 ──────► HTML,MD
     │
-    └── python-docx ───► ATS DOCX
+    └── python-docx ───► DOCX
 ```
 
 The Markdown version is a GitHub-native representation of the same underlying résumé data.
@@ -408,32 +408,24 @@ The Markdown version is a GitHub-native representation of the same underlying r�
 ---
 
 > [!TIP]
-> **Looking for the full résumé?**
-> [View the complete human-facing résumé →](https://weshenderson.info/resumes/resume.html)
+> **Interested in the CI/CD résumé project?**
+> You can view the HTML resume [here](https://weshenderson.info/resumes/resume.html), get in the weeds with the [README](https://github.com/weshenderson/weshenderson.github.io/blob/main/README.md), or get a bird's-eye view on my [blog](https://www.necrux.com/cv/)!
 
 ---
 
 ### 🐧 For Fellow Nerds
 
 ```console
-$ whoami
-Wes Henderson
-
-$ echo $ROLE
-Staff Systems Engineer
-
-$ echo $STATUS
-Available for interesting problems.
-
-$ exit
-Connection closed.
+ _________________________________________
+< Try the Konami Code on the full résumé! >
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
 ```
-
-<!--
-Konami Code:
-↑ ↑ ↓ ↓ ← → ← → B A
--->
 
 ---
 
-<sub>Generated automatically from the canonical résumé data source.</sub>
+<sub>Generated automatically from the canonical résumé [data source](https://github.com/weshenderson/weshenderson.github.io/blob/main/configs/resume.yaml).</sub>
