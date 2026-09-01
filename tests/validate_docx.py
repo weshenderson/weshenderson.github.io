@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """
 Test to validate the contents of the DOCX.
+Defaults to resumes/resume.docx, override by passing $1.
 
 Must be manually; will be expanded into automated tests
 at a future point.
 """
+import sys
 
 from docx import Document
 
-doc = Document("resumes/resume.docx")
+docx_file = sys.argv[1] if len(sys.argv) > 1 else "resumes/resume.docx"
+doc = Document(docx_file)
 
 # ---------------------------------------------------------------------------
 # Document metadata
