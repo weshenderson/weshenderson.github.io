@@ -2,18 +2,6 @@
 Generate and apply Alea build provenance metadata 
 collected from the GitHub Actions environment:
 
-{
-    "meta": {
-        "buildData": {
-            "build": "...",
-            "runId": "...",
-            "attempt": "...",
-            "commit": "...",
-            "date": "..."
-        }
-    }
-}
-
 No build metadata is generated outside of CI.
 """
 
@@ -25,7 +13,23 @@ from zoneinfo import ZoneInfo
 
 from docx import Document
 
+BUILD_DATA  = 'templates/.build.metadata'
+
 class DocxMetadata:
+    """
+        {
+        "meta": {
+            "buildData": {
+                "build": "...",
+                "runId": "...",
+                "attempt": "...",
+                "commit": "...",
+                "date": "..."
+            }
+         }
+    }
+    """
+    @staticmethod
     def get_build_data():
         """Return GitHub Actions build metadata in the canonical format."""
 
@@ -61,6 +65,7 @@ class DocxMetadata:
 
         return {"meta": {"buildData": build_data}}
 
+    @staticmethod
     def update_docx_metadata(build_data, docx_file='resumes/resume.docx'):
         """Add build provenance to a DOCX document's comments property."""
 
@@ -77,6 +82,7 @@ class DocxMetadata:
 
         print(f"Updated DOCX metadata: {docx_file}")
 
+    @staticmethod
     def apply_build_metadata():
         """Generate build metadata and update the DOCX artifact."""
 

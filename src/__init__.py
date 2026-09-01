@@ -7,8 +7,6 @@ from .schema import SchemaValidations
 from .build_resume_docx import MachineResume
 from .docx_build_metadata import DocxMetadata
 
-BUILD_DATA  = 'templates/.build.metadata'
-
 LOGO = """
  ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ 
 ▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌

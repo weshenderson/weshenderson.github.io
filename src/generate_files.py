@@ -16,6 +16,7 @@ from .schema import SchemaValidations
 INDEX_YAML  = 'configs/index.yaml'
 RESUME_YAML = 'configs/resume.yaml'
 RESUME_JSON = 'resumes/resume.json'
+BUILD_DATA  = 'templates/.build.metadata'
 
 class GenerateFiles:
     """File operations."""
@@ -57,7 +58,6 @@ class GenerateFiles:
 
                 with open(paths['destination'], 'w', encoding='UTF-8') as dest:
                     dest.write(content)
-
 
     @staticmethod
     def generate_json():
