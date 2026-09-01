@@ -10,7 +10,7 @@
  TODO:
   * Move remaining HTML dependencies to their respective data files.
   * Fix the -s option (broken after migrating to jinga2).
-  * Implement artifact provenance -- DOCX and PDF.
+  * Where possible, integrate PDF operations into Alea.
   * Expand schema definitions:
     * education
     * certifications

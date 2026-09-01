@@ -83,6 +83,40 @@ https://github.com/weshenderson/weshenderson.github.io/blob/main/.build.paramete
 > [!NOTE]
 Previously this work was done via Pandoc, however this results in a prettier end product without having to create LateX templates since Chrome is able to render the underlying CSS.
 
+## Data Provenance
+
+All generated artifacts include build [metadata](templates/.build.metadata) added by GitHub Actions. This metadata provides a provenance trail that links an artifact to the specific Alea build, GitHub Actions run, commit, and date on which it was generated.
+
+When the artifact format allows, the metadata is added as a comment:
+
+```
+<!--
+Alea Build Information
+Build:   29
+Run ID:  33448207686
+Attempt: 1
+Commit:  340d58fcc718622b2f7906bde3f57f97265d575c
+Date:    2026-08-31 05:54:03 PM CDT
+-->
+```
+
+Otherwise the metadata is added to a suitable metadata field using the canonical JSON structure.
+
+```
+"meta": {
+    "buildData": {
+        "Build": "40",
+        "Run ID": "33463463548",
+        "Attempt": "1",
+        "Commit": "1b1191f4055ea0ae6672f5a96a9ca892444b2d2e",
+        "Date": "2026-08-31 09:42:37 PM CDT"
+    }
+}
+```
+
+> [!NOTE]
+`DOCX` is using the 'comments' field and 'PDF' is using the 'keywords' field. If you do not have Word or Adobe, the metadata fields can be viewed using scripts in the [tools](tools/) directory.
+
 ### Easter Eggs
 I am using Javascript and data attributes to toggle the CSS layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
 
