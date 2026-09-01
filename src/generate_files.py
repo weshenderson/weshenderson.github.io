@@ -16,7 +16,6 @@ from .schema import SchemaValidations
 INDEX_YAML  = 'configs/index.yaml'
 RESUME_YAML = 'configs/resume.yaml'
 RESUME_JSON = 'resumes/resume.json'
-BUILD_DATA  = 'templates/.build.metadata'
 
 class GenerateFiles:
     """File operations."""
@@ -74,13 +73,13 @@ class GenerateFiles:
 
         if build_data:
             content.setdefault("meta", {})
-            content["meta"]["buildData"] = build_data
+            content["meta"].update(build_data["meta"])
 
         with open(RESUME_JSON, 'w', encoding='UTF-8') as file:
             json.dump(content, file, indent=2)
 
     @staticmethod
-    def read_build_info(build_data_file):
+    def read_build_info(build_data_file='templates/.build.metadata'):
         """Read build information from an optional metadata file."""
 
         metadata_file = Path(build_data_file)
@@ -93,7 +92,7 @@ class GenerateFiles:
         with metadata_file.open(encoding="UTF-8") as file:
             build_data = yaml.safe_load(file)
 
-        return {"buildData": build_data}
+        return {"meta": {"buildData": build_data}}
 
     @staticmethod
     def backup_files(templates):
