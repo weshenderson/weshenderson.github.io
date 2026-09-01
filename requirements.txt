@@ -2,3 +2,4 @@ pyyaml
 schema
 python-docx
 Jinja2
+pypdf

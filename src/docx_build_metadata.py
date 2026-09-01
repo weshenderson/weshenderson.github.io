@@ -20,11 +20,11 @@ class DocxMetadata:
         {
         "meta": {
             "buildData": {
-                "build": "...",
-                "runId": "...",
-                "attempt": "...",
-                "commit": "...",
-                "date": "..."
+                "Build": "...",
+                "Run ID": "...",
+                "Attempt": "...",
+                "Commit": "...",
+                "Date": "..."
             }
          }
     }
