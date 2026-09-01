@@ -47,7 +47,7 @@ class DocxMetadata:
         ]
 
         if missing_variables:
-            print("Not running in the GitHub Actions build environment.")
+            print("Not running in CI -- skipping metadata updates for build.")
             return None
 
         build_data = {

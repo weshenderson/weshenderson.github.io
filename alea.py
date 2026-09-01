@@ -74,11 +74,6 @@ def main():
                              default=False,
                              action='store_true',
                              help='Validate the yaml schema (must include -r or -i).')
-    job_options.add_argument('-m',
-                                 '--meta',
-                                 default=False,
-                                 action='store_true',
-                                 help='Append build metadata to our docx resume if on CI.')
 
     args = job_options.parse_args()
 
@@ -136,10 +131,9 @@ def main():
         GenerateFiles.update_content(target, templates_dir, resume_templates)
         MachineResume.generate_docx_resume(resume_templates['docx']['destination'])
         MachineResume.validate_docx_resume(resume_templates['docx']['destination'])
+        DocxMetadata.apply_build_metadata()
     if args.json_resume:
         GenerateFiles.generate_json()
-    if args.meta:
-        DocxMetadata.apply_build_metadata()
 
 if __name__ == "__main__":
     main()
