@@ -115,7 +115,7 @@ Otherwise the metadata is added to a suitable metadata field using the canonical
 ```
 
 > [!NOTE]
-`DOCX` is using the 'comments' field and 'PDF' is using the 'keywords' field. If you do not have Word or Adobe, the metadata fields can be viewed using scripts in the [tools](tools/) directory.
+`DOCX` is using the 'comments' field and `PDF` is using the 'keywords' field. If you do not have Word or Adobe, the metadata fields can be viewed using scripts in the [tools](tools/) directory.
 
 ### Easter Eggs
 I am using Javascript and data attributes to toggle the CSS layout in order to give the resume a retro vibe. To view this version simply enter the Konami Code on [/resume](https://www.weshenderson.info/resumes/resume):
