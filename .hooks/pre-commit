@@ -8,7 +8,7 @@ PYTHON_FILES="$(git diff --cached --name-only --diff-filter=d | grep -q .py$)" |
 
 function alea {
     pushd "${BASE_PATH}" &>/dev/null
-        ./alea.py --check --resume --index
+        ./alea.py --validate --resume --website
     popd
 }
 

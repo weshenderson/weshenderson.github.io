@@ -1,5 +1,5 @@
 """
-Schema operations: definitions, validations, etc.
+Schema operations: definitions & validations
 """
 
 import sys
@@ -7,12 +7,11 @@ import yaml
 
 import schema
 
-class SchemaValidations:
+class ValidateSchema:
     """Schema definitions and validations."""
 
-    @staticmethod
-    def index_schema():
-        """Definition for the index.yaml schema."""
+    def website(self, yaml_file):
+        """Definition for the website.yaml schema."""
 
         bool_error = "Unsupported option; must be either true or false."
         config_schema = schema.Schema({
@@ -48,10 +47,9 @@ class SchemaValidations:
             },
         }, ignore_extra_keys=True)
 
-        SchemaValidations.validate_schema(config_schema, file='index.yaml')
+        self.validate_schema(config_schema, yaml_file)
 
-    @staticmethod
-    def resume_schema():
+    def resume(self, yaml_file):
         """Definition for the resume.yaml schema."""
 
         config_schema = schema.Schema({
@@ -84,7 +82,7 @@ class SchemaValidations:
             schema.Optional("education"): list,
         }, ignore_extra_keys=True)
 
-        SchemaValidations.validate_schema(config_schema, file='resume.yaml')
+        self.validate_schema(config_schema, yaml_file)
 
     @staticmethod
     def validate_schema(correct_schema, file):
@@ -92,7 +90,7 @@ class SchemaValidations:
 
         print(f"Validating schema: {file}")
 
-        with open(f'configs/{file}', encoding='UTF-8') as yaml_file:
+        with open(file, encoding='UTF-8') as yaml_file:
             content = yaml.safe_load(yaml_file)
 
         try:

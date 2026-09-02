@@ -1,16 +1,34 @@
 """
-Genereate a docx resume.
+Genereate a docx resume using a more streamlined
+format that may be more ATS friendly.
+
+Design principles:
+    - Single-column layout
+    - No tables
+    - No text boxes
+    - No images
+    - No graphics
+    - No critical information in headers or footers
+    - Standard section headings
+    - Standard Word bullets
+    - Standard font
+    - Normal document reading order
+    - Visible URLs
+    - Clickable hyperlinks
+    - Conservative pagination controls
 """
 
 from docx import Document
-from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.shared import Inches, Pt
 
 import yaml
 
-RESUME_YAML = 'configs/resume.yaml'
+from .config import config
+
+RESUME_YAML = config['configs']['resume']
 
 with open(RESUME_YAML, encoding='UTF-8') as file:
     content = yaml.safe_load(file)
@@ -44,25 +62,8 @@ resume_content = {'name': content['basics']['name'],
                   'publications': content['publications'],
                   'volunteer': content['volunteer']}
 
-class MachineResume:
-    """
-    Generate an ATS-friendly resume using python-docx.
-
-    Design principles:
-    - Single-column layout
-    - No tables
-    - No text boxes
-    - No images
-    - No graphics
-    - No critical information in headers or footers
-    - Standard section headings
-    - Standard Word bullets
-    - Standard font
-    - Normal document reading order
-    - Visible URLs
-    - Clickable hyperlinks
-    - Conservative pagination controls
-    """
+class RenderDocx:
+    """Generate an ATS-friendly resume using python-docx."""
 
     @staticmethod
     def set_run_font(run, size=None, bold=None, italic=None):
@@ -176,9 +177,8 @@ class MachineResume:
         # pylint: disable=protected-access
         paragraph._p.append(hyperlink)
 
-    @staticmethod
     # pylint: disable=too-many-locals,too-many-branches,too-many-statements
-    def generate_docx_resume(output_file):
+    def render(self, output_file):
         """
         Generate an ATS-friendly resume using python-docx.
         """
@@ -278,7 +278,7 @@ class MachineResume:
             if alignment is not None:
                 paragraph.alignment = alignment
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=keep_with_next,
                 keep_together=keep_together
@@ -286,7 +286,7 @@ class MachineResume:
 
             run = paragraph.add_run(text)
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=size,
                 bold=bold,
@@ -309,7 +309,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(3)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
@@ -317,7 +317,7 @@ class MachineResume:
 
             run = paragraph.add_run(title.upper())
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=11,
                 bold=True
@@ -337,14 +337,14 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(2)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_together=True
             )
 
             run = paragraph.add_run(text)
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10
             )
@@ -365,7 +365,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(space_after)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_together=True
             )
@@ -374,7 +374,7 @@ class MachineResume:
                 f"{category}: "
             )
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10,
                 bold=True
@@ -384,7 +384,7 @@ class MachineResume:
                 ", ".join(skills)
             )
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10
             )
@@ -407,7 +407,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(1)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
@@ -415,7 +415,7 @@ class MachineResume:
 
             run = paragraph.add_run(title)
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10.5,
                 bold=True
@@ -425,7 +425,7 @@ class MachineResume:
                 f" | {company}"
             )
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10.5
             )
@@ -436,7 +436,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(2)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
@@ -446,7 +446,7 @@ class MachineResume:
                 f"{location} | {dates}"
             )
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=9,
                 italic=True
@@ -471,7 +471,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(1)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
@@ -479,7 +479,7 @@ class MachineResume:
 
             run = paragraph.add_run(title)
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10.5,
                 bold=True
@@ -490,7 +490,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(2)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
@@ -498,7 +498,7 @@ class MachineResume:
 
             run = paragraph.add_run(dates)
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=9,
                 italic=True
@@ -509,7 +509,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(2)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
@@ -517,7 +517,7 @@ class MachineResume:
 
             run = paragraph.add_run(description)
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10
             )
@@ -531,7 +531,7 @@ class MachineResume:
         paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
         paragraph.paragraph_format.space_after = Pt(1)
 
-        MachineResume.set_paragraph_pagination(
+        self.set_paragraph_pagination(
             paragraph,
             keep_with_next=True,
             keep_together=True
@@ -539,7 +539,7 @@ class MachineResume:
 
         run = paragraph.add_run(resume_content['name'])
 
-        MachineResume.set_run_font(
+        self.set_run_font(
             run,
             size=18,
             bold=True
@@ -551,7 +551,7 @@ class MachineResume:
         paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
         paragraph.paragraph_format.space_after = Pt(3)
 
-        MachineResume.set_paragraph_pagination(
+        self.set_paragraph_pagination(
             paragraph,
             keep_with_next=True,
             keep_together=True
@@ -562,7 +562,7 @@ class MachineResume:
             f'{resume_content["email"]}'
         )
 
-        MachineResume.set_run_font(
+        self.set_run_font(
             run,
             size=9
         )
@@ -590,7 +590,7 @@ class MachineResume:
             paragraph.paragraph_format.space_after = Pt(1)
             paragraph.paragraph_format.line_spacing = 1.0
 
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
@@ -600,12 +600,12 @@ class MachineResume:
                 f"{label}: "
             )
 
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=9
             )
 
-            MachineResume.add_hyperlink(
+            self.add_hyperlink(
                 paragraph,
                 url,
                 url
@@ -660,7 +660,7 @@ class MachineResume:
         paragraph.paragraph_format.space_after = Pt(1)
         paragraph.paragraph_format.line_spacing = 1.0
 
-        MachineResume.set_paragraph_pagination(
+        self.set_paragraph_pagination(
             paragraph,
             keep_with_next=True,
             keep_together=True
@@ -668,19 +668,19 @@ class MachineResume:
 
         for index, cert in enumerate(resume_content['certs']):
             run = paragraph.add_run(cert['name'])
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10.5,
                 bold=True
             )
             paragraph = doc.add_paragraph()
             paragraph.paragraph_format.space_after = Pt(3)
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_together=True
             )
             run = paragraph.add_run(f'{cert["issuer"]} | Issued {cert["date"].split("-")[0]}')
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=9,
                 italic=True
@@ -691,7 +691,7 @@ class MachineResume:
 
                 paragraph.paragraph_format.space_after = Pt(1)
 
-                MachineResume.set_paragraph_pagination(
+                self.set_paragraph_pagination(
                     paragraph,
                     keep_with_next=True,
                     keep_together=True
@@ -702,7 +702,7 @@ class MachineResume:
 
         paragraph = doc.add_paragraph()
         paragraph.paragraph_format.space_after = Pt(1)
-        MachineResume.set_paragraph_pagination(
+        self.set_paragraph_pagination(
             paragraph,
             keep_with_next=True,
             keep_together=True
@@ -710,21 +710,21 @@ class MachineResume:
 
         for school in resume_content['education']:
             run = paragraph.add_run(school['studyType'])
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10.5,
                 bold=True
             )
             paragraph = doc.add_paragraph()
             paragraph.paragraph_format.space_after = Pt(4)
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_together=True
             )
             run = paragraph.add_run(
             f"{school['institution']} | {school['location']} | {school['endDate'].split('-')[0]}"
             )
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=9,
                 italic=True
@@ -753,7 +753,7 @@ class MachineResume:
 
         paragraph = doc.add_paragraph()
         paragraph.paragraph_format.space_after = Pt(1)
-        MachineResume.set_paragraph_pagination(
+        self.set_paragraph_pagination(
             paragraph,
             keep_with_next=True,
             keep_together=True
@@ -762,20 +762,20 @@ class MachineResume:
         for article in resume_content['publications']:
             paragraph = doc.add_paragraph()
             paragraph.paragraph_format.space_after = Pt(1)
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_with_next=True,
                 keep_together=True
             )
             run = paragraph.add_run(article['name'])
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=10.5,
                 bold=True
             )
             paragraph = doc.add_paragraph()
             paragraph.paragraph_format.space_after = Pt(3)
-            MachineResume.set_paragraph_pagination(
+            self.set_paragraph_pagination(
                 paragraph,
                 keep_together=True
             )
@@ -783,7 +783,7 @@ class MachineResume:
                 f"{article['publisher']} | "
                 f"{article['releaseDate'].split('-')[0]}"
             )
-            MachineResume.set_run_font(
+            self.set_run_font(
                 run,
                 size=9,
                 italic=True
@@ -820,8 +820,7 @@ class MachineResume:
 
         return paragraphs
 
-    @staticmethod
-    def validate_docx_resume(docx_path):
+    def validate_resume(self, docx_path):
         """
         Run automated checks against the generated resume.
 
@@ -837,7 +836,7 @@ class MachineResume:
         Raises AssertionError if a test fails.
         """
 
-        paragraphs = MachineResume.extract_resume_text(docx_path)
+        paragraphs = self.extract_resume_text(docx_path)
 
         # Basic document test
         assert paragraphs, (
@@ -906,8 +905,7 @@ class MachineResume:
                 f"FAIL: Required URL missing: {url}"
             )
 
-        # Important technical keywords.
-
+        # Important technical keywords -- Temporary implementation.
         required_keywords = [
             "Linux",
             "Python",

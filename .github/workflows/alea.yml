@@ -31,8 +31,7 @@ jobs:
       with:
         filters: |
           specific_file:
-            - 'configs/*index*'
-            - 'configs/*website*'
+            - 'configs/website.yaml'
             - 'templates/*index*'
             - 'templates/*website*'
             - 'templates/main.css.j2'
@@ -43,15 +42,15 @@ jobs:
       with:
         filters: |
           specific_file:
-            - 'configs/*resume*'
+            - 'configs/resume.yaml'
             - 'templates/*resume*'
             - 'templates/.build.metadata'
     - name: Updating website artifacts -- HTML, CSS
       if: steps.website_updates.outputs.specific_file == 'true'
-      run: python ./alea.py -i
+      run: python ./alea.py --website
     - name: Updating resume artifacts -- JSON, HTML, MD, DOCX
       if: steps.resume_updates.outputs.specific_file == 'true'
-      run: python ./alea.py -r
+      run: python ./alea.py --resume
     - name: Updating resume artifact -- PDF
       if: steps.resume_updates.outputs.specific_file == 'true'
       run: |
@@ -82,7 +81,7 @@ jobs:
         sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
         sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
         sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
-        python ./tools/pdf_metadata_update.py
+        python ./alea.py --pdf
     - name: Commit and Push Artifact(s).
       run: |
         git config --global user.name "alea[bot]"

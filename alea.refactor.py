@@ -30,23 +30,24 @@
 import argparse
 import sys
 
-from src import config
-from src import AleaHelperFunctions
-from src import RenderDocx
-from src import RenderJson
-from src import RenderTemplates
-from src import RenderMetadata
-from src import ValidateSchema
+from src_refactor import config
+from src_refactor import AleaHelperFunctions
+from src_refactor import RenderDocx
+from src_refactor import RenderJson
+from src_refactor import RenderTemplates
+#from src_refactor import RenderDocxMetadata
+#from src_refactor import RenderPdfMetadata
+from src_refactor import RenderMetadata
+from src_refactor import ValidateSchema
 
 # pylint: disable=too-many-statements
 def main():
     """Entrypoint for Alea."""
 
-    json      = RenderJson()
-    templates = RenderTemplates()
-    docx      = RenderDocx()
-    metadata  = RenderMetadata()
-    schema    = ValidateSchema()
+    json          = RenderJson()
+    templates     = RenderTemplates()
+    docx          = RenderDocx()
+    metadata      = RenderMetadata()
 
     # Create the parser
     description = "Generate a link tree style webpage and/or a resume based off of YAML!"
@@ -88,14 +89,14 @@ def main():
     args = job_options.parse_args()
 
     if args.validate and args.website and args.resume:
-        schema.website(config['configs']['website'])
-        schema.resume(config['configs']['resume'])
+        ValidateSchema.website_schema()
+        ValidateSchema.resume_schema()
         sys.exit(0)
     elif args.validate and args.website:
-        schema.website(config['configs']['website'])
+        ValidateSchema.website_schema()
         sys.exit(0)
     elif args.validate and args.resume:
-        schema.resume(config['configs']['resume'])
+        ValidateSchema.resume_schema()
         sys.exit(0)
     elif args.validate:
         print('Must specify either -i and/or -r in order to validate the correct schema.')
@@ -114,20 +115,22 @@ def main():
 
     if args.website:
         target = "website"
-        schema.website(config['configs']['website'])
+        ValidateSchema.website_schema()
         templates.render(target, config)
 
     if args.resume:
         target = "resume"
-        schema.resume(config['configs']['resume'])
+        ValidateSchema.resume_schema()
         json.render(config['configs'], config['templates']['resume']['json']['destination'])
         templates.render(target, config)
         docx.render(config['templates']['resume']['docx']['destination'])
         docx.validate_resume(config['templates']['resume']['docx']['destination'])
+        #docx_metadata.render(config['templates']['resume']['docx']['destination'])
         metadata.render(config['templates']['resume']['docx']['destination'])
         json.render(config['configs'], config['templates']['resume']['json']['destination'])
 
     if args.pdf:
+        #pdf_metadata.render(config['templates']['resume']['pdf']['destination'])
         metadata.render(config['templates']['resume']['pdf']['destination'])
 
 if __name__ == "__main__":

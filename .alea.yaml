@@ -1,0 +1,29 @@
+configs:
+    website: 'configs/website.yaml'
+    resume: 'configs/resume.yaml'
+    buildData: 'templates/.build.metadata'
+    templatesDir: 'templates'
+templates:
+    website:
+        html:
+            source: 'index.html.j2'
+            destination: 'index.html'
+        css:
+            source: 'main.css.j2'
+            destination: 'assets/css/main.css'
+    resume:
+        html:
+            source: 'resume.html.j2'
+            destination: 'resumes/resume.html'
+        md:
+            source: 'resume.md.j2'
+            destination: 'resumes/resume.md'
+        docx:
+            source: false
+            destination: 'resumes/resume.docx'
+        pdf:
+            source: false
+            destination: 'resumes/resume.pdf'
+        json:
+            source: false
+            destination: 'resumes/resume.json'
