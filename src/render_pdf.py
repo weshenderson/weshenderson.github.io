@@ -7,8 +7,6 @@ to ensure consistency with the HTML version.
 
 import subprocess
 
-from .config import REPO_ROOT
-
 # pylint: disable=too-few-public-methods
 class RenderPdf:
     """Render PDF resume."""
@@ -20,7 +18,7 @@ class RenderPdf:
             "docker",
             "compose",
             "--project-directory",
-            f"{REPO_ROOT}",
+            ".",
             "--env-file",
             f"{project_directory}/.env",
             "--file",
