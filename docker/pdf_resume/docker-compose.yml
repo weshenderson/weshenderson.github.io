@@ -1,6 +1,11 @@
 services:
   pdf:
-    build: .
+    build:
+      context: .
+      dockerfile: ${DOCKER_FILE}
+      args:
+      - HTML=${HTML}
+      - MOUNT_POINT=${MOUNT_POINT}
     working_dir: /tmp/
     command: >
         /chrome-headless
@@ -10,8 +15,8 @@ services:
           --no-pdf-header-footer
           --no-margins
           --run-all-compositor-stages-before-draw
-          --print-to-pdf=${OUTPUT}
-          ${TMP}
+          --print-to-pdf=${PDF}
+          ${MOUNT_POINT}
     volumes:
         - ./resumes:/tmp/resumes
         - ./assets:/tmp/assets

@@ -66,8 +66,8 @@ The PDF version of my resume is generated via `chrome-headless-shell`. The old h
 I have built the new `chrome-headless-shell` as a dockerfile for portability. Simply run `docker-compose` up after exporting the `TMP` and `OUTPUT` variables.
 
 > [!TIP]
-During the build process these variables are set with the [.build.parameters](
-https://github.com/weshenderson/weshenderson.github.io/blob/main/.build.parameters) file.
+During the build process these variables are set with the [.env](
+https://github.com/weshenderson/weshenderson.github.io/blob/main/docker/pdf_resume/.env) file.
 
 ```
 /chrome-headless

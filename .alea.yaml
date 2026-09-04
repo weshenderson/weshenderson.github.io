@@ -3,6 +3,9 @@ configs:
     resume: 'configs/resume.yaml'
     buildData: 'templates/.build.metadata'
     templatesDir: 'templates'
+    docker:
+        pdf:
+            project_directory: 'docker/pdf_resume'
 templates:
     website:
         html:

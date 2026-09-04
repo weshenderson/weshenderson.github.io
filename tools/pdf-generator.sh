@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ENV_FILE='.build.parameters'
+ENV_FILE='.env'
 BASE_PATH="$(git rev-parse --show-toplevel)"
 
 if [ -f /wsl ]; then
@@ -11,11 +11,11 @@ fi
 
 function create-pdf-resume {
     pushd "${BASE_PATH}" &>/dev/null
-        source ${ENV_FILE}
-        cp ${RESUME} ${TMP}
-        sed -i 's@<!-- H-ONLY -->.*<!-- /H-ONLY -->@@g' ${TMP}
-    "${COMPOSE_BIN}" up
-        rm -f ${TMP}
+        "${COMPOSE_BIN}" \
+            --project-directory . \
+            --env-file docker/pdf_resume/.env \
+            --file docker/pdf_resume/docker-compose.yml \
+            up --build
     popd &>/dev/null
 }
 

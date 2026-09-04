@@ -87,7 +87,7 @@ class AleaHelperFunctions:
         ]
 
         if missing_variables:
-            print("Not running in the GitHub Actions build environment.")
+            print("[i] Not running in the GitHub Actions build environment.")
             return None
 
         build_data = {

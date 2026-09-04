@@ -48,19 +48,11 @@ jobs:
     - name: Updating website artifacts -- HTML, CSS
       if: steps.website_updates.outputs.specific_file == 'true'
       run: python ./alea.py --website
-    - name: Updating resume artifacts -- JSON, HTML, MD, DOCX
-      if: steps.resume_updates.outputs.specific_file == 'true'
-      run: python ./alea.py --resume
-    - name: Updating resume artifact -- PDF
+    - name: Updating resume artifacts -- JSON, HTML, MD, DOCX, PDF
       if: steps.resume_updates.outputs.specific_file == 'true'
       run: |
-        source .build.parameters
-
-        cp ${RESUME} ${TMP}
-        sed -i 's@<!-- H-ONLY -->.*<!-- /H-ONLY -->@@g' ${TMP}
-
-        docker compose --env-file .build.parameters up --build
-        rm -f ${TMP}
+        python ./alea.py --resume
+        python ./alea.py --pdf
     - name: Inject website build metadata.
       if: steps.website_updates.outputs.specific_file == 'true'
       run: |

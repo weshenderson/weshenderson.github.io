@@ -9,7 +9,6 @@
 
  TODO:
   * Move remaining HTML dependencies to their respective data files.
-  * Fix the -s option (broken after migrating to jinga2).
   * Add validation and creation options for CONFIG_FILE.
   * Where possible, integrate PDF operations into Alea.
   * Expand schema definitions:
@@ -34,6 +33,7 @@ from src import config
 from src import AleaHelperFunctions
 from src import RenderDocx
 from src import RenderJson
+from src import RenderPdf
 from src import RenderTemplates
 from src import RenderMetadata
 from src import ValidateSchema
@@ -42,9 +42,10 @@ from src import ValidateSchema
 def main():
     """Entrypoint for Alea."""
 
-    json      = RenderJson()
-    templates = RenderTemplates()
     docx      = RenderDocx()
+    json      = RenderJson()
+    pdf       = RenderPdf()
+    templates = RenderTemplates()
     metadata  = RenderMetadata()
     schema    = ValidateSchema()
 
@@ -54,11 +55,6 @@ def main():
     job_options = argparse.ArgumentParser(description=description, epilog=epilog)
 
     # Add the arguments
-    job_options.add_argument('-s',
-                             '--stdout',
-                             default=False,
-                             action='store_true',
-                             help='Print the content to stdout rather than creating files.')
     job_options.add_argument('-b',
                              '--backup',
                              default=False,
@@ -128,6 +124,7 @@ def main():
         json.render(config['configs'], config['templates']['resume']['json']['destination'])
 
     if args.pdf:
+        pdf.render(config['configs']['docker']['pdf']['project_directory'])
         metadata.render(config['templates']['resume']['pdf']['destination'])
 
 if __name__ == "__main__":
