@@ -191,19 +191,21 @@ This résumé is generated from a canonical YAML data source and rendered into m
 The content is intentionally separated from its presentation:
 
 ```text
-resume.yaml ─ Docker ────► PDF
+resume.yaml
     │
     ▼
    Alea
     │
     ├──────────────────► JSON
     │
-    ├──── Jinja2 ──────► HTML,MD
+    │── Docker ────────► PDF
+    │
+    ├── Jinja2 ────────► HTML,MD
     │
     └── python-docx ───► DOCX
 ```
 
-The Markdown version is a GitHub-native representation of the same underlying résumé data.
+*The Markdown version is a GitHub-native representation of the same underlying résumé data.*
 
 </details>
 
