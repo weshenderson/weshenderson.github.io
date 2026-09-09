@@ -4,13 +4,11 @@
  Quickly generate a new website and/or resume assets based off of
  the configs/index.yaml and configs/resume.yaml files respectively.
  Any changes to this file, index.yaml, resume.yaml, or their templates
- will trigger this script at the time of commit (assuming the pre-commit
- hook is in place).
+ will trigger this script via GitHub Actions.
 
  TODO:
   * Move remaining HTML dependencies to their respective data files.
   * Add validation and creation options for CONFIG_FILE.
-  * Where possible, integrate PDF operations into Alea.
   * Expand schema definitions:
     * education
     * certifications
