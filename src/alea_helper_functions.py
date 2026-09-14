@@ -97,4 +97,4 @@ class AleaHelperFunctions:
 
         build_data['Date'] = self.format_date()
 
-        return {'meta': {'buildDate': build_data}}
+        return {'meta': {'buildData': build_data}}

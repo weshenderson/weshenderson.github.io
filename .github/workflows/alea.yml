@@ -36,6 +36,8 @@ jobs:
             - 'templates/*website*'
             - 'templates/main.css.j2'
             - 'templates/.build.metadata'
+            - 'alea.py'
+            - 'src/*.py'
     - name: Check for resume changes.
       id: resume_updates
       uses: dorny/paths-filter@v3
@@ -45,6 +47,8 @@ jobs:
             - 'configs/resume.yaml'
             - 'templates/*resume*'
             - 'templates/.build.metadata'
+            - 'alea.py'
+            - 'src/*.py'
     - name: Updating website artifacts -- HTML, CSS
       if: steps.website_updates.outputs.specific_file == 'true'
       run: python ./alea.py --website

@@ -8,7 +8,8 @@
 
  TODO:
   * Move remaining HTML dependencies to their respective data files.
-  * Add validation and creation options for CONFIG_FILE.
+  * Add validation and creation options for CONFIG_FILE (.alea.yaml).
+  * Add option to change the number of jobs displayed.
   * Expand schema definitions:
     * education
     * certifications
