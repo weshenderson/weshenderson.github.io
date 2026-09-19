@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
- Author: Wes Henderson
- Quickly generate a new website and/or resume assets based off of
- the configs/index.yaml and configs/resume.yaml files respectively.
- Any changes to this file, index.yaml, resume.yaml, or their templates
- will trigger this script via GitHub Actions.
+Author: Wes Henderson
 
- TODO:
+Generate website and resume artifacts from the project's YAML configuration.
+
+Alea is the command-line entry point for generating, validating, and backing
+up website and resume assets. Individual resume formats can be generated
+independently, or grouped operations can be used to generate complete sets
+of artifacts.
+
+TODO:
   * Add validation and creation options for CONFIG_FILE (.alea.yaml).
   * Add option to change the number of jobs displayed.
   * Expand schema definitions:
@@ -36,95 +39,206 @@ from src import RenderTemplates
 from src import RenderMetadata
 from src import ValidateSchema
 
-# pylint: disable=too-many-statements
+# pylint: disable=too-many-locals,too-many-branches,too-many-statements
 def main():
     """Entrypoint for Alea."""
 
-    docx      = RenderDocx()
     json      = RenderJson()
-    pdf       = RenderPdf()
     templates = RenderTemplates()
+    docx      = RenderDocx()
+    pdf       = RenderPdf()
     metadata  = RenderMetadata()
     schema    = ValidateSchema()
 
-    # Create the parser
-    description = "Generate a link tree style webpage and/or a resume based off of YAML!"
-    epilog = "Copy .hooks/pre-commit to .git/hooks/pre-commit to automatically run on commit."
-    job_options = argparse.ArgumentParser(description=description, epilog=epilog)
+    def render_json():
+        """Generate and validate the JSON resume."""
 
-    # Add the arguments
-    job_options.add_argument('-b',
-                             '--backup',
-                             default=False,
-                             action='store_true',
-                             help='Create a backup copy of the templated files (-r or -i).')
-    job_options.add_argument('-w',
-                             '--website',
-                             default=False,
-                             action='store_true',
-                             help='Generate the new website artifacts.')
-    job_options.add_argument('-r',
-                             '--resume',
-                             default=False,
-                             action='store_true',
-                             help='Build new resume artifacts.')
-    job_options.add_argument('-v',
-                             '--validate',
-                             default=False,
-                             action='store_true',
-                             help='Validate the yaml schema (must include -r or -i).')
-    job_options.add_argument('-p',
-                            '--pdf',
-                            default=False,
-                            action='store_true',
-                            help='Apply build metadata to the PDF artifact.')
+        destination = config['templates']['resume']['json']['destination']
+
+        json.render(config['configs'], destination)
+        schema.json_resume(destination)
+
+    def render_templates():
+        """Generate the templated resumes (HTML and Markdown)."""
+
+        templates.render("resume", config)
+
+    def render_docx():
+        """Generate and validate the ATS DOCX resume."""
+
+        destination = config['templates']['resume']['docx']['destination']
+
+        docx.render(destination)
+        docx.validate_resume(destination)
+        metadata.render(destination)
+
+    def render_pdf():
+        """Generate the PDF resume."""
+
+        pdf.render(config['configs']['docker']['pdf']['project_directory'])
+        metadata.render(config['templates']['resume']['pdf']['destination'])
+
+    def render_website():
+        """Generate all website artifacts."""
+
+        schema.website(config['configs']['website'])
+        templates.render("website", config)
+
+    actions = {
+        "json": render_json,
+        "templates": render_templates,
+        "docx": render_docx,
+        "pdf": render_pdf,
+    }
+
+    resume_actions = (
+        "json",
+        "templates",
+        "docx",
+        "pdf",
+    )
+
+    description = (
+        "Generate/validate website and resume artifacts."
+    )
+
+    epilog = (
+        "Examples:\n"
+        "  alea --resume       Generate all resume artifacts.\n"
+        "  alea --website      Generate all website artifacts.\n"
+        "  alea --json         Generate the JSON resume.\n"
+        "  alea --docx         Generate the ATS resume.\n"
+        "  alea --all          Generate all website and resume artifacts.\n"
+        "  alea --validate -r  Validate the resume configuration.\n"
+        "  alea --backup -r    Backup resume templates before editing.\n"
+    )
+
+    job_options = argparse.ArgumentParser(
+        description=description,
+        epilog=epilog,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+
+    job_options.add_argument(
+        "-r",
+        "--resume",
+        action="store_true",
+        help="Generate all resume artifacts.",
+    )
+    job_options.add_argument(
+        "-w",
+        "--website",
+        action="store_true",
+        help="Generate all website artifacts.",
+    )
+    job_options.add_argument(
+        "-a",
+        "--all",
+        action="store_true",
+        help="Generate all website and resume artifacts.",
+    )
+    job_options.add_argument(
+        "-j",
+        "--json",
+        action="store_true",
+        help="Generate and validate the JSON resume.",
+    )
+    job_options.add_argument(
+        "-t",
+        "--templates",
+        action="store_true",
+        help="Generate the templated resumes (HTML and Markdown).",
+    )
+    job_options.add_argument(
+        "-d",
+        "--docx",
+        action="store_true",
+        help="Generate and validate the ATS DOCX resume.",
+    )
+    job_options.add_argument(
+        "-p",
+        "--pdf",
+        action="store_true",
+        help="Generate the PDF resume.",
+    )
+    job_options.add_argument(
+        "-b",
+        "--backup",
+        action="store_true",
+        help="Back up website and/or resume templates.",
+    )
+    job_options.add_argument(
+        "-v",
+        "--validate",
+        action="store_true",
+        help="Validate the requested website and/or resume configuration.",
+    )
 
     args = job_options.parse_args()
 
-    if args.validate and args.website and args.resume:
-        schema.website(config['configs']['website'])
-        schema.resume(config['configs']['resume'])
+    website_requested = args.website or args.all
+    resume_requested = (
+        args.resume
+        or args.all
+        or any(
+            getattr(args, artifact)
+            for artifact in resume_actions
+        )
+    )
+
+    if args.validate:
+        if not website_requested and not resume_requested:
+            print(
+                "Must specify --website, --resume, --all, or a resume "
+                "artifact in order to validate."
+            )
+            sys.exit(1)
+
+        if website_requested:
+            schema.website(config['configs']['website'])
+
+        if resume_requested:
+            schema.resume(config['configs']['resume'])
+
         sys.exit(0)
-    elif args.validate and args.website:
-        schema.website(config['configs']['website'])
-        sys.exit(0)
-    elif args.validate and args.resume:
+
+    if args.backup:
+        if not website_requested and not resume_requested:
+            print(
+                "Must specify --website, --resume, or --all "
+                "in order to back up templates."
+            )
+            sys.exit(1)
+
+        if website_requested:
+            AleaHelperFunctions.backup_files(
+                config['templates']['website']
+            )
+
+        if resume_requested:
+            AleaHelperFunctions.backup_files(
+                config['templates']['resume']
+            )
+
+    if website_requested:
+        render_website()
+
+    if args.all or args.resume:
+        selected_actions = resume_actions
+    else:
+        selected_actions = (
+            artifact
+            for artifact in resume_actions
+            if getattr(args, artifact)
+        )
+
+    selected_actions = tuple(selected_actions)
+
+    if selected_actions:
         schema.resume(config['configs']['resume'])
-        sys.exit(0)
-    elif args.validate:
-        print('Must specify either -i and/or -r in order to validate the correct schema.')
-        sys.exit(1)
 
-    if args.backup and args.website and args.resume:
-        AleaHelperFunctions.backup_files(config['templates']['website'])
-        AleaHelperFunctions.backup_files(config['templates']['resume'])
-    elif args.backup and args.website:
-        AleaHelperFunctions.backup_files(config['templates']['website'])
-    elif args.backup and args.resume:
-        AleaHelperFunctions.backup_files(config['templates']['resume'])
-    elif args.backup:
-        print('Must specify either -i and/or -r to backup the proper files.')
-        sys.exit(1)
-
-    if args.website:
-        target = "website"
-        schema.website(config['configs']['website'])
-        templates.render(target, config)
-
-    if args.resume:
-        target = "resume"
-        schema.resume(config['configs']['resume'])
-        json.render(config['configs'], config['templates']['resume']['json']['destination'])
-        templates.render(target, config)
-        docx.render(config['templates']['resume']['docx']['destination'])
-        docx.validate_resume(config['templates']['resume']['docx']['destination'])
-        metadata.render(config['templates']['resume']['docx']['destination'])
-        json.render(config['configs'], config['templates']['resume']['json']['destination'])
-        schema.json_resume("public/resumes/resume.json")
-
-    if args.pdf:
-        pdf.render(config['configs']['docker']['pdf']['project_directory'])
-        metadata.render(config['templates']['resume']['pdf']['destination'])
+        for action in selected_actions:
+            actions[action]()
 
 if __name__ == "__main__":
     main()
