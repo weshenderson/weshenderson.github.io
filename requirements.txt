@@ -1,5 +1,6 @@
+Jinja2
+jsonschema
+pypdf
+python-docx
 pyyaml
 schema
-python-docx
-Jinja2
-pypdf

@@ -7,7 +7,6 @@
  will trigger this script via GitHub Actions.
 
  TODO:
-  * Move remaining HTML dependencies to their respective data files.
   * Add validation and creation options for CONFIG_FILE (.alea.yaml).
   * Add option to change the number of jobs displayed.
   * Expand schema definitions:
@@ -121,6 +120,7 @@ def main():
         docx.validate_resume(config['templates']['resume']['docx']['destination'])
         metadata.render(config['templates']['resume']['docx']['destination'])
         json.render(config['configs'], config['templates']['resume']['json']['destination'])
+        schema.json_resume("public/resumes/resume.json")
 
     if args.pdf:
         pdf.render(config['configs']['docker']['pdf']['project_directory'])
