@@ -10,23 +10,23 @@ templates:
     website:
         html:
             source: 'index.html.j2'
-            destination: 'index.html'
+            destination: 'public/index.html'
         css:
             source: 'main.css.j2'
-            destination: 'assets/css/main.css'
+            destination: 'public/assets/css/main.css'
     resume:
         html:
             source: 'resume.html.j2'
-            destination: 'resumes/resume.html'
+            destination: 'public/resumes/resume.html'
         md:
             source: 'resume.md.j2'
-            destination: 'resumes/resume.md'
+            destination: 'public/resumes/resume.md'
         docx:
             source: false
-            destination: 'resumes/resume.docx'
+            destination: 'public/resumes/resume.docx'
         pdf:
             source: false
-            destination: 'resumes/resume.pdf'
+            destination: 'public/resumes/resume.pdf'
         json:
             source: false
-            destination: 'resumes/resume.json'
+            destination: 'public/resumes/resume.json'
