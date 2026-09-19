@@ -18,7 +18,18 @@
       "RHCE"
     ],
     "googleAnalytics": "G-1HMXV18Z9V",
-    "emailSubject": "You're hired! ;)"
+    "emailSubject": "You're hired! ;)",
+    "buildData": {
+      "meta": {
+        "buildData": {
+          "Build": "2",
+          "Run ID": "35469908888",
+          "Attempt": "1",
+          "Commit": "05d56264a3dbfe50d98eb25f021e52a2ec12ebdf",
+          "Date": "2026-09-19 04:17:07 PM CDT"
+        }
+      }
+    }
   },
   "basics": {
     "name": "Wes Henderson",
