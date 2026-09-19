@@ -18,8 +18,8 @@ services:
           --print-to-pdf=${PDF}
           ${MOUNT_POINT}
     volumes:
-        - ./resumes:/tmp/resumes
-        - ./assets:/tmp/assets
+        - ./public/resumes:/tmp/resumes
+        - ./public/assets:/tmp/assets
 
     # Interactive Shell for Troubleshooting
     #stdin_open: true # docker run -i
