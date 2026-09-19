@@ -1,0 +1,32 @@
+# Generate all resume and website artifacts.
+
+name: Validate Schema - Website
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository.
+      uses: actions/checkout@v4
+
+    - name: Check for resume changes.
+      id: website_updates
+      uses: dorny/paths-filter@v3
+      with:
+        filters: |
+          specific_file:
+            - 'configs/website.yaml'
+
+    - name: Updating resume artifacts -- JSON, HTML, MD, DOCX, PDF
+      if: steps.website_updates.outputs.specific_file == 'true'
+      run: |
+        python ./alea.py --validate --website
