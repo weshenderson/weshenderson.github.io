@@ -12,6 +12,7 @@ of artifacts.
 TODO:
   * Add validation and creation options for CONFIG_FILE (.alea.yaml).
   * Add option to change the number of jobs displayed.
+  * Add HTML, CSS, and Markdown validation.
   * Expand schema definitions:
     * education
     * certifications
@@ -56,6 +57,7 @@ def main():
         destination = config['templates']['resume']['json']['destination']
 
         json.render(config['configs'], destination)
+        metadata.render(destination)
         schema.json_resume(destination)
 
     def render_templates():

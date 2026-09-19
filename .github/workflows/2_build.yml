@@ -1,0 +1,126 @@
+name: "Build"
+
+on:
+  workflow_run:
+    workflows:
+      - "Test"
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository.
+      uses: actions/checkout@v4
+
+    - name: Set up Python.
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies.
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Check for resume changes with template changes.
+      id: resume_template_updates
+      uses: dorny/paths-filter@v3
+      with:
+        filters: |
+          specific_file:
+            - 'configs/resume.yaml'
+            - 'templates/*resume*'
+            - 'templates/.build.metadata'
+            - 'alea.py'
+            - 'src/*.py'
+
+    - name: "Alea: Updating resume artifacts -- HTML, MD"
+      if: steps.resume_template_updates.outputs.specific_file == 'true'
+      run: |
+        python ./alea.py --templates
+
+    - name: Inject resume build metadata.
+      if: steps.resume_template_updates.outputs.specific_file == 'true'
+      run: |
+        FILES=(public/resumes/resume.html public/resumes/resume.md)
+        DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
+        sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
+        sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
+        sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
+        sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
+        sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
+
+    - name: Check for resume changes.
+      id: resume_updates
+      uses: dorny/paths-filter@v3
+      with:
+        filters: |
+          specific_file:
+            - 'configs/resume.yaml'
+            - 'alea.py'
+            - 'src/*.py'
+
+    - name: "Alea: Updating resume artifacts -- DOCX"
+      if: steps.resume_updates.outputs.specific_file == 'true'
+      run: |
+        python ./alea.py --docx
+
+    - name: "Alea: Updating resume artifacts -- PDF"
+      if: steps.resume_updates.outputs.specific_file == 'true'
+      run: |
+        python ./alea.py --pdf
+
+    - name: "Alea: Updating resume artifacts -- JSON"
+      if: steps.resume_updates.outputs.specific_file == 'true'
+      run: |
+        python ./alea.py --json
+
+    - name: Check for website changes.
+      id: website_updates
+      uses: dorny/paths-filter@v3
+      with:
+        filters: |
+          specific_file:
+            - 'configs/website.yaml'
+            - 'templates/*index*'
+            - 'templates/*website*'
+            - 'templates/main.css.j2'
+            - 'templates/.build.metadata'
+            - 'alea.py'
+            - 'src/*.py'
+
+    - name: "Alea: Updating website artifacts -- HTML, CSS"
+      if: steps.website_updates.outputs.specific_file == 'true'
+      run: python ./alea.py --website
+
+    - name: Inject website build metadata.
+      if: steps.website_updates.outputs.specific_file == 'true'
+      run: |
+        FILES=(public/index.html public/assets/css/main.css)
+        DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
+        sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
+        sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
+        sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
+        sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
+        sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
+
+    - name: Commit and Push Artifact(s).
+      run: |
+        git config --global user.name "alea[bot]"
+        git config --global user.email "alea[bot]@users.noreply.github.com"
+
+        git add public/
+
+        if ! git diff --cached --quiet; then
+          git commit -m "alea: artifact generation [skip ci]"
+          git push
+        else
+          echo "No changes detected in the artifact."
+        fi

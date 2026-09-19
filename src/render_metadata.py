@@ -17,6 +17,22 @@ class RenderMetadata:
     """Apply build metadata and apply to the artifact(s)."""
 
     @staticmethod
+    def apply_json_metadata(build_data, json_file):
+        """Add Alea build provenance to a JSON resume."""
+
+        with open(json_file, encoding='UTF-8') as file:
+            content = json.load(file)
+
+        content.setdefault("meta", {})
+        content["meta"]["buildData"] = build_data
+
+        with open(json_file, 'w', encoding='UTF-8') as file:
+            json.dump(content, file, indent=2)
+            file.write("\n")
+
+        print(f"Updated JSON metadata: {json_file}")
+
+    @staticmethod
     def apply_docx_metadata(build_data, docx):
         """Add build provenance to a DOCX document's comments property."""
 
