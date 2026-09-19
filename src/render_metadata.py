@@ -101,5 +101,7 @@ class RenderMetadata:
             self.apply_docx_metadata(build_data, dest)
         elif file_type == ".pdf":
             self.apply_pdf_metadata(build_data, dest)
+        elif file_type == ".json":
+            self.apply_json_metadata(build_data, dest)
         else:
             print(f"Unsupported file type: {file_type}")
