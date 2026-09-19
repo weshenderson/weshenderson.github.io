@@ -1,52 +1,81 @@
 # 🐧 [weshenderson.info](https://weshenderson.info)
 
-The personal webpage of Wes Henderson.
+Hey, I'm Wes. This is my personal corner of the web, where I keep my résumé, projects, and a few things I've built along the way. What started as a simple personal webpage has grown into a small, automated project that reflects how I like to build things.
 
-* [![Linter](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml)
-* [![Alea](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/alea.yml/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/alea.yml)
-* [![Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment)
+## Architecture
+This site and résumé are powered by [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/alea.py) and hosted with GitHub Pages.
 
-## Layout
-This site and résumé are powered by [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/alea.py) and hosted with GitHub Pages. Alea handles the data transformation and artifact generation for both the website and résumé, using separate canonical YAML data sources for each. You can read more about this project [here](https://www.necrux.com/cv/).
+Alea handles the data transformation and artifact generation for both the website and résumé, using separate canonical YAML data sources for each.
+
+The goal is to maintain the résumé and website as data rather than manually maintaining each output format.
+
+You can read more about this project [here](https://www.necrux.com/cv/).
 
 All artifacts are generated automatically through GitHub Actions.
 
 > [!NOTE]
-The résumé data source is fully compatible with the [JSON Resume](https://jsonresume.org/) 1.0.0 specification.
+The résumé data source is fully compatible with the [JSON Resume](https://jsonresume.org/) and is validated against version 1.3.1 of the schema.
+
+## Build Validation & Health Dashboard
+
+| Category                  | Check               | Source           |
+| ------------------------- | ------------------- | ---------------- |
+| **Configuration**         | Resume YAML Schema  | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/1_test.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml)     |
+|                           | Website YAML Schema | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/1_test.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml)     |
+| **Code Quality**          | PyLint              | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/1_test.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml)     |
+| **Compatibility**         | JSON Resume         | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/1_test.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml)    |
+| **Artifact Validation**   | Website             | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+|                           | HTML                | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+|                           | Markdown            | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+|                           | CSS                 | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+|                           | PDF                 | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+|                           | DOCX                | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+| **Build Integrity**       | Required Files      | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+|                           | Build Provenance      | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/2_build.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml)    |
+| **Deployment**            | GitHub Pages        | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/3_deploy.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/3_deploy.yml)   |
+|               | JSON Resume        | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/3_deploy.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/3_deploy.yml)   |
+| **Production Validation** | Deployed Files      | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/4_validate.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/4_validate.yml) |
+|                           | Deployed Provenance   | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/4_validate.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/4_validate.yml) |
+|                           | Website Links       | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/4_validate.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/4_validate.yml) |
+|                           | Resume Links        | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/4_validate.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/4_validate.yml) |
 
 ## Workflow
 
 ```mermaid
 flowchart LR
-    A[Workstation] --> B{{Git Hooks}}
+    subgraph Dev
+      A[Workstation] --> B{{Git Hooks}}
+    end
 
-    B --> C[GitHub]
+    B --> C[(GitHub)]
+    C --> D{{Test}}
 
-    C --> D{{Actions}}
+    subgraph GitHub Actions
+      D --> E{{Build}}
+      E --> F{{Deploy}}
+      F --> G{{Validate}}
+    end
 
-    D --> E[Alea]
-    D --> F[Pages]
-    D --> G[Gist]
-
-    E --> H((Artifacts))
-    G --> I[(Registry)]
+    G --> J((Artifacts))
+    G --> K[(Registry)]
 ```
 
 1. A change is made to `configs/` or `/templates/`.
-2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) lints the codes and validates the schemas.
+2. A [pre-commit hook](https://github.com/weshenderson/weshenderson.github.io/blob/main/.hooks/pre-commit) Lints the codes and validates the schemas.
 3. Changes are pushed to GitHub.
 4. GitHub Actions work their magic:
-   * [PyLint](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pylint.yml): Classic *(and sometimes annoying)* Python linter.
-   * [Pages](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/pages/pages-build-deployment): Builds and deploys my GitHub Page.
-   * [Alea](https://github.com/weshenderson/weshenderson.github.io/blob/main/.github/workflows/alea.yml): Generates artifacts, inject metadata, and upload `resome.json` to a gist. Artifacts generated:
+    * [Test](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml): Code linter and schema validations.
+    * [Build](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/2_build.yml): Generates artifacts and injects build metadata. Artifacts generated:
         * `index.html` / `main.css`
         * `resume.json`
         * `resume.html`
-        * `resume.pdf`
         * `resume.md`
         * `resume.docx`
+        * `resume.pdf`
+    * [Deploy](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/3_deploy.yml): Deploys GitHub Pages and updates the JSON gist used by the JSON Resume registry.
+    * [Validate](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/4_validate.yml): Validates the deployed artifacts.
 
-## Post Deployment
+## Published Artifacts
 Once deployed the website and various résumé formats can be found below:
 
 * [Personal Website](https://www.weshenderson.info/)
@@ -57,13 +86,12 @@ Once deployed the website and various résumé formats can be found below:
 * [JSON Registry](https://registry.jsonresume.org/necrux)
 
 ## Artifacts
-All artifacts, other than PDFs, are generated with Alea from a canonical data source. Separating the presentation from the data means that I can maintain many versions and formats without having to alter the underlying data!
 
-**PDF Resume**
+All artifacts are generated with Alea from canonical data sources. This allows the same underlying data to be rendered into multiple formats without maintaining each format independently.
 
-The PDF version of my resume is generated via `chrome-headless-shell`. The old headless browser no longer ships with the default Google Chrome dev tools inside Chrome as it a separate binary and an entirely different browser. You can read more about these changes [here](https://developer.chrome.com/docs/chromium/headless).
+**PDF Résumé**
 
-I have built the new `chrome-headless-shell` as a dockerfile for portability. Simply run `docker-compose` up after exporting the `TMP` and `OUTPUT` variables.
+The PDF résumé is generated from the HTML résumé using [`chrome-headless-shell`](https://developer.chrome.com/docs/chromium/headless). I package the renderer in Docker to keep PDF generation portable and reproducible.
 
 > [!TIP]
 During the build process these variables are set with the [.env](
@@ -81,22 +109,27 @@ https://github.com/weshenderson/weshenderson.github.io/blob/main/docker/pdf_resu
     ${TMP}
 ```
 > [!NOTE]
-Previously this work was done via Pandoc, however this results in a prettier end product without having to create LateX templates since Chrome is able to render the underlying CSS.
+Previously, this was done via Pandoc. Using Chrome instead produces a prettier end product without requiring separate LaTeX templates since Chrome can render the underlying CSS directly.
+
+**DOCX Résumé**
+
+While the PDF résumé is designed to remain visually consistent with the HTML version, the DOCX version intentionally uses simpler formatting and a single-column layout. This makes the document easier for Applicant Tracking Systems (ATS) to parse and import reliably.
+
 
 ## Data Provenance
 
-All generated artifacts include build [metadata](templates/.build.metadata) added by GitHub Actions. This metadata provides a provenance trail that links an artifact to the specific Alea build, GitHub Actions run, commit, and date on which it was generated.
+All generated artifacts include build provenance added by GitHub Actions. The injected metadata provides a provenance trail that links an artifact to the specific Alea build, GitHub Actions run, commit, and date on which it was generated.
 
 When the artifact format allows, the metadata is added as a comment:
 
 ```
 <!--
 Alea Build Information
-Build:   29
+Build:   42
 Run ID:  33448207686
 Attempt: 1
 Commit:  340d58fcc718622b2f7906bde3f57f97265d575c
-Date:    2026-08-31 05:54:03 PM CDT
+Date:    2026-01-01 12:00:00 AM CST
 -->
 ```
 
