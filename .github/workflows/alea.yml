@@ -60,7 +60,7 @@ jobs:
     - name: Inject website build metadata.
       if: steps.website_updates.outputs.specific_file == 'true'
       run: |
-        FILES=(index.html assets/css/main.css)
+        FILES=(public/index.html public/assets/css/main.css)
         DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
         sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
         sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
@@ -70,7 +70,7 @@ jobs:
     - name: Inject resume build metadata.
       if: steps.resume_updates.outputs.specific_file == 'true'
       run: |
-        FILES=(resumes/resume.html resumes/resume.md resumes/resume.json)
+        FILES=(public/resumes/resume.html public/resumes/resume.md public/resumes/resume.json)
         DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
         sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
         sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
@@ -82,9 +82,7 @@ jobs:
         git config --global user.name "alea[bot]"
         git config --global user.email "alea[bot]@users.noreply.github.com"
 
-        git add index.html
-        git add assets/css/
-        git add resumes/
+        git add public/
 
         if ! git diff --cached --quiet; then
           git commit -m "alea: artifact generation [skip ci]"
@@ -99,4 +97,4 @@ jobs:
       with:
         token: ${{ secrets.GIST_TOKEN }}
         gist_id: 47c721cc5ac327c7acc1654fb822005b
-        file_path: resumes/resume.json
+        file_path: public/resumes/resume.json
