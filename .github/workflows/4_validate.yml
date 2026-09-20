@@ -37,10 +37,6 @@ jobs:
       run: |
         ./tools/validation/validate_files.sh
 
-    - name: "Validate: Links in HTML document(s)."
-      run: |
-        ./tools/validation/validate_html_links.sh
-
     - name: "Validate: metadata -- HTML (resume)."
       run: |
         ./tools/validation/validate_metadata_html_resume.sh
@@ -64,3 +60,7 @@ jobs:
     - name: "Validate: metadata -- PDF."
       run: |
         python ./tools/metadata_viewer_pdf.py | grep -q "${GITHUB_SHA}"
+
+    - name: "Validate: Links in HTML document(s)."
+      run: |
+        ./tools/validation/validate_html_links.sh

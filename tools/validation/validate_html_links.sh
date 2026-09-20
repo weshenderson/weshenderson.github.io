@@ -23,6 +23,8 @@ for url in ${INTERNAL_LINKS[@]}; do
 
     if [ "${SKIP}" == "false" ]; then
         if ! curl -skIL -A "${USER_AGENT}" ${url} | awk '/HTTP/ {print $2}' | grep -q '^20'; then
+            echo "URL: ${url}"
+            echo -e "Response Codes:\n$(curl -skIL -A "${USER_AGENT}" ${url} | awk '/HTTP/ {print $2}')"
             exit 67
         fi
     fi
