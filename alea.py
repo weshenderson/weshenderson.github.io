@@ -12,7 +12,7 @@ of artifacts.
 TODO:
   * Add validation and creation options for CONFIG_FILE (.alea.yaml).
   * Add option to change the number of jobs displayed.
-  * Add HTML, CSS, and Markdown validation.
+  * Integrate HTML, CSS, and Markdown validation.
   * Expand schema definitions:
     * education
     * certifications

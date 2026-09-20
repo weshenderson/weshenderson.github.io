@@ -20,7 +20,7 @@ The résumé data source is fully compatible with the [JSON Resume](https://json
 
 | Category                  | Check               | Source           |
 | ------------------------- | ------------------- | ---------------- |
-|  **External Monitoring** | UptimeRobot       | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m794478390-66c873f3205d74db546c9ad1?up_message=online&up_color=purple&down_message=offline&down_color=red&label=) |
+|  **External Monitoring** | UptimeRobot       | [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m794478390-66c873f3205d74db546c9ad1?up_message=online&up_color=purple&down_message=offline&down_color=red&label=)](https://stats.uptimerobot.com/jW62gFYxBy) |
 | **Configuration**         | Resume YAML Schema  | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/1_test.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml)     |
 |                           | Website YAML Schema | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/1_test.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml)     |
 | **Code Quality**          | PyLint              | [![badge](https://img.shields.io/github/actions/workflow/status/weshenderson/weshenderson.github.io/1_test.yml?branch=main&label=)](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/1_test.yml)     |
