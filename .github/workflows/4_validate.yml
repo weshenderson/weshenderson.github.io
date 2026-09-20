@@ -1,0 +1,66 @@
+name: "Validate"
+
+on:
+  workflow_run:
+    workflows:
+      - "Deploy"
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository.
+      uses: actions/checkout@v4
+
+    - name: Set up Python.
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies.
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: "Validate: HTML Endpoints."
+      run: |
+        ./tools/validation/validate_endpoints.sh
+
+    - name: "Validate: Artifact files exist."
+      run: |
+        ./tools/validation/validate_files.sh
+
+    - name: "Validate: Links in HTML document(s)."
+      run: |
+        ./tools/validation/validate_html_links.sh
+
+    - name: "Validate: metadata -- DOCX."
+      run: |
+        ./tools/validation/validate_metadata_docx.sh
+
+    - name: "Validate: metadata -- HTML (resume)."
+      run: |
+        ./tools/validation/validate_metadata_html_resume.sh
+
+    - name: "Validate: metadata -- HTML (website)."
+      run: |
+        ./tools/validation/validate_metadata_html_website.sh
+
+    - name: "Validate: metadata -- JSON."
+      run: |
+        ./tools/validation/validate_metadata_json.sh
+
+    - name: "Validate: metadata -- Markdown."
+      run: |
+        ./tools/validation/validate_metadata_md.sh
+
+    - name: "Validate: metadata -- PDF."
+      run: |
+        ./tools/validation/validate_metadata_pdf.sh

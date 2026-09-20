@@ -75,7 +75,7 @@ flowchart LR
     * [Deploy](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/3_deploy.yml): Deploys GitHub Pages and updates the JSON gist used by the JSON Resume registry.
     * [Validate](https://github.com/weshenderson/weshenderson.github.io/actions/workflows/4_validate.yml): Validates the deployed artifacts.
 
-## Published Artifacts
+## Deployment
 Once deployed the website and various résumé formats can be found below:
 
 * [Personal Website](https://www.weshenderson.info/)
@@ -138,11 +138,11 @@ Otherwise the metadata is added to a suitable metadata field using the canonical
 ```
 "meta": {
     "buildData": {
-        "Build": "40",
-        "Run ID": "33463463548",
+        "Build": "42",
+        "Run ID": "33448207686",
         "Attempt": "1",
-        "Commit": "1b1191f4055ea0ae6672f5a96a9ca892444b2d2e",
-        "Date": "2026-08-31 09:42:37 PM CDT"
+        "Commit": "340d58fcc718622b2f7906bde3f57f97265d575c",
+        "Date": "2026-01-01 12:00:00 AM CST"
     }
 }
 ```

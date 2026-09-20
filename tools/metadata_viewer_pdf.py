@@ -10,7 +10,7 @@ import sys
 
 from pypdf import PdfReader
 
-DEFAULT_PDF = "resumes/resume.pdf"
+DEFAULT_PDF = "public/resumes/resume.pdf"
 
 def get_pdf_file():
     """Return the PDF path from the command line or use the default."""
