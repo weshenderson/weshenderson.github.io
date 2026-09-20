@@ -14,21 +14,16 @@
       "DevOps Engineer",
       "Resume",
       "San Antonio",
-      "Texas",
-      "RHCE"
+      "Texas"
     ],
     "googleAnalytics": "G-1HMXV18Z9V",
     "emailSubject": "You're hired! ;)",
     "buildData": {
-      "meta": {
-        "buildData": {
-          "Build": "10",
-          "Run ID": "35484169691",
-          "Attempt": "1",
-          "Commit": "800de5a9cef4484cd86810285a3b1b51a5eb26fc",
-          "Date": "2026-09-19 09:31:18 PM CDT"
-        }
-      }
+      "Build": "11",
+      "Run ID": "35485993010",
+      "Attempt": "1",
+      "Commit": "e89037db10ec834ca126437931029b91bc01b149",
+      "Date": "2026-09-19 10:13:37 PM CDT"
     }
   },
   "basics": {
