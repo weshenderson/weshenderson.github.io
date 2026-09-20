@@ -23,8 +23,7 @@ class RenderMetadata:
         with open(json_file, encoding='UTF-8') as file:
             content = json.load(file)
 
-        content.setdefault("meta", {})
-        content["meta"]["buildData"] = build_data
+        content.setdefault("meta", {}).update(build_data["meta"])
 
         with open(json_file, 'w', encoding='UTF-8') as file:
             json.dump(content, file, indent=2)

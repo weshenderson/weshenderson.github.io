@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Currently unused (WIP)
 
 source "$(dirname $0)/artifact_list.sh"
 

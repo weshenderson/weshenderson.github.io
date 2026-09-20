@@ -48,13 +48,15 @@ jobs:
 
     - name: Inject resume build metadata.
       if: steps.resume_template_updates.outputs.specific_file == 'true'
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         FILES=(public/resumes/resume.html public/resumes/resume.md)
         DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
         sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
         sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
         sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
-        sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
+        sed -i "s/ALEA_COMMIT/${BUILD_SHA}/g" ${FILES[@]}
         sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
 
     - name: Check for resume changes.
@@ -69,16 +71,22 @@ jobs:
 
     - name: "Alea: Updating resume artifacts -- DOCX"
       if: steps.resume_updates.outputs.specific_file == 'true'
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         python ./alea.py --docx
 
     - name: "Alea: Updating resume artifacts -- PDF"
       if: steps.resume_updates.outputs.specific_file == 'true'
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         python ./alea.py --pdf
 
     - name: "Alea: Updating resume artifacts -- JSON"
       if: steps.resume_updates.outputs.specific_file == 'true'
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         python ./alea.py --json
 
@@ -102,13 +110,15 @@ jobs:
 
     - name: Inject website build metadata.
       if: steps.website_updates.outputs.specific_file == 'true'
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         FILES=(public/index.html public/assets/css/main.css)
         DATE=$(TZ="America/Chicago" date "+%Y-%m-%d %I:%M:%S %p %Z")
         sed -i "s/ALEA_BUILD/${GITHUB_RUN_NUMBER}/g" ${FILES[@]}
         sed -i "s/ALEA_RUN_ID/${GITHUB_RUN_ID}/g" ${FILES[@]}
         sed -i "s/ALEA_ATTEMPT/${GITHUB_RUN_ATTEMPT}/g" ${FILES[@]}
-        sed -i "s/ALEA_COMMIT/${GITHUB_SHA}/g" ${FILES[@]}
+        sed -i "s/ALEA_COMMIT/${BUILD_SHA}/g" ${FILES[@]}
         sed -i "s/ALEA_DATE/${DATE}/g" ${FILES[@]}
 
     - name: Commit and Push Artifact(s).

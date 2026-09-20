@@ -77,7 +77,7 @@ class AleaHelperFunctions:
             "Build": "GITHUB_RUN_NUMBER",
             "Run ID": "GITHUB_RUN_ID",
             "Attempt": "GITHUB_RUN_ATTEMPT",
-            "Commit": "GITHUB_SHA",
+            "Commit": "BUILD_SHA",
         }
 
         missing_variables = [
