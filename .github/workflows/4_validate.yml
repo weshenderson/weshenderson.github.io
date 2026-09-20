@@ -41,10 +41,6 @@ jobs:
       run: |
         ./tools/validation/validate_html_links.sh
 
-    - name: "Validate: metadata -- DOCX."
-      run: |
-        ./tools/validation/validate_metadata_docx.sh
-
     - name: "Validate: metadata -- HTML (resume)."
       run: |
         ./tools/validation/validate_metadata_html_resume.sh
@@ -61,6 +57,10 @@ jobs:
       run: |
         ./tools/validation/validate_metadata_md.sh
 
+    - name: "Validate: metadata -- DOCX."
+      run: |
+        python ./tools/metadata_viewer_docx.py | grep -q "${GITHUB_SHA}"
+
     - name: "Validate: metadata -- PDF."
       run: |
-        ./tools/validation/validate_metadata_pdf.sh
+        python ./tools/metadata_viewer_pdf.py | grep -q "${GITHUB_SHA}"
