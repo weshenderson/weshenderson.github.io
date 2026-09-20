@@ -26,9 +26,9 @@ if grep 'ALEA_DATE' ${MD_RESUME}; then
     exit 11
 fi
 
-if ! grep "${GITHUB_SHA}" ${MD_RESUME}; then
+if ! grep "${BUILD_SHA}" ${MD_RESUME}; then
     echo "RESUME: ${MD_RESUME}"
-    echo "SHA: ${GITHUB_SHA}"
+    echo "SHA: ${BUILD_SHA}"
     echo "MATCH: $(grep 'Commit' ${MD_RESUME})"
     exit 12
 fi

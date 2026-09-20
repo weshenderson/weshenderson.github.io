@@ -30,37 +30,55 @@ jobs:
         pip install -r requirements.txt
 
     - name: "Validate: HTML Endpoints."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         ./tools/validation/validate_endpoints.sh
 
     - name: "Validate: Artifact files exist."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         ./tools/validation/validate_files.sh
 
     - name: "Validate: metadata -- HTML (resume)."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         ./tools/validation/validate_metadata_html_resume.sh
 
     - name: "Validate: metadata -- HTML (website)."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         ./tools/validation/validate_metadata_html_website.sh
 
     - name: "Validate: metadata -- JSON."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         ./tools/validation/validate_metadata_json.sh
 
     - name: "Validate: metadata -- Markdown."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         ./tools/validation/validate_metadata_md.sh
 
     - name: "Validate: metadata -- DOCX."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
-        python ./tools/metadata_viewer_docx.py | grep -q "${GITHUB_SHA}"
+        python ./tools/metadata_viewer_docx.py | grep -q "${BUILD_SHA}"
 
     - name: "Validate: metadata -- PDF."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
-        python ./tools/metadata_viewer_pdf.py | grep -q "${GITHUB_SHA}"
+        python ./tools/metadata_viewer_pdf.py | grep -q "${BUILD_SHA}"
 
     - name: "Validate: Links in HTML document(s)."
+      env:
+        BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
       run: |
         ./tools/validation/validate_html_links.sh

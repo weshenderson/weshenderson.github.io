@@ -26,9 +26,9 @@ if grep 'ALEA_DATE' ${WEBSITE}; then
     exit 11
 fi
 
-if ! grep "${GITHUB_SHA}" ${WEBSITE}; then
+if ! grep "${BUILD_SHA}" ${WEBSITE}; then
     echo "WEBSITE: ${WEBSITE}"
-    echo "SHA: ${GITHUB_SHA}"
+    echo "SHA: ${BUILD_SHA}"
     echo "MATCH: $(grep 'Commit' ${WEBSITE})"
     exit 12
 fi
