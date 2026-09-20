@@ -7,5 +7,8 @@ if ! grep 'buildData' ${JSON_RESUME}; then
 fi
 
 if ! grep "${GITHUB_SHA}" ${JSON_RESUME}; then
+    echo "RESUME: ${JSON_RESUME}"
+    echo "SHA: ${GITHUB_SHA}"
+    echo "MATCH: $(grep 'Commit' ${JSON_RESUME})"
     exit 7
 fi

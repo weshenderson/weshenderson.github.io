@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 source "$(dirname $0)/artifact_list.sh"
 
@@ -28,5 +27,8 @@ if grep 'ALEA_DATE' ${HTML_RESUME}; then
 fi
 
 if ! grep "${GITHUB_SHA}" ${HTML_RESUME}; then
+    echo "RESUME: ${HTML_RESUME}"
+    echo "SHA: ${GITHUB_SHA}"
+    echo "MATCH: $(grep 'Commit' ${HTML_RESUME})"
     exit 12
 fi
